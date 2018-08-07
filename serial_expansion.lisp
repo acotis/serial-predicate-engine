@@ -9,6 +9,8 @@
 ;; jado = lambda
 
 
+;; Replace the first elem e of ls such that (test e) is true
+;; with (transform e)
 (defun replace-first (ls test transform)
   (if (funcall test (car ls))
       (cons (funcall transform (car ls)) (cdr ls))
@@ -22,6 +24,7 @@
        (not (listp e))))
 
 
+;; Fill the slots of a predicate with the terms given in a list.
 ;; Examples:
 ;;   fill (mai c c) (jado ji)        -> (mai jado ji)
 ;;   fill (dua c (mai c c)) (ji suq) -> (dua ji (mai suq c))
@@ -45,16 +48,23 @@
           (cons predicate args)))
 
 
-
+;; Expand a two-part predicate into one predicate.
 ;; Examples:
 ;;   (dua c 0) (mai c c) = (dua c (mai c c))
 ;;   (leo c 1) (mai c c) = (leo c (mai jado c))
 ;;   (cheo c 2) (mai c c) = (cheo c (mai jado jado))
 
-;;(defun collapse (head tail)
-;;  (let ((positions (append (loop for i from 2 to (- (length head 1))
-    ;;                             collect i)
-  ;;                         '(1))))
-    
-    ;;(loop for p in positions
-;;          do (let ((arg (nth p head)))
+(defun expand (head tail)
+  (let ((shuf (lambda (ls) (append (cddr ls) (list (cadr ls)))))
+        (unshuf (lambda (ls)
+                  (append (list (car head))
+                          (last ls)
+                          (reverse (cdr (reverse ls)))))))
+    (funcall
+     unshuf
+     (replace-first
+      (funcall shuf head)
+      #'numberp
+      (lambda (s)
+        (fill-slots tail
+                    (make-list s :initial-element 'jado)))))))
