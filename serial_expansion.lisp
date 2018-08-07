@@ -16,6 +16,14 @@
       (cons (funcall transform (car ls)) (cdr ls))
     (cons (car ls) (replace-first (cdr ls) test transform))))
 
+;; Fold with right-grouping
+(defun rreduce (fun ls)
+  (if (= 1 (length ls))
+      (car ls)
+    (funcall fun (car ls) (rreduce fun (cdr ls)))))
+
+;; (Misc)
+
 (defun is-slot-marker (e)
   (or (eq e 'c) (numberp e)))
 
@@ -54,7 +62,7 @@
 ;;   (leo c 1) (mai c c) = (leo c (mai jado c))
 ;;   (cheo c 2) (mai c c) = (cheo c (mai jado jado))
 
-(defun expand (head tail)
+(defun expand-binary (head tail)
   (let ((shuf (lambda (ls) (append (cddr ls) (list (cadr ls)))))
         (unshuf (lambda (ls)
                   (append (list (car head))
@@ -68,3 +76,11 @@
       (lambda (s)
         (fill-slots tail
                     (make-list s :initial-element 'jado)))))))
+
+
+;; Expand poly-predicates
+;; Example:
+;; ((dua c 0) (leo c 1) (mai c c)) = (dua c (leo c (mai jado c)))
+
+(defun expand (predicates)
+  (rreduce #'expand-binary predicates))

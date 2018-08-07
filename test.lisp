@@ -15,7 +15,7 @@
           
           (display
            (lambda (success)
-             `(progn (format t "Call:     ~a~%" ',call)
+             `(progn (format t "Test:     ~a~%" ',call)
                      ,(if success
                           ()
                         `(format t "Expected: ~a~%" ',expected))
@@ -26,7 +26,13 @@
                    `(progn ,(funcall display t) t)
                  t)
                `(progn ,(funcall display nil) nil)))))
-  
+
+
+(defmacro perform (call)
+  `(progn
+     (format t "Call:   ~a~%" ',call)
+     (format t "Result: ~a~%~%" ,call)))
+
 ;(format t "~a~%"
 ;        (macroexpand
 ;         '(test (fill-slots '(mai c c) '(ji suq))
@@ -44,28 +50,64 @@
            nil)
 
      ;; Test basic head-tail expansion
-     (test (expand '(dua c 0) '(mai c c))
+     (test (expand-binary '(dua c 0) '(mai c c))
            (dua c (mai c c))
-           t)
-     (test (expand '(leo c 1) '(mai c c))
+           nil)
+     (test (expand-binary '(leo c 1) '(mai c c))
            (leo c (mai jado c))
-           t)
-     (test (expand '(cheo c 2) '(mai c c))
+           nil)
+     (test (expand-binary '(cheo c 2) '(mai c c))
            (cheo c (mai jado jado))
-           t)
-     (test (expand '(du 0) '(mai c c))
+           nil)
+     (test (expand-binary '(du 0) '(mai c c))
            (du (mai c c))
-           t)
-     (test (expand '(soq c 1 c) '(de c))
+           nil)
+     (test (expand-binary '(soq c 1 c) '(de c))
            (soq c (de jado) c)
-           t)
-     (test (expand '(soq c 1 c) '(dua c 0))
+           nil)
+     (test (expand-binary '(soq c 1 c) '(dua c 0))
            (soq c (dua jado 0) c)
-           t)
-     (test (expand '(soq c 1 c) '(leo c 1))
+           nil)
+     (test (expand-binary '(soq c 1 c) '(leo c 1))
            (soq c (leo jado 1) c)
+           nil)
+
+     ;; Prep for poly-expansion
+     (test (expand-binary '(hica 1 1) '(dua c 0))
+           (hica 1 (dua jado 0))
+           t)
+     (test (expand-binary '(soq c 1 c) '(hica 1 (dua jado 0)))
+           (soq c (hica jado (dua jado 0)) c)
+           t)
+     (test (expand-binary '(seqkai 1) '(dua c 0)) ;; selkai
+           (seqkai (dua jado 0))
+           t)
+     (test (expand-binary '(soq c 1 c) '(seqkai (dua jado 0)))
+           (soq c (seqkai (dua jado jado)) c)
+           t)
+
+     ;; Basic poly-expansion
+     (test (expand '((dua c 0) (mai c c)))
+           (dua c (mai c c))
+           nil)
+     (test (expand '((dua c 0) (leo c 1) (mai c c)))
+           (dua c (leo c (mai jado c)))
+           nil)
+     (test (expand '((soq c 1 c) (hica 1 1) (dua c 0)))
+           (soq c (hica jado (dua jado 0)) c)
+           t)
+     (test (expand '((soq c 1 c) (seqkai 1) (dua c 0)))
+           (soq c (seqkai (dua jado jado)) c)
            t)
      
      )
     (format t "Tests passed.~%")
   (format t "One or more tests failed!~%~%"))
+
+
+
+;(format t "~%")
+;(perform (expand-binary '(du 0) '(jaq 0)))
+;(perform (expand-binary '(du 0) '(jaq c 1)))
+;(perform (expand-binary '(du c 1) '(jaq 0)))
+;(perform (expand-binary '(du c 1) '(jaq c 1)))
