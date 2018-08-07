@@ -28,11 +28,6 @@
                `(progn ,(funcall display nil) nil)))))
 
 
-(defmacro perform (call)
-  `(progn
-     (format t "Call:   ~a~%" ',call)
-     (format t "Result: ~a~%~%" ,call)))
-
 ;(format t "~a~%"
 ;        (macroexpand
 ;         '(test (fill-slots '(mai c c) '(ji suq))
@@ -75,16 +70,16 @@
      ;; Prep for poly-expansion
      (test (expand-binary '(hica 1 1) '(dua c 0))
            (hica 1 (dua jado 0))
-           t)
+           nil)
      (test (expand-binary '(soq c 1 c) '(hica 1 (dua jado 0)))
            (soq c (hica jado (dua jado 0)) c)
-           t)
+           nil)
      (test (expand-binary '(seqkai 1) '(dua c 0)) ;; selkai
            (seqkai (dua jado 0))
-           t)
+           nil)
      (test (expand-binary '(soq c 1 c) '(seqkai (dua jado 0)))
            (soq c (seqkai (dua jado jado)) c)
-           t)
+           nil)
 
      ;; Basic poly-expansion
      (test (expand '((dua c 0) (mai c c)))
@@ -95,19 +90,11 @@
            nil)
      (test (expand '((soq c 1 c) (hica 1 1) (dua c 0)))
            (soq c (hica jado (dua jado 0)) c)
-           t)
+           nil)
      (test (expand '((soq c 1 c) (seqkai 1) (dua c 0)))
            (soq c (seqkai (dua jado jado)) c)
-           t)
+           nil)
      
      )
     (format t "Tests passed.~%")
   (format t "One or more tests failed!~%~%"))
-
-
-
-;(format t "~%")
-;(perform (expand-binary '(du 0) '(jaq 0)))
-;(perform (expand-binary '(du 0) '(jaq c 1)))
-;(perform (expand-binary '(du c 1) '(jaq 0)))
-;(perform (expand-binary '(du c 1) '(jaq c 1)))

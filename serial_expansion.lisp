@@ -22,7 +22,8 @@
       (car ls)
     (funcall fun (car ls) (rreduce fun (cdr ls)))))
 
-;; (Misc)
+
+;; Formatting
 
 (defun is-slot-marker (e)
   (or (eq e 'c) (numberp e)))
