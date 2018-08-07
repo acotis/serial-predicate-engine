@@ -3,18 +3,24 @@
 (load "serial_expansion.scm")
 
 
-(define (test call expected #!optional (display-anyway #f))
-  (let ((result (eval call)))
+(define-syntax test
+  (syntax-rules ()
+    
+    ((test call expected display-anyway)
+     (let ((result (eval call)))  
+       (if (equal? expected result)
+           (begin (when display-anyway
+                        (format #t "Test:     ~a~%" 'call)
+                        (format #t "Result:   ~a~%" result))
+                  #t)
+           
+           (begin (format #t "Test:     ~a~%" 'call)
+                  (format #t "Expected: ~a~%" expected)
+                  (format #t "Result:   ~a~%" result)
+                  #f))))
 
-    (if (equal? expected result)
-        (begin (when display-anyway
-                     (format #t "Test:     ~a~%" call)
-                     (format #t "Result:   ~a~%" result))
-               #t)
+    ((test call expected)
+     (test call expected #f))))
+    
 
-        (begin (format #t "Test:     ~a~%" call)
-               (format #t "Expected: ~a~%" expected)
-               (format #t "Result:   ~a~%" result)))))
-
-
-(test '(is-filled-slot 'c) #t)
+(test (+ 3 5) 8)
