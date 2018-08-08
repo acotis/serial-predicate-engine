@@ -83,3 +83,11 @@
                     number?
                     (lambda (s)
                       (fill-slots tail (make-list s 'jado)))))))
+
+
+;; Expand poly-predicates
+;; Example:
+;; ((dua c 0) (leo c 1) (mai c c)) = (dua c (leo c (mai jado c)))
+
+(define (expand predicates)
+  (fold-right expand-binary predicates))

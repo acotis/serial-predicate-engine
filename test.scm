@@ -13,8 +13,9 @@
      (let ((result call))  
        (if (equal? expected result)
            (begin (if display-anyway
-                      (begin (format #t "Test:     ~a~%" 'call)
-                             (format #t "Result:   ~a~%~%" result)))
+                      (begin
+                        (format #t "Test:     ~a~%" 'call)
+                        (format #t "Result:   ~a~%~%" result)))
                   #t)
            
            (begin (format #t "Test:     ~a~%" 'call)
@@ -29,7 +30,9 @@
 
 (let ((show-fsh #f) ;; Show fill-slots helpers tests
       (show-fs #f)  ;; Show fill-slots test
-      (show-eb #f))  ;; Show expand-binary tests
+      (show-eb #f)  ;; Show expand-binary tests
+      (show-pep #f) ;; Show poly-predicate prep tests
+      (show-pe #t)) ;; Show poly-predicate tests
       
   (if (and
        
@@ -74,6 +77,34 @@
        (test (expand-binary '(soq c 1 c) '(leo c 1))
              '(soq c (leo jado 1) c)
              show-eb)
+
+       ;; Prep for poly-expansion
+       (test (expand-binary '(hica 1 1) '(dua c 0))
+             '(hica 1 (dua jado 0))
+             show-pep)
+       (test (expand-binary '(soq c 1 c) '(hica 1 (dua jado 0)))
+             '(soq c (hica jado (dua jado 0)) c)
+             show-pep)
+       (test (expand-binary '(seqkai 1) '(dua c 0)) ;; selkai
+             '(seqkai (dua jado 0))
+             show-pep)
+       (test (expand-binary '(soq c 1 c) '(seqkai (dua jado 0)))
+             '(soq c (seqkai (dua jado jado)) c)
+             show-pep)
+       
+       ;; Basic poly-expansion
+       (test (expand '((dua c 0) (mai c c)))
+             '(dua c (mai c c))
+             show-pe)
+       (test (expand '((dua c 0) (leo c 1) (mai c c)))
+             '(dua c (leo c (mai jado c)))
+             show-pe)
+       (test (expand '((soq c 1 c) (hica 1 1) (dua c 0)))
+             '(soq c (hica jado (dua jado 0)) c)
+             show-pe)
+       (test (expand '((soq c 1 c) (seqkai 1) (dua c 0)))
+             '(soq c (seqkai (dua jado jado)) c)
+             show-pe)
        
        )
       
