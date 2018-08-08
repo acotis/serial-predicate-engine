@@ -35,10 +35,16 @@
      (test (has-open-slot '(dua c 0)) #t #t)
      (test (has-open-slot '(dua jado (mai ji c))) #t #t)
      (test (has-open-slot '(dua jado (mai ji suq))) #f #t)
-
-     ;; fill-slots function
      (test (fill-one-slot '(mai c c) 'ji)
            '(mai ji c)
+           #t)
+
+     ;; fill-slots function
+     (test (fill-slots '(mai c c) '(ji suq))
+           '(mai ji suq)
+           #t)
+     (test (fill-slots '(dua ji (leo jado (mai c jado))) '(suq))
+           '(dua ji (leo jado (mai suq jado)))
            #t)
 
      )
