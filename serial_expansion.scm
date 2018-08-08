@@ -62,3 +62,24 @@
 
 (define (fill-slots predicate args)
   (fold fill-one-slot (cons predicate args)))
+
+
+;; Expand a two-part predicate into one predicate.
+;; Examples:
+;;   (dua c 0) (mai c c) = (dua c (mai c c))
+;;   (leo c 1) (mai c c) = (leo c (mai jado c))
+;;   (cheo c 2) (mai c c) = (cheo c (mai jado jado))
+
+(define (expand-binary head tail)
+  (let ((mix (lambda (ls)
+               (append (cddr ls)
+                       (list (cadr ls)))))
+        (fix (lambda (ls)
+               (append (list (car head))
+                       (take-right ls 1)
+                       (drop-right ls 1)))))
+    (fix
+     (replace-first (mix head)
+                    number?
+                    (lambda (s)
+                      (fill-slots tail (make-list s 'jado)))))))

@@ -26,29 +26,57 @@
      (test call expected #f))))
 
 
-(if (and
 
-     ;; fill-slots helper functions
-     (test (has-open-slot 'c) #t #t)
-     (test (has-open-slot 3) #t #t)
-     (test (has-open-slot 'suq) #f #t)
-     (test (has-open-slot '(dua c 0)) #t #t)
-     (test (has-open-slot '(dua jado (mai ji c))) #t #t)
-     (test (has-open-slot '(dua jado (mai ji suq))) #f #t)
-     (test (fill-one-slot '(mai c c) 'ji)
-           '(mai ji c)
-           #t)
-
-     ;; fill-slots function
-     (test (fill-slots '(mai c c) '(ji suq))
-           '(mai ji suq)
-           #t)
-     (test (fill-slots '(dua ji (leo jado (mai c jado))) '(suq))
-           '(dua ji (leo jado (mai suq jado)))
-           #t)
-
-     )
-
-    (format #t "All tests passed.~%")
-    (format #t "One or more tests failed!~%"))
-
+(let ((show-fsh #f) ;; Show fill-slots helpers tests
+      (show-fs #f)  ;; Show fill-slots test
+      (show-eb #f))  ;; Show expand-binary tests
+      
+  (if (and
+       
+       ;; fill-slots helper functions
+       (test (has-open-slot 'c) #t show-fsh)
+       (test (has-open-slot 3) #t show-fsh)
+       (test (has-open-slot 'suq) #f show-fsh)
+       (test (has-open-slot '(dua c 0)) #t show-fsh)
+       (test (has-open-slot '(dua jado (mai ji c))) #t show-fsh)
+       (test (has-open-slot '(dua jado (mai ji ho))) #f show-fsh)
+       (test (fill-one-slot '(mai c c) 'ji)
+             '(mai ji c)
+             show-fsh)
+       
+       ;; fill-slots function
+       (test (fill-slots '(mai c c) '(ji suq))
+             '(mai ji suq)
+             show-fs)
+       (test (fill-slots '(dua ji (leo ho (mai c jado))) '(suq))
+             '(dua ji (leo ho (mai suq jado)))
+             show-fs)
+       
+       ;; expand-binary function
+       (test (expand-binary '(dua c 0) '(mai c c))
+             '(dua c (mai c c))
+             show-eb)
+       (test (expand-binary '(leo c 1) '(mai c c))
+             '(leo c (mai jado c))
+             show-eb)
+       (test (expand-binary '(cheo c 2) '(mai c c))
+             '(cheo c (mai jado jado))
+             show-eb)
+       (test (expand-binary '(du 0) '(mai c c))
+             '(du (mai c c))
+             show-eb)
+       (test (expand-binary '(soq c 1 c) '(de c))
+             '(soq c (de jado) c)
+             show-eb)
+       (test (expand-binary '(soq c 1 c) '(dua c 0))
+             '(soq c (dua jado 0) c)
+             show-eb)
+       (test (expand-binary '(soq c 1 c) '(leo c 1))
+             '(soq c (leo jado 1) c)
+             show-eb)
+       
+       )
+      
+      (format #t "All tests passed.~%")
+      (format #t "One or more tests failed!~%")))
+  
