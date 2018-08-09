@@ -1,7 +1,7 @@
 
 
-Commit: Add a (build-word) function that builds up a word (aka
-        list of predicates) once its type signature has been set.
+Commit: Change the (build-word) function to only include the
+        stopping-point arities in its list of predicates.
 
 Commit: Add a (compose-binary) function that returns all possible
         compositions of two words, given that each represents a

@@ -110,16 +110,19 @@
 
        ;; Predicate signatures
        (test (get-signature "mai") '() show-ps)
-       (set-signature "mai" '((c) (c c)))
-       (test (get-signature "mai") '((c) (c c)) show-ps)
+
        (set-signature "jeo" '((0) (c 1)))
        (test (get-signature "jeo") '((0) (c 1)) show-ps)
        (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
 
+       (set-signature "mai" '((c) (c c)))
+       (test (get-signature "mai") '((c) (c c)) show-ps)
+       (test (build-word "mai") '(("mai" c c)) show-ps)
+
        ;; compose-binary function
-  ;     (set-signature "dua" '((c) (c 0)))
-   ;    (test (compose-binary "dua" "mai")
-    ;         '((
+       ;(set-signature "dua" '((c) (c 0)))
+       ;(test (compose-binary "dua" "mai")
+       ;      '((
        
        )
       
