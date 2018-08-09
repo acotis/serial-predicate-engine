@@ -1,11 +1,9 @@
 
 
-Commit: Change the (build-word) function to only include the
-        stopping-point arities in its list of predicates.
-
-Commit: Add a (compose-binary) function that returns all possible
-        compositions of two words, given that each represents a
-        whole family of predicates.
+Commit: Add a (compose-binary) function that returns each
+        possibly expansion of two words, by iterating over each
+        predicate that each word represents (trying only the
+        stopping-poing arities for each one).
         
 Commit: Add a (compose) function that folds (compose-binary) over
         a list of words.  Add tests for same.

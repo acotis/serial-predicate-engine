@@ -111,19 +111,49 @@
        ;; Predicate signatures
        (test (get-signature "mai") '() show-ps)
 
-       (set-signature "jeo" '((0) (c 1)))
-       (test (get-signature "jeo") '((0) (c 1)) show-ps)
-       (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
-
+       ;;     mai [(cc)]
        (set-signature "mai" '((c) (c c)))
        (test (get-signature "mai") '((c) (c c)) show-ps)
        (test (build-word "mai") '(("mai" c c)) show-ps)
 
-       ;; compose-binary function
-       ;(set-signature "dua" '((c) (c 0)))
-       ;(test (compose-binary "dua" "mai")
-       ;      '((
+       ;;     jeo [(0), (c1)]
+       ;;     du  [(0), (c1)]
+       (set-signature "jeo" '((0) (c 1)))
+       (set-signature "du" '((0) (c 1)))
+       (test (get-signature "jeo") '((0) (c 1)) show-ps)
+       (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
        
+       ;;     dua [(c0)]
+       (set-signature "dua" '((c) (c 0)))
+       (test (get-signature "dua") '((c) (c 0)) show-ps)
+       (test (build-word "dua") '(("dua" c 0)))
+
+       ;; compose-binary function
+       (test (compose-binary (build-word "dua")
+                             (build-word "mai"))
+             '(("dua" c ("mai" c c)))
+             show-cb)
+
+       (test (compose-binary (build-word "dua")
+                             (build-word "jeo"))
+             '(("dua" c ("jeo" 0))
+               ("dua" c ("jeo" c 1)))
+             show-cb)
+
+       (test (compose-binary (build-word "jeo")
+                             (build-word "mai"))
+             '(("jeo" ("mai" c c))
+               ("jeo" c ("mai" jado c)))
+             show-cb)
+
+       (test (compose-binary (build-word "jeo")
+                             (build-word "du"))
+             '(("jeo" ("du" 0))
+               ("jeo" ("du" c 1))
+               ("jeo" c ("du" jado))
+               ("jeo" c ("du" jado 1)))
+             show-cb)
+                
        )
       
       (format #t "All tests passed.~%")

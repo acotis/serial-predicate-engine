@@ -42,3 +42,14 @@
 (define (build-word word)
   (map (lambda (typelist) (cons word typelist))
        (stopping-points (get-signature word))))
+
+
+;; compose-binary
+
+(define (compose-binary head tail)
+  (fold append
+        (map (lambda (head-pred)
+               (map (lambda (tail-pred)
+                      (expand-binary head-pred tail-pred))
+                    tail))
+             head)))
