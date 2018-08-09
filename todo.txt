@@ -1,0 +1,33 @@
+
+
+Commit: Add a file with a let-over-define that supports setting
+        and getting the  signature of a predicate.  Add tests
+        for same.
+        
+Commit: Add a (compose-binary) function that returns all possible
+        combinations of two predicates given their multiple defs.
+        Add tests for same.
+        
+Commit: Add a (compose) function that folds (compose) over a list
+        of predicates.  Add tests for same.
+
+
+Idea:
+-----
+Re-conceive of predicates as being actual FUNCTIONS.  So:
+
+    *dua* = (lambda (a b) `(dua ,a ,b))
+    *mai* = (lambda (a b) `(mai ,a ,b))
+    *leo* = (lambda (a b) `(leo ,a ,b))
+    *dua mai* = (lambda (a b c) (dua a (mai b c)))
+    *leo mai* = (lambda (a b) (leo a (mai jado b)))
+
+A fully-fledged predicate would also need to carry around
+its typelist, so in truth we would have:
+
+    *dua* = ( '(c 0) . (lambda (a b) `(dua ,a ,b)) )
+
+And really, each predicate has mutliple typelists, so we need:
+
+    *jeo* = ( ( '(0)   . (lambda (a) `(jeo ,a)) )
+              ( '(c 1) . (lambda (a b) `(jao ,a ,b))) )

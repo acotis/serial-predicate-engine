@@ -2,8 +2,8 @@
 !#
 
 (load "serial_expansion.scm")
+(load "predicates.scm")
 (use-syntax (ice-9 syncase))
-(use-modules (ice-9 pretty-print))
 
 
 (define-syntax test
@@ -27,12 +27,13 @@
      (test call expected #f))))
 
 
-
 (let ((show-fsh #f) ;; Show fill-slots helpers tests
       (show-fs #f)  ;; Show fill-slots test
       (show-eb #f)  ;; Show expand-binary tests
       (show-pep #f) ;; Show poly-predicate prep tests
-      (show-pe #t)) ;; Show poly-predicate tests
+      (show-pe #f)  ;; Show poly-predicate tests
+
+      (show-ps #t)) ;; Show predicate-signature tests
       
   (if (and
        
@@ -105,9 +106,15 @@
        (test (expand '((soq c 1 c) (seqkai 1) (dua c 0)))
              '(soq c (seqkai (dua jado jado)) c)
              show-pe)
+
+       ;; Predicate signatures
+       (test (get-signature "mai") '() show-ps)
+       (set-signature "mai" '((c) (c c)))
+       (test (get-signature "mai") '((c) (c c)) show-ps)
+       (set-signature "jeo" '((0) (c 1)))
+       (test (get-signature "jeo") '((0) (c 1)) show-ps)
        
        )
       
       (format #t "All tests passed.~%")
       (format #t "One or more tests failed!~%")))
-  
