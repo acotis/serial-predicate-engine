@@ -33,7 +33,8 @@
       (show-pep #f) ;; Show poly-predicate prep tests
       (show-pe #f)  ;; Show poly-predicate tests
 
-      (show-ps #t)) ;; Show predicate-signature tests
+      (show-ps #t)  ;; Show predicate-signature tests
+      (show-cb #t)) ;; Show compose-binary tests
       
   (if (and
        
@@ -114,6 +115,11 @@
        (set-signature "jeo" '((0) (c 1)))
        (test (get-signature "jeo") '((0) (c 1)) show-ps)
        (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
+
+       ;; compose-binary function
+  ;     (set-signature "dua" '((c) (c 0)))
+   ;    (test (compose-binary "dua" "mai")
+    ;         '((
        
        )
       

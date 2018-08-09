@@ -1,17 +1,30 @@
 
-From toaq.org: "each...word is really a family of...predicates."
+--- PREDICATES ---
 
-Predicates:
-     *jeo* = ___(0) is true
-     *jeo* = ___(c) exhibits property ___(1)
-     *mai* = ___(c) loves ___(c)
+A **predicate** is a relationship between a fixed number of args:
+     jeo-1 = ___(0) is true
+     jeo-2 = ___(c) exhibits property ___(1)
+     
+A letter or number after a slot indicates its type:
+     (c) concrete object
+     (0) proposition
+     (1) property
+     (2) relation with two slots ...
 
-Words:
-    *jeo* = ___(0) is true; ___(c) exhibits property ___(1)
-    *mai* = ___(c) loves somebody; ___(c) loves ___(c)
+The **typelist** of a predicate is the list of its types:
+     typelist( jeo-1 ) = (0)
+     typelist( jeo-2 ) = (c 1)
 
-Extracting only the values in parens from a predicate
-yields the TYPELIST of the PREDICATE.
 
-Doing so for each predicate in a word
-yields the SIGNATURE of the WORD.
+--- WORDS ---
+
+A **word** is "family of related predicates":
+
+    jeo = ___(0) is true; ___(c) exhibits property ___(1)
+    mai = ___(c) loves somebody; ___(c) loves ___(c)
+
+The **signature** of a word is the list of all the typelists
+of its predicates:
+
+   signature( jeo ) = [(0), (c 1)]
+   signature( mai ) = [(c), (c c)]
