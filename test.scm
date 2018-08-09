@@ -2,7 +2,7 @@
 !#
 
 (load "serial_expansion.scm")
-(load "predicates.scm")
+(load "words.scm")
 (use-syntax (ice-9 syncase))
 
 
@@ -113,6 +113,7 @@
        (test (get-signature "mai") '((c) (c c)) show-ps)
        (set-signature "jeo" '((0) (c 1)))
        (test (get-signature "jeo") '((0) (c 1)) show-ps)
+       (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
        
        )
       

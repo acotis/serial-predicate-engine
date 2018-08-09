@@ -1,15 +1,14 @@
 
 
-Commit: Add a file with a let-over-define that supports setting
-        and getting the  signature of a predicate.  Add tests
-        for same.
-        
+Commit: Add a (build-word) function that builds up a word (aka
+        list of predicates) once its type signature has been set.
+
 Commit: Add a (compose-binary) function that returns all possible
-        combinations of two predicates given their multiple defs.
-        Add tests for same.
+        compositions of two words, given that each represents a
+        whole family of predicates.
         
-Commit: Add a (compose) function that folds (compose) over a list
-        of predicates.  Add tests for same.
+Commit: Add a (compose) function that folds (compose-binary) over
+        a list of words.  Add tests for same.
 
 
 Idea:
@@ -27,7 +26,7 @@ its typelist, so in truth we would have:
 
     *dua* = ( '(c 0) . (lambda (a b) `(dua ,a ,b)) )
 
-And really, each predicate has mutliple typelists, so we need:
+And since "each...word is really a family of...predicates":
 
     *jeo* = ( ( '(0)   . (lambda (a) `(jeo ,a)) )
               ( '(c 1) . (lambda (a b) `(jao ,a ,b))) )
