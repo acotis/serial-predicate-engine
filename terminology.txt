@@ -1,0 +1,17 @@
+
+From toaq.org: "each...word is really a family of...predicates."
+
+Predicates:
+     *jeo* = ___(0) is true
+     *jeo* = ___(c) exhibits property ___(1)
+     *mai* = ___(c) loves ___(c)
+
+Words:
+    *jeo* = ___(0) is true; ___(c) exhibits property ___(1)
+    *mai* = ___(c) loves somebody; ___(c) loves ___(c)
+
+Extracting only the values in parens from a predicate
+yields the TYPELIST of the PREDICATE.
+
+Doing so for each predicate in a word
+yields the SIGNATURE of the WORD.
