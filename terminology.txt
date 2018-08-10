@@ -9,8 +9,9 @@ A letter or number after a slot indicates its type:
      (c) concrete object
      (0) proposition
      (1) property
-     (2) relation with two slots ...
-
+     (2) relation with two slots
+     ...
+     
 The **typelist** of a predicate is the list of its types:
      typelist( jeo-1 ) = (0)
      typelist( jeo-2 ) = (c 1)

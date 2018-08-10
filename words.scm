@@ -53,3 +53,8 @@
                       (expand-binary head-pred tail-pred))
                     tail))
              head)))
+
+
+;; compose (for word structures)
+;; compose-words (for words passed as "mai" or "jeo")
+

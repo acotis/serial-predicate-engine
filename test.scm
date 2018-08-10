@@ -153,7 +153,7 @@
                ("jeo" c ("du" jado))
                ("jeo" c ("du" jado 1)))
              show-cb)
-                
+
        )
       
       (format #t "All tests passed.~%")
