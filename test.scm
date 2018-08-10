@@ -1,7 +1,7 @@
 #!/usr/bin/guile
 !#
 
-(load "serial_expansion.scm")
+(load "predicates.scm")
 (load "words.scm")
 (use-syntax (ice-9 syncase))
 

@@ -12,13 +12,6 @@
 ;; jado = lambda
 
 
-;; Replace the first elem e of ls such that (test e) is true
-;; with (transform e)
-(define (replace-first ls test transform)
-  (if (test (car ls))
-      (cons (transform (car ls)) (cdr ls))
-      (cons (car ls) (replace-first (cdr ls) test transform))))
-
 ;; Defining my own fold functions to get the obviously correct
 ;; no-seed-needed implementation.
 (define (fold fun ls)
@@ -32,37 +25,33 @@
       (fun (car ls) (fold fun (cdr ls)))))
 
 
-;; Formatting
+;; Create a simple predicate given its name and typelist
+;; (The predicate function assumes that the correct number
+;;  of args are passed to it)
 
-(define (is-slot-marker e)
-  (or (eq? e 'c) (number? e)))
-
-(define (is-filled-slot e)
-  (and (not (is-slot-marker e))
-       (not (list? e))))
+(define (make-simple-predicate name typelist)
+  (cons (lambda (args)
+          (cons name args))
+        typelist))
 
 
-;; Fill the slots of a predicate with the terms given in a list.
-;; Examples:
-;;   fill (mai c c) (jado ji)        -> (mai jado ji)
-;;   fill (dua c (mai c c)) (ji suq) -> (dua ji (mai suq c))
+;; Get the canonic form of a predicate.
+;; Examples: (leo A B) or (dua A (mai B C))
 
-(define (has-open-slot predicate)
-  (or (is-slot-marker predicate)
-      (and (not (is-filled-slot predicate))
-           (any has-open-slot (cdr predicate)))))
+(define (gcf pred)
+  ((car pred)
+   (take '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+         (length (cdr pred)))))
 
-(define (fill-one-slot predicate arg)
-  (if (is-slot-marker predicate)
-      arg
-      (cons (car predicate)
-            (replace-first (cdr predicate)
-                           has-open-slot
-                           (lambda (x) (fill-one-slot x arg))))))
 
-(define (fill-slots predicate args)
-  (fold fill-one-slot (cons predicate args)))
+;; Take an n-ary predicate and return an (n-k)-ary predicate
+;; where the first k slots are all jado
 
+(define (jado-ify pred k)
+  (cons (lambda (args)
+          ((car pred) (append (make-list k 'jado) args)))
+        (drop (cdr pred) k)))
+  
 
 ;; Expand a two-part predicate into one predicate.
 ;; Examples:
