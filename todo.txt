@@ -4,6 +4,10 @@ Next up: Convert the entire program to format words as:
          jeo: ( [ (0) . ((A) -> (jeo A)) ]
                 [ (c 1) . ((A B) -> (jeo A B)) ] )
 
+Commit: Make (get-function pred) and (get-typelist pred)
+        to abstract away the details of the "predicate"
+        data structure.  (Update test file to match).
+
 
 Idea:
 -----
