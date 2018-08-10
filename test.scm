@@ -27,133 +27,39 @@
      (test call expected #f))))
 
 
-(let ((show-fsh #f) ;; Show fill-slots helpers tests
-      (show-fs #f)  ;; Show fill-slots test
-      (show-eb #f)  ;; Show expand-binary tests
-      (show-pep #f) ;; Show poly-predicate prep tests
-      (show-pe #f)  ;; Show poly-predicate tests
+(let ((show-gcf #t)  ;; Show (gcf) "get canonic form" tests
+      (show-jdf #t)  ;; Show (jado-ify) tests
 
-      (show-ps #t)  ;; Show predicate-signature tests
-      (show-cb #t)) ;; Show compose-binary tests
+      (mai-2 (make-simple-predicate "mai" '(c c)))
+      (dua-2 (make-simple-predicate "dua" '(c 0)))
+      (soq-3 (make-simple-predicate "soq" '(1 c 1)))
+      (jai-0 (make-simple-predicate "jai" '())))
       
   (if (and
        
-       ;; fill-slots helper functions
-       (test (has-open-slot 'c) #t show-fsh)
-       (test (has-open-slot 3) #t show-fsh)
-       (test (has-open-slot 'suq) #f show-fsh)
-       (test (has-open-slot '(dua c 0)) #t show-fsh)
-       (test (has-open-slot '(dua jado (mai ji c))) #t show-fsh)
-       (test (has-open-slot '(dua jado (mai ji ho))) #f show-fsh)
-       (test (fill-one-slot '(mai c c) 'ji)
-             '(mai ji c)
-             show-fsh)
+       ;; gcf
+       (test (gcf mai-2) '("mai" A B) show-gcf)
+       (test (gcf dua-2) '("dua" A B) show-gcf)
+       (test (gcf soq-3) '("soq" A B C) show-gcf)
+       (test (gcf jai-0) '("jai") show-gcf)
+
+       ;; jado-ify
+       (test (gcf (jado-ify mai-2 1))
+             '("mai" jado A)
+             show-jdf)
+       (test (gcf (jado-ify dua-2 2))
+             '("dua" jado jado)
+             show-jdf)
+       (test (gcf (jado-ify soq-3 1))
+             '("soq" jado A B)
+             show-jdf)
+       (test (gcf (jado-ify soq-3 0))
+             '("soq" A B C)
+             show-jdf)
+       (test (cdr (jado-ify soq-3 1))
+             '(c 1)
+             show-jdf)
        
-       ;; fill-slots function
-       (test (fill-slots '(mai c c) '(ji suq))
-             '(mai ji suq)
-             show-fs)
-       (test (fill-slots '(dua ji (leo ho (mai c jado))) '(suq))
-             '(dua ji (leo ho (mai suq jado)))
-             show-fs)
-       
-       ;; expand-binary function
-       (test (expand-binary '(dua c 0) '(mai c c))
-             '(dua c (mai c c))
-             show-eb)
-       (test (expand-binary '(leo c 1) '(mai c c))
-             '(leo c (mai jado c))
-             show-eb)
-       (test (expand-binary '(cheo c 2) '(mai c c))
-             '(cheo c (mai jado jado))
-             show-eb)
-       (test (expand-binary '(du 0) '(mai c c))
-             '(du (mai c c))
-             show-eb)
-       (test (expand-binary '(soq c 1 c) '(de c))
-             '(soq c (de jado) c)
-             show-eb)
-       (test (expand-binary '(soq c 1 c) '(dua c 0))
-             '(soq c (dua jado 0) c)
-             show-eb)
-       (test (expand-binary '(soq c 1 c) '(leo c 1))
-             '(soq c (leo jado 1) c)
-             show-eb)
-
-       ;; Prep for poly-expansion
-       (test (expand-binary '(hica 1 1) '(dua c 0))
-             '(hica 1 (dua jado 0))
-             show-pep)
-       (test (expand-binary '(soq c 1 c) '(hica 1 (dua jado 0)))
-             '(soq c (hica jado (dua jado 0)) c)
-             show-pep)
-       (test (expand-binary '(seqkai 1) '(dua c 0)) ;; selkai
-             '(seqkai (dua jado 0))
-             show-pep)
-       (test (expand-binary '(soq c 1 c) '(seqkai (dua jado 0)))
-             '(soq c (seqkai (dua jado jado)) c)
-             show-pep)
-       
-       ;; Basic poly-expansion
-       (test (expand '((dua c 0) (mai c c)))
-             '(dua c (mai c c))
-             show-pe)
-       (test (expand '((dua c 0) (leo c 1) (mai c c)))
-             '(dua c (leo c (mai jado c)))
-             show-pe)
-       (test (expand '((soq c 1 c) (hica 1 1) (dua c 0)))
-             '(soq c (hica jado (dua jado 0)) c)
-             show-pe)
-       (test (expand '((soq c 1 c) (seqkai 1) (dua c 0)))
-             '(soq c (seqkai (dua jado jado)) c)
-             show-pe)
-
-       ;; Predicate signatures
-       (test (get-signature "mai") '() show-ps)
-
-       ;;     mai [(cc)]
-       (set-signature "mai" '((c) (c c)))
-       (test (get-signature "mai") '((c) (c c)) show-ps)
-       (test (build-word "mai") '(("mai" c c)) show-ps)
-
-       ;;     jeo [(0), (c1)]
-       ;;     du  [(0), (c1)]
-       (set-signature "jeo" '((0) (c 1)))
-       (set-signature "du" '((0) (c 1)))
-       (test (get-signature "jeo") '((0) (c 1)) show-ps)
-       (test (build-word "jeo") '(("jeo" 0) ("jeo" c 1)) show-ps)
-       
-       ;;     dua [(c0)]
-       (set-signature "dua" '((c) (c 0)))
-       (test (get-signature "dua") '((c) (c 0)) show-ps)
-       (test (build-word "dua") '(("dua" c 0)))
-
-       ;; compose-binary function
-       (test (compose-binary (build-word "dua")
-                             (build-word "mai"))
-             '(("dua" c ("mai" c c)))
-             show-cb)
-
-       (test (compose-binary (build-word "dua")
-                             (build-word "jeo"))
-             '(("dua" c ("jeo" 0))
-               ("dua" c ("jeo" c 1)))
-             show-cb)
-
-       (test (compose-binary (build-word "jeo")
-                             (build-word "mai"))
-             '(("jeo" ("mai" c c))
-               ("jeo" c ("mai" jado c)))
-             show-cb)
-
-       (test (compose-binary (build-word "jeo")
-                             (build-word "du"))
-             '(("jeo" ("du" 0))
-               ("jeo" ("du" c 1))
-               ("jeo" c ("du" jado))
-               ("jeo" c ("du" jado 1)))
-             show-cb)
-
        )
       
       (format #t "All tests passed.~%")

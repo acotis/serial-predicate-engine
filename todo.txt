@@ -1,12 +1,5 @@
 
         
-Commit: Add a (compose) function that folds (compose-binary) over
-        a list of word-structs.  Add tests for same.
-
-Commit: Add a (compose-words) function that builds the
-        word-structs for a list of words and then calls
-        (compose) on it.
-
 Next up: Convert the entire program to format words as:
          jeo: ( [ (0) . ((A) -> (jeo A)) ]
                 [ (c 1) . ((A B) -> (jeo A B)) ] )
