@@ -1,5 +1,4 @@
 
-;(require-extension sequences)
 (use-modules (srfi srfi-1))
 
 ;; Symbols
@@ -12,30 +11,24 @@
 ;; jado = lambda
 
 
-;; Defining my own fold functions to get the obviously correct
-;; no-seed-needed implementation.
-(define (fold fun ls)
-  (if (null? (cdr ls))
-      (car ls)
-      (fold fun (cons (fun (car ls) (cadr ls)) (cddr ls)))))
+;; Helper functions
+;;   (fold-right) Fold a function like: (f A (f (B C)))
+;;   (find-first) Return index of first e where (fun e) is true.
 
 (define (fold-right fun ls)
   (if (null? (cdr ls))
       (car ls)
-      (fun (car ls) (fold fun (cdr ls)))))
+      (fun (car ls) (fold-right fun (cdr ls)))))
 
-
-;; Return the index of first e in ls such that (fun e) is true
-;; (Assumes that such an e exists)
 (define (find-first fun ls)
   (if (fun (car ls))
       0
       (+ 1 (find-first fun (cdr ls)))))
 
 
-;; Create a simple predicate given its name and typelist
-;; (The predicate function assumes that the correct number
-;;  of args are passed to it)
+;; Create a simple predicate.
+;; (make-simple-predicate "leo" '(c 1)) ->
+;; '( ((A B)->(leo A B)) c 1 )
 
 (define (make-simple-predicate name typelist)
   (cons (lambda (args)
@@ -43,17 +36,22 @@
         typelist))
 
 
-;; Get the canonic form of a predicate.
-;; Examples: (leo A B) or (dua A (mai B C))
+;; Get the canonic form or typelist of a predicate.
+;; Example: (gcf leo)      = '(leo A B)
+;; Example: (typelist leo) = '(c 1)
 
 (define (gcf pred)
   ((car pred)
    (take '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
          (length (cdr pred)))))
 
+(define (typelist pred)
+  (cdr pred))
+
 
 ;; Take an n-ary predicate and return an (n-k)-ary predicate
 ;; where the first k slots are all jado
+;; Example (gcf (jado-ify leo 1)) = '(leo jado A)
 
 (define (jado-ify pred k)
   (cons (lambda (args)
