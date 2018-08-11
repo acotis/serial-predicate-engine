@@ -120,8 +120,6 @@
    show-jado-ify
    (begin (format #t "One or more (jado-ify tests) failed.~%")
           (quit))))
-
-(quit)
         
 ;; expand-binary and expand
 (let ((dua-mai (expand-binary dua-2 mai-2))
@@ -156,10 +154,14 @@
 
   (run-tests
    ( ((gcf ktjj)
-      '("kuai" A ("tua" jado ("jeaq" B ("jai" jado)))))
+      '("kuai" A
+        (li ((jado 2))
+            ("tua" ( do 2)
+             ("jeaq" B
+              (li ((jado 1)) ("jai" ( do 1))))))))
      ((typelist ktjj) '(c c)) )
 
-   show-binary
+   show-expand
    (begin (format #t "One or more (expand) tests failed.~%")
           (quit))))
 

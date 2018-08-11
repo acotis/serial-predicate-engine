@@ -12,8 +12,14 @@
 
 
 ;; Helper functions
+;;   (fold)       Fold a function like: (f (f (A B)) C)
 ;;   (fold-right) Fold a function like: (f A (f (B C)))
 ;;   (find-first) Return index of first e where (fun e) is true.
+
+(define (fold fun ls)
+  (if (null? (cdr ls))
+      (car ls)
+      (fold fun (cons (fun (car ls) (cadr ls)) (cddr ls)))))
 
 (define (fold-right fun ls)
   (if (null? (cdr ls))
@@ -53,11 +59,23 @@
 ;; where the first k slots are all jado
 ;; Example (gcf (jado-ify leo 1)) = '(leo jado A)
 
+(define (max-jado-tag cf)
+  (cond ((not (pair? cf)) 0) ;; atoms and ()
+        ((eq? (car cf) 'jado) (cadr cf))
+        (#t (fold max (map max-jado-tag cf)))))
+
 (define (jado-ify pred k)
-  (cons (lambda (args)
-          ((car pred) (append (make-list k 'jado) args)))
-        (drop (cdr pred) k)))
-  
+  (if (= k 0)
+      pred
+      
+      (let* ((start (1+ (max-jado-tag (gcf pred))))
+             (tags (map (lambda (x) (+ x start)) (iota k)))
+             (jado (map (lambda (x) `(jado ,x)) tags))
+             (v-do (map (lambda (x) `( do  ,x)) tags)))
+            
+        (cons (lambda (args)
+                `(li ,jado ,((car pred) (append v-do args))))
+              (drop (cdr pred) k)))))
 
 ;; Expand a two-part predicate into one predicate.
 ;; Assumes head has an abstraction place.

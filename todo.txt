@@ -4,6 +4,8 @@ Next up: Convert the entire program to format words as:
          jeo: ( [ (0) . ((A) -> (jeo A)) ]
                 [ (c 1) . ((A B) -> (jeo A B)) ] )
 
+--------------------------------------------------------
+
 Commit: Make jado-ify transform (fa A B C) into e.g.
         (li ([jado 1] [jado 2]) (fa [do 1] [do 2] A))
         where "jado n" and "do n" might be just that or might
@@ -14,8 +16,9 @@ Commit: Implement (reduce-li) function that takes a li-construct
         and changes the quantifiers to be in-place WHENEVER doing
         so does not change the meaning of the expression.
 
-Commit: Change (test) macro to have this format: ?
-        (test print ((call expected) (call expected) ...) )
+Next up: Make any necessary changes to covert words.scm to the
+         new predicate format, then merge this branch back into
+         master.
 
 
 Idea:
