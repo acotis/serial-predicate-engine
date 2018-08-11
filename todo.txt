@@ -4,14 +4,18 @@ Next up: Convert the entire program to format words as:
          jeo: ( [ (0) . ((A) -> (jeo A)) ]
                 [ (c 1) . ((A B) -> (jeo A B)) ] )
 
-Commit: Make (typelist pred) to abstract away the details of the
-        "predicate" data structure.  (Update test file to match).
-
 Commit: Make jado-ify transform (fa A B C) into e.g.
-        (li [jado 1] [jado 2] (fa [do 1] [do 2] A))
+        (li ([jado 1] [jado 2]) (fa [do 1] [do 2] A))
         where "jado n" and "do n" might be just that or might
         represent some other regular notation for keeping
         variables straight.
+
+Commit: Implement (reduce-li) function that takes a li-construct
+        and changes the quantifiers to be in-place WHENEVER doing
+        so does not change the meaning of the expression.
+
+Commit: Change (test) macro to have this format: ?
+        (test print ((call expected) (call expected) ...) )
 
 
 Idea:

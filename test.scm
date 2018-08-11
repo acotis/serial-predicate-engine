@@ -27,79 +27,140 @@
      (test call expected #f))))
 
 
-(let ((show-gcf #f)  ;; Show (gcf) "get canonic form" tests
-      (show-jdf #f)  ;; Show (jado-ify) tests
-      (show-eb #t)   ;; Show (expand-binary) tests
-      (show-ex #t)   ;; Show (expand) tests
+;; (and) but with no short-circuiting
+(define-syntax and-all
+  (syntax-rules ()
+    ((and-all exp ...)
+     (let ((all #t))
+       (begin (if (not exp) (set! all #f))
+              ...
+              all)))))
 
-      (jai-0 (make-simple-predicate "jai" '()))
-      (jai-1 (make-simple-predicate "jai" '(c)))
-      (gi-1 (make-simple-predicate "gi" '(0)))
-      (mai-2 (make-simple-predicate "mai" '(c c)))
 
-      (dua-2 (make-simple-predicate "dua" '(c 0)))
-      (tua-2 (make-simple-predicate "tua" '(c 0)))
+;; Run a series of tests.  Run all tests even after one fails.
+(define-syntax run-tests
+  (syntax-rules ()
+    ((run-tests ((call expected) ...)
+                display-anyway
+                on-failure
+                on-success)
+
+     (if (and-all (test call expected display-anyway)
+                  ...)
+         on-success
+         on-failure))
+
+    ((run-tests ((call expected) ...)
+                display-anyway
+                on-failure)
+     (run-tests ((call expected) ...)
+                display-anyway
+                on-failure
+                '()))))
+
+
+;; Which tests to display even on success
+
+(define show-gcf #f)
+(define show-jado-ify #t)
+(define show-expand-binary #t)
+(define show-expand #t)
+
+;; Some sample predicates
+
+(define jai-0 (make-simple-predicate "jai" '()))
+(define jai-1 (make-simple-predicate "jai" '(c)))
+(define gi-1 (make-simple-predicate "gi" '(0)))
+(define mai-2 (make-simple-predicate "mai" '(c c)))
+
+(define dua-2 (make-simple-predicate "dua" '(c 0)))
+(define tua-2 (make-simple-predicate "tua" '(c 0)))
+
+(define kuai-2 (make-simple-predicate "kuai" '(c 1)))
+(define leo-2 (make-simple-predicate "leo" '(c 1)))
+(define jeaq-2 (make-simple-predicate "jeaq" '(c 1)))
       
-      (kuai-2 (make-simple-predicate "kuai" '(c 1)))
-      (leo-2 (make-simple-predicate "leo" '(c 1)))
-      (jeaq-2 (make-simple-predicate "jeaq" '(c 1)))
-      
-      (soq-3 (make-simple-predicate "soq" '(c 1 c))))
-      
-  (if (and
-       
-       ;; gcf
-       (test (gcf mai-2) '("mai" A B) show-gcf)
-       (test (gcf dua-2) '("dua" A B) show-gcf)
-       (test (gcf soq-3) '("soq" A B C) show-gcf)
-       (test (gcf jai-0) '("jai") show-gcf)
+(define soq-3 (make-simple-predicate "soq" '(c 1 c)))
 
-       ;; jado-ify
-       (test (gcf (jado-ify mai-2 1))
-             '("mai" jado A)
-             show-jdf)
-       (test (gcf (jado-ify dua-2 2))
-             '("dua" jado jado)
-             show-jdf)
-       (test (gcf (jado-ify soq-3 1))
-             '("soq" jado A B)
-             show-jdf)
-       (test (gcf (jado-ify soq-3 0))
-             '("soq" A B C)
-             show-jdf)
-       (test (cdr (jado-ify soq-3 1))
-             '(1 c)
-             show-jdf)
 
-       ;; expand-binary and expand
-       (let ((dua-mai (expand-binary dua-2 mai-2))
-             (leo-mai (expand-binary leo-2 mai-2))
-             (soq-dua (expand-binary soq-3 dua-2))
-             (soq-gi  (expand-binary soq-3 gi-1))
-             (dua-jai (expand-binary dua-2 jai-0))
-             (ktjj (expand (list kuai-2 tua-2 jeaq-2 jai-1))))
-         (and 
-          (test (gcf dua-mai) '("dua" A ("mai" B C))     show-eb)
-          (test (typelist dua-mai) '(c c c)              show-eb)
+;; (gcf) "Get canonical form" tests
+
+(run-tests
+ ( ((gcf mai-2) '("mai" A B))
+   ((gcf dua-2) '("dua" A B))
+   ((gcf soq-3) '("soq" A B C))
+   ((gcf jai-0) '("jai")) )
+
+ show-gcf
+ (begin (format #t "One or more (gcf) tests failed.~%")
+        (quit)))
+
+
+;; (jado-ify) tests
+
+(let ((mai-2/1 (jado-ify mai-2 1))
+      (dua-2/2 (jado-ify dua-2 2))
+      (soq-3/1 (jado-ify soq-3 1))
+      (soq-3/0 (jado-ify soq-3 0)))
+
+  (run-tests
+   ( ((gcf mai-2/1)      '(li ((jado 1)) ("mai" ( do 1) A)))
+     ((typelist mai-2/1) '(c))
+     
+     ((gcf dua-2/2)      '(li ((jado 1) (jado 2))
+                              ("dua" ( do 1) ( do 2))))
+     ((typelist dua-2/2) '())
+     
+     ((gcf soq-3/1)      '(li ((jado 1)) ("soq" ( do 1) A B)))
+     ((typelist soq-3/1) '(1 c))
+     
+     ((gcf soq-3/0)      '("soq" A B C))
+     ((typelist soq-3/0) '(c 1 c)) )
+
+   show-jado-ify
+   (begin (format #t "One or more (jado-ify tests) failed.~%")
+          (quit))))
+
+(quit)
+        
+;; expand-binary and expand
+(let ((dua-mai (expand-binary dua-2 mai-2))
+      (leo-mai (expand-binary leo-2 mai-2))
+      (soq-dua (expand-binary soq-3 dua-2))
+      (soq-gi  (expand-binary soq-3 gi-1))
+      (dua-jai (expand-binary dua-2 jai-0))
+      (ktjj (expand (list kuai-2 tua-2 jeaq-2 jai-1))))
+  
+  (run-tests 
+   ( ((gcf dua-mai) '("dua" A ("mai" B C)))
+     ((typelist dua-mai) '(c c c))
           
-          (test (gcf leo-mai) '("leo" A ("mai" jado B))  show-eb)
-          (test (typelist leo-mai) '(c c)                show-eb)
+     ((gcf leo-mai) '("leo" A (li ((jado 1)) ("mai" ( do 1) B))))
+     ((typelist leo-mai) '(c c))
           
-          (test (gcf soq-dua) '("soq" A ("dua" jado B) C)show-eb)
-          (test (typelist soq-dua) '(c 0 c)              show-eb)
+     ((gcf soq-dua) '("soq" A
+                      (li ((jado 1)) ("dua" ( do 1) B))
+                      C))
+     ((typelist soq-dua) '(c 0 c))
 
-          (test (gcf soq-gi)  '("soq" A ("gi" jado) B)   show-eb)
-          (test (typelist soq-gi)  '(c c)                show-eb)
-          
-          (test (gcf dua-jai) '("dua" A ("jai"))         show-eb)
-          (test (typelist dua-jai) '(c)                  show-eb)
+     ((gcf soq-gi) '("soq" A (li ((jado 1)) ("gi" ( do 1))) B))
+     ((typelist soq-gi)'(c c))
+     
+     ((gcf dua-jai) '("dua" A ("jai")))
+     ((typelist dua-jai) '(c)) )
 
-          (test (gcf ktjj)
-                '("kuai" A ("tua" jado ("jeaq" B ("jai" jado))))
-                show-ex)
-          (test (typelist ktjj) '(c c) show-ex)
-         ))
-       )
-      
-      (format #t "All tests passed.~%")
-      (format #t "One or more tests failed!~%")))
+   show-expand-binary
+   (begin (format #t
+                  "One or more (expand-binary) tests failed.~%")
+          (quit)))
+
+  (run-tests
+   ( ((gcf ktjj)
+      '("kuai" A ("tua" jado ("jeaq" B ("jai" jado)))))
+     ((typelist ktjj) '(c c)) )
+
+   show-binary
+   (begin (format #t "One or more (expand) tests failed.~%")
+          (quit))))
+
+(format #t "All tests passed.~%")
