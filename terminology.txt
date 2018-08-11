@@ -7,10 +7,13 @@ A **predicate** is a relationship between a fixed number of args:
      
 A letter or number after a slot indicates its type:
      (c) concrete object
-     (0) proposition
+     (0) proposition/object
      (1) property
      (2) relation with two slots
      ...
+Note that a place with the (0) tag could be filled with a
+concrete object in some cases, but will be treated as a
+proposition place during predicate expansion.
      
 The **typelist** of a predicate is the list of its types:
      typelist( jeo-1 ) = (0)

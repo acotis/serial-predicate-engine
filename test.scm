@@ -62,25 +62,25 @@
 ;; Which tests to display even on success
 
 (define show-gcf #f)
-(define show-jado-ify #t)
-(define show-expand-binary #t)
-(define show-expand #t)
+(define show-jado-ify #f)
+(define show-expand-binary #f)
+(define show-expand #f)
 
 ;; Some sample predicates
 
-(define jai-0 (make-simple-predicate "jai" '()))
-(define jai-1 (make-simple-predicate "jai" '(c)))
-(define gi-1 (make-simple-predicate "gi" '(0)))
-(define mai-2 (make-simple-predicate "mai" '(c c)))
+(define jai-0  (make-simple-predicate "jai"  '()))
+(define jai-1  (make-simple-predicate "jai"  '(c)))
+(define gi-1   (make-simple-predicate "gi"   '(0)))
+(define mai-2  (make-simple-predicate "mai"  '(c c)))
 
-(define dua-2 (make-simple-predicate "dua" '(c 0)))
-(define tua-2 (make-simple-predicate "tua" '(c 0)))
+(define dua-2  (make-simple-predicate "dua"  '(c 0)))
+(define tua-2  (make-simple-predicate "tua"  '(c 0)))
 
 (define kuai-2 (make-simple-predicate "kuai" '(c 1)))
-(define leo-2 (make-simple-predicate "leo" '(c 1)))
+(define leo-2  (make-simple-predicate "leo"  '(c 1)))
 (define jeaq-2 (make-simple-predicate "jeaq" '(c 1)))
       
-(define soq-3 (make-simple-predicate "soq" '(c 1 c)))
+(define soq-3  (make-simple-predicate "soq"  '(c 1 c)))
 
 
 ;; (gcf) "Get canonical form" tests

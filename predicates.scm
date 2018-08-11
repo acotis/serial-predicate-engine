@@ -1,35 +1,6 @@
 
 (use-modules (srfi srfi-1))
-
-;; Symbols
-;; ----------------
-;; c = concrete arg
-;; 0 = proposition
-;; 1 = property
-;; 2 = relation
-;; 3 = ...
-;; jado = lambda
-
-
-;; Helper functions
-;;   (fold)       Fold a function like: (f (f (A B)) C)
-;;   (fold-right) Fold a function like: (f A (f (B C)))
-;;   (find-first) Return index of first e where (fun e) is true.
-
-(define (fold fun ls)
-  (if (null? (cdr ls))
-      (car ls)
-      (fold fun (cons (fun (car ls) (cadr ls)) (cddr ls)))))
-
-(define (fold-right fun ls)
-  (if (null? (cdr ls))
-      (car ls)
-      (fun (car ls) (fold-right fun (cdr ls)))))
-
-(define (find-first fun ls)
-  (if (fun (car ls))
-      0
-      (+ 1 (find-first fun (cdr ls)))))
+(load "utilities.scm")
 
 
 ;; Create a simple predicate.

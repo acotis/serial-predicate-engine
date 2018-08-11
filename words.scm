@@ -1,5 +1,6 @@
 
 (load "predicates.scm")
+(load "utilities.scm")
 
 
 ;; It's really stupid that I can't do this with let-over-define.
@@ -19,11 +20,6 @@
 
 
 ;; Build-word and helpers
-
-(define (starts-with? a b)
-  (or (null? a)
-      (and (equal? (car a) (car b))
-           (starts-with? (cdr a) (cdr b)))))
 
 (define (remove-prefixes sorted-sig)
   (if (<= (length sorted-sig) 1)

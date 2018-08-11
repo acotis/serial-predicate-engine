@@ -6,19 +6,20 @@ Next up: Convert the entire program to format words as:
 
 --------------------------------------------------------
 
-Commit: Make jado-ify transform (fa A B C) into e.g.
-        (li ([jado 1] [jado 2]) (fa [do 1] [do 2] A))
-        where "jado n" and "do n" might be just that or might
-        represent some other regular notation for keeping
-        variables straight.
-
-Commit: Implement (reduce-li) function that takes a li-construct
-        and changes the quantifiers to be in-place WHENEVER doing
-        so does not change the meaning of the expression.
+Commit: Extract utility functions to a common file.
 
 Next up: Make any necessary changes to covert words.scm to the
          new predicate format, then merge this branch back into
          master.
+
+Next up: Start working on pretty-printing.
+
+Commit: Implement (reduce-li) function that takes a li-construct
+        and changes the quantifiers to be in-place WHENEVER doing
+        so does not change the meaning of the expression.
+        Add also a function that applies to a whole canonic form.
+        Add tests for both.
+
 
 
 Idea:

@@ -25,10 +25,23 @@ candidicates for predicate expansion.  So, jeo has both [0] and
 [c 1], but dua has only [c 0].
 
 
-Slots with type "c or 0"
--------------------------
+Slots with type "c or 0"?  [Resolved]
+--------------------------------------
 
 Some slots seem to have type "c or 0".  For example, the
 signature of "hui" seems like it must be [(c), (0)], since both
 objects and propositions can be bad.  So, what does *hui mai*
 expand to?  Is it *hui ru mai* or *hui (mai)*?
+
+[Resolution:] This problem is a by-product of a bad type system.
+
+The (0) type should be defined as "anything that doesn't have
+slots" -- so, both propositions and objects can go into it, and
+in serial predicates, it counts as an abstraction place.  The
+one slot of "hui" has type (0).
+
+Then, define the (c) type as "concrete object".  Propositions
+could still grammatically go into it (since they are still terms)
+but in serial predicates these places are skipped over.  The one
+slot of e.g. "jai" would have type (c), since it doesn't make
+sense for a proposition to be happy.
