@@ -3,6 +3,7 @@
 
 (load "predicates.scm")
 (load "words.scm")
+(load "pretty-print.scm")
 (use-syntax (ice-9 syncase))
 
 
@@ -65,7 +66,9 @@
 (define show-jado-ify #f)
 (define show-expand-binary #f)
 (define show-expand #f)
-(define show-basic-words #t)
+(define show-basic-words #f)
+(define show-pretty-print #t)
+
 (define show-compose-binary #t)
 (define show-compose #t)
 (define show-compose-words #t)
@@ -182,19 +185,25 @@
 
 (add-word "maomao" '(() (c)))
 (add-word "kune"   '(() (c)))
+(add-word "jai"    '(() (c)))
+(add-word "de"     '(() (c)))
 
 (add-word "mai"    '(() (c) (c c)))
 (add-word "pai"    '(() (c) (c c)))
 
 (add-word "dua"    '(() (c) (c 0)))
 (add-word "shao"   '(() (c) (c 0)))
+(add-word "tua"    '(() (c) (c 0)))
 
 (add-word "kuai"   '(() (c) (c 1)))
 (add-word "leo"    '(() (c) (c 1)))
+(add-word "jeaq"   '(() (c) (c 1)))
 
 (add-word "du"     '(() (0) (c 1)))
 (add-word "jeo"    '(() (0) (c 1)))
 (add-word "bu"     '(() (0) (c 1)))
+
+(add-word "soq"    '(() (c) (c 1) (c 1 c)))
 
 
 ;; Basic word tests
@@ -216,6 +225,35 @@
  show-basic-words
 
  (begin (format #t "One or more basic word tests failed.~%")
+        (quit)))
+
+
+;; Pretty-print tests
+
+;; Temp functions to make this part easier
+
+;; Make-word
+(define (mp word args)
+  (list-ref (make-word word) args))
+
+;; Make-serial-predicate
+(define (msp ls)
+  (gcf (expand (map (lambda (p) (mp (car p) (cadr p))) ls))))
+
+(run-tests
+ ( ((cf->string (msp '(("kuai" 2) ("maomao" 1))) 4)
+    "kủai A lî ja dó[1] bi mảomao dó[1] na na")
+
+   ((cf->string (msp '(("kuai" 2) ("tua" 2) ("jeaq" 2) ("jai" 1))) 4)
+    "kủai A lî ja dó[2] bi tủa dó[2] jêaq B lî ja dó[1] bi jải dó[1] na na na na")
+
+   ((cf->string (msp '(("kuai" 2) ("soq" 3) ("de" 1))) 4)
+    "kủai A lî ja dó[2] bi sỏq dó[2] lî ja dó[1] bi dẻ dó[1] na B na na")
+   )
+
+ show-pretty-print
+
+ (begin (format #t "One or more pretty-print tests failed.~%")
         (quit)))
     
 

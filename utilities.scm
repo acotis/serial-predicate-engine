@@ -24,6 +24,14 @@
       0
       (+ 1 (find-first fun (cdr ls)))))
 
+;; Replaces the first e in ls such that (test e) is true
+;; with (transform e)
+
+(define (replace-first ls test transform)
+  (if (test (car ls))
+      (cons (transform (car ls)) (cdr ls))
+      (cons (car ls) (replace-first (cdr ls) test transform))))
+
 ;; Determine whether the list b begins with the list a.
 ;; For example, '(1 2 3 4) begins with '(1 2) and '()
 ;;                         but not '(2 3 4) or '(1 2 5).
