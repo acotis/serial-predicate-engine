@@ -6,13 +6,13 @@ Next up: Convert the entire program to format words as:
 
 --------------------------------------------------------
 
-Commit: Extract utility functions to a common file.
-
 Next up: Make any necessary changes to covert words.scm to the
          new predicate format, then merge this branch back into
          master.
 
 Next up: Start working on pretty-printing.
+
+Next up: Implement non-subjunctive serialization.
 
 Commit: Implement (reduce-li) function that takes a li-construct
         and changes the quantifiers to be in-place WHENEVER doing
@@ -20,6 +20,10 @@ Commit: Implement (reduce-li) function that takes a li-construct
         Add also a function that applies to a whole canonic form.
         Add tests for both.
 
+Feature: Establish a database of word signatures.  Add a mode
+         where you can interact with that database.  When a
+         composition is queried containing words it doesn't
+         know, switch into that mode automatically to add them.
 
 
 Idea:

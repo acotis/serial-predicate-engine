@@ -6,12 +6,11 @@
 ;; It's really stupid that I can't do this with let-over-define.
 ;; Oh well.
 
-
 ;; Signature getting and setting
 
 (define signatures (make-hash-table))
   
-(define (set-signature word typelist)
+(define (add-word word typelist)
   (hash-set! signatures word typelist))
 
 (define (get-signature word)
@@ -19,25 +18,41 @@
       '()))
 
 
-;; Build-word and helpers
+;; Make a word given its name (looks up its signature in the
+;; hash table)
 
-(define (remove-prefixes sorted-sig)
-  (if (<= (length sorted-sig) 1)
-      sorted-sig
-      (let ((first (car sorted-sig))
-            (second (cadr sorted-sig))
-            (rest (remove-prefixes (cdr sorted-sig))))
-        (if (starts-with? first second)
-            rest
-            (cons first rest)))))
+(define (make-word word)
+  (map (lambda (typelist) (make-simple-predicate word typelist))
+       (get-signature word)))
 
-(define (stopping-points signature)
-  (remove-prefixes
-   (sort signature (lambda (a b) (< (length a) (length b))))))
-   
-(define (build-word word)
-  (map (lambda (typelist) (cons word typelist))
-       (stopping-points (get-signature word))))
+
+;; Remove from a word all simple predicates whose typelists are
+;; prefixes to typelists of other predicates of that word.
+;; (i.e., remove all non-SPA's)
+;; ----- CURRENTLY NOT IN USE.
+(define (keep-SPA word)
+  (reverse
+   (fold (lambda (preds next-pred)
+           (if (starts-with? (typelist (car preds))
+                             (typelist next-pred))
+               (cons next-pred (cdr preds))
+               (cons next-pred preds)))
+         ((lambda (k) (cons (list (car k)) (cdr k)))
+          (sort word
+                (lambda (a b) (< (length (typelist a))
+                                 (length (typelist b)))))))))
+
+;; Basic word tools
+
+;; Convert all the predicates of a word to canonic format
+(define (wgcf word)
+  (map gcf word))
+
+(define (wgtf word)
+  (map gtf word))
+
+(define (wgff word)
+  (map gff word))
 
 
 ;; compose-binary

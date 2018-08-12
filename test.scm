@@ -61,10 +61,14 @@
 
 ;; Which tests to display even on success
 
-(define show-gcf #f)
+(define show-gxf #f)
 (define show-jado-ify #f)
 (define show-expand-binary #f)
 (define show-expand #f)
+(define show-basic-words #t)
+(define show-compose-binary #t)
+(define show-compose #t)
+(define show-compose-words #t)
 
 ;; Some sample predicates
 
@@ -83,16 +87,28 @@
 (define soq-3  (make-simple-predicate "soq"  '(c 1 c)))
 
 
-;; (gcf) "Get canonical form" tests
+;; (gcf) "Get canonic form"
+;; (gtf) "Get type form"
+;; (gff) "Get full form
 
 (run-tests
  ( ((gcf mai-2) '("mai" A B))
    ((gcf dua-2) '("dua" A B))
    ((gcf soq-3) '("soq" A B C))
-   ((gcf jai-0) '("jai")) )
+   ((gcf jai-0) '("jai"))
 
- show-gcf
- (begin (format #t "One or more (gcf) tests failed.~%")
+   ((gtf mai-2) '("mai" c c))
+   ((gtf dua-2) '("dua" c 0))
+   ((gtf soq-3) '("soq" c 1 c))
+   ((gtf jai-0) '("jai"))
+
+   ((gff mai-2) '((c c) ("mai" A B)))
+   ((gff dua-2) '((c 0) ("dua" A B)))
+   ((gff soq-3) '((c 1 c) ("soq" A B C)))
+   ((gff jai-0) '(() ("jai"))) )
+
+ show-gxf
+ (begin (format #t "One or more (gxf) tests failed.~%")
         (quit)))
 
 
@@ -104,19 +120,18 @@
       (soq-3/0 (jado-ify soq-3 0)))
 
   (run-tests
-   ( ((gcf mai-2/1)      '(li ((jado 1)) ("mai" ( do 1) A)))
-     ((typelist mai-2/1) '(c))
+   ( ((gff mai-2/1)
+      '((c) (li ((jado 1)) ("mai" ( do 1) A))))
      
-     ((gcf dua-2/2)      '(li ((jado 1) (jado 2))
-                              ("dua" ( do 1) ( do 2))))
-     ((typelist dua-2/2) '())
+     ((gff dua-2/2)
+      '(() (li ((jado 1) (jado 2)) ("dua" ( do 1) ( do 2)))))
      
-     ((gcf soq-3/1)      '(li ((jado 1)) ("soq" ( do 1) A B)))
-     ((typelist soq-3/1) '(1 c))
+     ((gff soq-3/1)
+      '((1 c) (li ((jado 1)) ("soq" ( do 1) A B))))
      
-     ((gcf soq-3/0)      '("soq" A B C))
-     ((typelist soq-3/0) '(c 1 c)) )
-
+     ((gff soq-3/0)
+      '((c 1 c) ("soq" A B C))) )
+      
    show-jado-ify
    (begin (format #t "One or more (jado-ify tests) failed.~%")
           (quit))))
@@ -130,22 +145,20 @@
       (ktjj (expand (list kuai-2 tua-2 jeaq-2 jai-1))))
   
   (run-tests 
-   ( ((gcf dua-mai) '("dua" A ("mai" B C)))
-     ((typelist dua-mai) '(c c c))
+   ( ((gff dua-mai)
+      '((c c c) ("dua" A ("mai" B C))))
           
-     ((gcf leo-mai) '("leo" A (li ((jado 1)) ("mai" ( do 1) B))))
-     ((typelist leo-mai) '(c c))
-          
-     ((gcf soq-dua) '("soq" A
-                      (li ((jado 1)) ("dua" ( do 1) B))
-                      C))
-     ((typelist soq-dua) '(c 0 c))
-
-     ((gcf soq-gi) '("soq" A (li ((jado 1)) ("gi" ( do 1))) B))
-     ((typelist soq-gi)'(c c))
+     ((gff leo-mai)
+      '((c c) ("leo" A (li ((jado 1)) ("mai" ( do 1) B)))))
      
-     ((gcf dua-jai) '("dua" A ("jai")))
-     ((typelist dua-jai) '(c)) )
+     ((gff soq-dua)
+      '((c 0 c) ("soq" A (li ((jado 1)) ("dua" ( do 1) B)) C)))
+
+     ((gff soq-gi)
+      '((c c) ("soq" A (li ((jado 1)) ("gi" ( do 1))) B)))
+     
+     ((gff dua-jai)
+      '((c) ("dua" A ("jai")))) )
 
    show-expand-binary
    (begin (format #t
@@ -153,16 +166,58 @@
           (quit)))
 
   (run-tests
-   ( ((gcf ktjj)
-      '("kuai" A
-        (li ((jado 2))
-            ("tua" ( do 2)
-             ("jeaq" B
-              (li ((jado 1)) ("jai" ( do 1))))))))
-     ((typelist ktjj) '(c c)) )
-
+   ( ((gff ktjj)
+      '((c c)
+        ("kuai" A
+         (li ((jado 2))
+             ("tua" ( do 2)
+              ("jeaq" B
+               (li ((jado 1)) ("jai" ( do 1))))))))) )
+   
    show-expand
    (begin (format #t "One or more (expand) tests failed.~%")
           (quit))))
+
+;; compose-words
+
+(add-word "maomao" '(() (c)))
+(add-word "kune"   '(() (c)))
+
+(add-word "mai"    '(() (c) (c c)))
+(add-word "pai"    '(() (c) (c c)))
+
+(add-word "dua"    '(() (c) (c 0)))
+(add-word "shao"   '(() (c) (c 0)))
+
+(add-word "kuai"   '(() (c) (c 1)))
+(add-word "leo"    '(() (c) (c 1)))
+
+(add-word "du"     '(() (0) (c 1)))
+(add-word "jeo"    '(() (0) (c 1)))
+(add-word "bu"     '(() (0) (c 1)))
+
+
+;; Basic word tests
+(run-tests
+ ( ((wgff (make-word "maomao"))
+    '((()  ("maomao"))
+      ((c) ("maomao" A))))
+   
+   ((wgff (make-word "kuai"))
+    '((()    ("kuai"))
+      ((c)   ("kuai" A))
+      ((c 1) ("kuai" A B))))
+   
+   ((wgff (make-word "du"))
+    '((()    ("du"))
+      ((0)   ("du" A))
+      ((c 1) ("du" A B)))) )
+   
+ show-basic-words
+
+ (begin (format #t "One or more basic word tests failed.~%")
+        (quit)))
+    
+
 
 (format #t "All tests passed.~%")

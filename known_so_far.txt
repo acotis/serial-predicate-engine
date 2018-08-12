@@ -1,5 +1,40 @@
 
 
+The signature of "du" [Resolved]
+--------------------------------
+
+I define below that SPA are the only candidates for serial
+expansion.  However, consider the word "du".  Naively, its
+signature would be [(), (0), (c 1)] since its 2-ary definition
+is "___ seems to exhibit property ___".  But it makes just as
+much sense for propositions to satisfy properties as for objects
+to do so, so it should really be [(), (0), (0 1)].
+
+However, this means that its (0) definition can't be used during
+expansion.  Will this be an issue?  I think so.  Consider the
+sentence "Du? jai? sa poq/ da" and its two expansions:
+
+  1.   (du 0) (jai c) <sa poq>
+     = (du (jai c)) <sa poq>
+     = (du (jai <sa poq>))
+
+  2.   (du 0 1) (jai c) <sa poq>
+     = (du 0 (jai jado)) <sa poq>
+     = (du <sa poq> (jai jado))
+
+It looks like <sa poq> is asserted to exist only in the second
+of these expansions.
+
+[Resolution]  Actually, there's a solution.  I don't think it
+matters where <sa poq> ends up in the expansion of the predicate,
+I think it is asserted to exist no matter what because it appears
+in the top level of the ORIGINAL sentence. (Solpahi has confirmed
+this.)
+
+With this in mind, (du 0) and (du c 1) will compose identically
+over ANY predicate, because (du c (P jado ...)) = (du (P c ...)).
+
+
 Stopping-point arities
 ----------------------
 

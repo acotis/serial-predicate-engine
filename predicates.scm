@@ -13,17 +13,27 @@
         typelist))
 
 
-;; Get the canonic form or typelist of a predicate.
-;; Example: (gcf leo)      = '(leo A B)
-;; Example: (typelist leo) = '(c 1)
+;; Take various measurements of a predicate
+;; Typelist:     (typelist leo) = '(c 1)
+;; Canonic form: (gcf leo)      = '(leo A B)
+;; Type form:    (gtf leo)      = '(leo c 1)
+;; Full form:    (gff leo)      = '((c 1) (leo A B))
+
+(define (typelist pred)
+  (cdr pred))
 
 (define (gcf pred)
   ((car pred)
    (take '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
          (length (cdr pred)))))
 
-(define (typelist pred)
-  (cdr pred))
+(define (gtf pred)
+  ((car pred)
+   (typelist pred)))
+
+(define (gff pred)
+  (list (typelist pred)
+        (gcf pred)))
 
 
 ;; Take an n-ary predicate and return an (n-k)-ary predicate
