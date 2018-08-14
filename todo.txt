@@ -1,20 +1,18 @@
 
-        
-Next up: Convert the entire program to format words as:
-         jeo: ( [ (0) . ((A) -> (jeo A)) ]
-                [ (c 1) . ((A B) -> (jeo A B)) ] )
 
---------------------------------------------------------
-
-Next up: Start working on pretty-printing.
+Next up: Throw all old code into a folder, pull out only what is
+         necessary to pass the test cases I'm writing.
+         
 
 Commit: Implement (reduce-li) function that takes a li-construct
         and changes the quantifiers to be in-place WHENEVER doing
         so does not change the meaning of the expression.
         Add also a function that applies to a whole canonic form.
-        Add tests for both.
+        Add tests for both.  (Remember to consider how this fun
+        will interact with non-subjunctive serials).
 
-Next up: Implement non-subjunctive serialization.
+Next up: Implement non-subjunctive serialization.  (Make sure
+         you know how it works first!)
 
 Next up: Implement a whole-word (compose) function, possibly in
          terms of a (compose-binary) function.  Then implement
