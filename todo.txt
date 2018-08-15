@@ -2,50 +2,24 @@
 
 Next up: Throw all old code into a folder, pull out only what is
          necessary to pass the test cases I'm writing.
-         
 
-Commit: Implement (reduce-li) function that takes a li-construct
-        and changes the quantifiers to be in-place WHENEVER doing
-        so does not change the meaning of the expression.
-        Add also a function that applies to a whole canonic form.
-        Add tests for both.  (Remember to consider how this fun
-        will interact with non-subjunctive serials).
+----------------------------------------------------------------
 
-Next up: Implement non-subjunctive serialization.  (Make sure
-         you know how it works first!)
+Commit: Write and test the "Parse" stage of the new structure.
 
-Next up: Implement a whole-word (compose) function, possibly in
-         terms of a (compose-binary) function.  Then implement
-         (compose-words), which just takes the names of words
-         as its inputs.  Develop a theory of identical
-         predicates, and start looking for ambiguous serials.
+Commit: Copy in the "Pretty Print" stage of the new structure.
+
+Commit: Write code that copies tests out of full-tests.odt and
+        runs them on a dummy (compose) function.
+
+Commit: Write the (compose) function for real.
+
+Commit: Write a bash script that automatically runs all the
+        test files?
+
+----------------------------------------------------------------
 
 Feature: Establish a database of word signatures.  Add a mode
          where you can interact with that database.  When a
          composition is queried containing words it doesn't
          know, switch into that mode automatically to add them.
-
-
-Idea:
------
-Re-conceive of predicates as being actual FUNCTIONS.  So:
-
-    *dua* = (lambda (a b) `(dua ,a ,b))
-    *mai* = (lambda (a b) `(mai ,a ,b))
-    *leo* = (lambda (a b) `(leo ,a ,b))
-    *dua mai* = (lambda (a b c) (dua a (mai b c)))
-    *leo mai* = (lambda (a b) (leo a (mai jado b)))
-
-A fully-fledged predicate would also need to carry around
-its typelist, so in truth we would have:
-
-    *dua* = ( '(c 0) . (lambda (a b) `(dua ,a ,b)) )
-
-And since "each...word is really a family of...predicates":
-
-    *jeo* = ( ( '(0)   . (lambda (a) `(jeo ,a)) )
-              ( '(c 1) . (lambda (a b) `(jao ,a ,b))) )
-
-Alternatively, a predicate could be represented as:
-
-    *dua* = ( [lambda (a b) `(dua ,a ,b)] c 0 )
