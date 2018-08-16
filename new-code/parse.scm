@@ -15,6 +15,9 @@
 (define RU '(ru ra ro ri re roi))
 (define cmavo (append RU '(to mu)))
 
+(define (is-RU? e)
+  (member e RU))
+
 
 ;; Preprocessing
 
@@ -34,15 +37,30 @@
 ;;      (to ru "kuai" to "tua") -> (ru "kuai" "tua")
 
 (define (parse-composite com)
-  (cond ((= (length com) 1)
-         (car com))
+  (cond (
+         ;; Ignore all cases containing TO for now
+          (member 'to com)
+          '())
 
-        ((every string? com)
-         (fold-right list com))
+         ;; Ignore all cases containing MU for now
+         ((member 'mu com)
+          '())
          
-        (#t '())))
+         ;; Ignore all cases containing members of RU for now
+         ((any is-RU? com)
+          '())
 
+         ;; com contains only parse-forms
 
+         ;; One parse-form
+         ((= 1 (length com))
+          (car com))
+
+         ;; More than one parse-form
+         (#t
+          (list (car com)
+                (parse-composite (cdr com))))))
+         
 ;; Full parse function
 
 (define (parse string)
