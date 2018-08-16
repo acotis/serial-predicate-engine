@@ -14,7 +14,7 @@
     
     ;; Mu
     ("mu cho"            (mu "cho"))
-    ("leo mu mai"        ("leo" ("mu" "mai")))
+    ("leo mu mai"        ("leo" (mu "mai")))
     ("mu dua pai"        ((mu "dua") "pai"))
     ("kuai mu tua jai"   ("kuai" ((mu "tua") "jai")))
 
@@ -23,8 +23,8 @@
     ("niai ra poq dua"          ((ra "niai" "poq") "dua"))
     ("bu ru gi ro hui"          (ru "bu" (ro "gi" "hui")))
     ("jeo bu ru gi ro hui jeo"  ("jeo" ((ru "bu" (ro "gi" "hui")) "jeo")))
-    ("mu pai re mai"            (ru (mu "pai") "mai"))
-    ("pai re mu mai"            (ru "pai" (mu "mai")))
+    ("mu pai re mai"            (re (mu "pai") "mai"))
+    ("pai re mu mai"            (re "pai" (mu "mai")))
     ("mu pai ri mu mai"         (ri (mu "pai") (mu "mai")))
 
     ;; To ru

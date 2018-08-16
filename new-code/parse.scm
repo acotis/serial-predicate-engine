@@ -47,6 +47,23 @@
                (cdddr com)))))
 
 
+;; MU
+
+;; Fold all instances of ...MU p1... into ...(MU p1)...
+;; Note that this only replaces innermost instances of MU,
+;; so you still may need to call this function more than once
+
+(define (fold-inner-mu com)
+  (if (not (member 'mu com))
+      com
+      
+      (if (and (eq? 'mu (car com))
+               (not (eq? 'mu (cadr com))))
+          (cons (list (car com) (cadr com))
+                (fold-inner-mu (cddr com)))
+          (cons (car com)
+                (fold-inner-mu (cdr com))))))
+
 ;; Parse a composite into a parse-form
 ;; i.e. ("jai") -> "jai"
 ;;      (to ru "kuai" to "tua") -> (ru "kuai" "tua")
@@ -59,7 +76,7 @@
 
          ;; Ignore all cases containing MU for now
          ((member 'mu com)
-          '())
+          (parse-composite (fold-inner-mu com)))
          
          ;; If there are any RU, fold the last one and re-parse
          ((any is-RU? com)
