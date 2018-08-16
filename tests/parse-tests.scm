@@ -47,7 +47,7 @@
 ;; passed to the macro without a variable name getting in the way
 (define-macro (run-parse-tests display-anyway)
   `(run-tests ,parse-tests-as-tests
-              display-anyway
+              ,display-anyway
 
               (fail-function "parse")
               (pass-function "parse")))
