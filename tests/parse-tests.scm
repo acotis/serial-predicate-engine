@@ -53,7 +53,7 @@
     ;; Multi-syllable predicates
     ("maomao"                "maomao")
     ("maomao ra poq dua"     ((ra "maomao" "poq") "dua"))
-    ("jaqbuaitoalalala rai"  ("jaqbuaitoalalala rai"))
+    ("jaqbuaitoalalala rai"  ("jaqbuaitoalalala" "rai"))
 
     ;; Formatting
     ("kui            rai"       ("kui" "rai"))
