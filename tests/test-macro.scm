@@ -8,6 +8,10 @@
 (use-syntax (ice-9 syncase))
 
 
+;; Run a single test.  On fail, print out the call, the expected
+;; result, and the actual result.  On success do nothing, unless
+;; display-anyway is #t (default #f), in which case print out
+;; the call the the actual result.
 (define-syntax test
   (syntax-rules ()
     
@@ -29,7 +33,9 @@
      (test call expected #f))))
 
 
-;; (and) but with no short-circuiting
+;; Evaluate a series of expressions, and return a pair containing
+;; the number that resolved to #f cons'd to the number that
+;; resolved to #t.
 (define-syntax count-fails
   (syntax-rules ()
     ((and-all exp ...)
@@ -66,3 +72,26 @@
                 display-anyway
                 on-failure
                 '()))))
+
+
+;; Utility function: print out the message "x/y __ tests failed."
+;; where x, y, and ___ are supplied as arguments
+(define (print-fail-report counts name)
+  (format #t (string-append "~a/~a " name " tests failed~%.")
+          (car counts) (+ (car counts) (cdr counts))))
+
+;; Utility function: return a function of one variable that
+;; passes that variable and a specified string to
+;; print-fail-report, then returns false
+(define (fail-function name)
+  (lambda (r)
+    (begin (print-fail-report r name)
+           #f)))
+
+;; Utility function: return a function of one variable that
+;; prints a success message, then returns true.
+(define (pass-function name)
+  (lambda (r)
+    (begin
+      (format #t (string-append "All " name " tests passed~%."))
+      #t)))

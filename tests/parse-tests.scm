@@ -48,9 +48,6 @@
 (define-macro (run-parse-tests display-anyway)
   `(run-tests ,parse-tests-as-tests
               display-anyway
-              (begin
-                (format #t "One or more parse tests failed.~%")
-                #f)
-              (begin
-                (format #t "Parse tests passed.~%")
-                #t)))
+
+              (fail-function "parse")
+              (pass-function "parse")))

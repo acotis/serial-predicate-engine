@@ -6,17 +6,6 @@
 
 (load "test-macro.scm")
 
-(run-tests
- (( (+ 3 5) 8 )
-  ( (+ 4 1) 1 ))
-
- #t
-
- (lambda (r) (format #t "~a/~a tests failed~%"
-                     (car r) (+ (car r) (cdr r))))
- (lambda (r) (format #t "okay~%")))
-
-
-;(load "../new-code/parse.scm")
-;(load "parse-tests.scm")
-;(run-parse-tests #t)
+(load "../new-code/parse.scm")
+(load "parse-tests.scm")
+(run-parse-tests #t)
