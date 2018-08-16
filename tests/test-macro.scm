@@ -77,7 +77,7 @@
 ;; Utility function: print out the message "x/y __ tests failed."
 ;; where x, y, and ___ are supplied as arguments
 (define (print-fail-report counts name)
-  (format #t (string-append "~a/~a " name " tests failed~%.")
+  (format #t (string-append "~a/~a " name " tests failed.~%")
           (car counts) (+ (car counts) (cdr counts))))
 
 ;; Utility function: return a function of one variable that
@@ -93,5 +93,5 @@
 (define (pass-function name)
   (lambda (r)
     (begin
-      (format #t (string-append "All " name " tests passed~%."))
+      (format #t (string-append "All " name " tests passed.~%"))
       #t)))

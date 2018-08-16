@@ -19,6 +19,13 @@ Commit: Write the (compose) function for real.
 Commit: Write a bash script that automatically runs all the
         test files?
 
+Commit: Add error-reporting to the (parse) function by having it
+        return (fail [string]) if it fails to parse [string].
+        The final parse should be scanned to see if it contains
+        such a failure at any nesting level, and if it does, the
+        error should be reported and program execution should
+        halt.  Add tests and documentation for same.
+
 ----------------------------------------------------------------
 
 Feature: Establish a database of word signatures.  Add a mode
