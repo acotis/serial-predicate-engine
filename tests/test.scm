@@ -8,4 +8,4 @@
 
 (load "../new-code/parse.scm")
 (load "parse-tests.scm")
-(run-parse-tests #t)
+(run-parse-tests #f)

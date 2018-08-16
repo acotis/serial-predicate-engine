@@ -32,6 +32,21 @@
        com))
 
 
+;; RU
+
+;; Replace last instance of ...p1 RU p2... with ...(RU p1 p2)...
+(define (fold-last-ru com)
+  (cond ((> (count is-RU? com) 1)
+         (cons (car com) (fold-last-ru (cdr com))))
+
+        ((not (is-RU? (cadr com)))
+         (cons (car com) (fold-last-ru (cdr com))))
+
+        (#t
+         (cons (list (cadr com) (car com) (caddr com))
+               (cdddr com)))))
+
+
 ;; Parse a composite into a parse-form
 ;; i.e. ("jai") -> "jai"
 ;;      (to ru "kuai" to "tua") -> (ru "kuai" "tua")
@@ -46,9 +61,9 @@
          ((member 'mu com)
           '())
          
-         ;; Ignore all cases containing members of RU for now
+         ;; If there are any RU, fold the last one and re-parse
          ((any is-RU? com)
-          '())
+          (parse-composite (fold-last-ru com)))
 
          ;; com contains only parse-forms
 
