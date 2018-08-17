@@ -38,7 +38,7 @@
     
     ;;         (     [         ]    [        ])      (     )
     ("mu to ru to ru tuao mu dua to jaq mu chi to mu hao hao"
-     (mu (ru (ru ("tuao" (mu "dua")) ("jaq" (mu "chi"))) ("hao" (mu "hao")))))
+     (mu (ru (ru ("tuao" (mu "dua")) ("jaq" (mu "chi"))) ((mu "hao") "hao"))))
 
     ;;                             RI (  RU [            RA <                 >    <            >]   [            ])   ( )
     ("mu mu jaq mu chi mu mu mu to ri to ru mu rai mu to ra dua leo ru buaq bai to mu loaq ro bie to chie ri mu tuq to rai"
