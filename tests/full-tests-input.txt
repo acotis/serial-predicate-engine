@@ -1,0 +1,61 @@
+
+
+// [14 Aug 2018]  I've just discovered that serial predicates containing members of RU might combine differently
+// than I thought.  I'm going to wait to figure that out before continuing here.  Meanwhile I'll work on other aspects
+// of the program.  
+
+// [19 Aug 2018, EM]  One useful test to have around would be the "is-subset" comparison: for two predicates, P and Q,
+// with arity(Q) = q and arity(P) = p > q, plug in only q arguments into P, using "" for the rest.  See if the result
+// equals the result when q arguments are plugged into Q.
+
+// [19 Aug 2018]  Ooh, yikes.  "Sỉai" = `Nothing has property ___ (1)` and can produce 0-ary predicates.
+
+// [20 Aug 2018]  I'm going to change the expected output to only put parens around "runs" of the same type of connector.
+// So for example, "dua leo ru buaq ru kuai bai" parenthesizes as "dua (leo ru buaq ru kuai) bai" (outer-level parens are
+// skipped).  "mu" also produces parens.  Non-trivial head-predicates should also have parens around them.
+
+
+// Composition
+
+:test dua mai		// Type (0) slot
+:test leo pai		// Type (1) slot
+:test poq kea		// (Combines with a "ru")
+:test soq gi		// Filled slot is not at the end
+:test soq jeo		// Filling word has multiple valid arities
+:test tua jeaq jai	// Three-part composite
+:test cheo jeo		// Filling word has multiple valid arities, and only one works
+:test mia ti		// Type (2) slot
+:test cua meo		// Two different abstraction slots
+:test dui bu		// Two different abstraction slots, and filled by predicate with mutliple arities
+
+// Ru
+
+:test pai ru mai	// Simple ru
+:test poq ra maomao dua	// Ru over something else
+:test jeo re hui ro gi	// Two ru's
+:test dua gi ru hui   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
+:test dua pai ri mai	// Parses WAY differently under the two models
+
+// Ru ?-types
+
+:test fa ru soq		// Produce a ?-type
+:test bu ra jeo		// Produces ?-types if arities of predicates differ
+:test bu ra jeo de	// How should ?-types be treated during composition?
+
+// Mu
+
+:test mu dua		// Btw, how does "mu" act on predicates with <2 slots?
+:test gi mu dua
+:test gi ri mu dua
+:test mu mai ri mu pai
+
+// To ru
+
+:test to ri mai to pai
+:test kuai to re chuq to nuo
+:test to ra gi de to hui fie
+
+// Seen in the wild
+
+:test dua leo ru buaq bai		// Used in "Sa Búai Hủohūa"
+:test bu tea ru ceo riofa tishagiq	// Used by Ilmen.  Should be skipped in nofilter b/c of how long it is.

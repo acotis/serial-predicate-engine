@@ -5,16 +5,16 @@ Next up: Throw all old code into a folder, pull out only what is
 
 ----------------------------------------------------------------
 
-Commit: Write and test the "Parse" stage of the new structure.
-        (Along the way, convert the "parse-tests" odt file to
-        a scm file.
-
 Commit: Copy in the "Pretty Print" stage of the new structure.
 
 Commit: Write code that copies tests out of full-tests.odt and
         runs them on a dummy (compose) function.
 
-Commit: Write the (compose) function for real.
+Commit: Write the (compose) function for real.  Remember that
+        jado-ify should only drop in plain jado if they would
+        all fall in the top level of the predicate.  Otherwise,
+        a li prenex should be used (for all of them) and they
+        should be numbered.
 
 Commit: Write a bash script that automatically runs all the
         test files?

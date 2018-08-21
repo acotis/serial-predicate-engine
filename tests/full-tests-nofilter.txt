@@ -1,0 +1,370 @@
+
+
+:next // dua mai
+<[] (dủa)> · <[] (mải)> = 			<[] (lủ to ru dủa na to mải)>
+<[] (dủa)> · <[c] (mải A)> = 			<[c] (lủ to ru dủa na to mải A)>
+<[] (dủa)> · <[c c] (mải A B)> = 		<[c c] (lủ to ru dủa na to mải A B)>
+<[c] (dủa A)> · <[] (mải)> = 			<[c] (lủ to ru dủa A na to mải)>
+<[c] (dủa A)> · <[c] (mải A)> = 		<[c] (lủ to ru dủa A na to mải A)>
+<[c] (dủa A)> · <[c c] (mải A B)> =		<[c c] (lủ to ru dủa A na to mải A B)>
+<[c 0] (dủa A B)> · <[] (mải)> = 		<[c] (dủa A mâi)>
+<[c 0] (dủa A B)> · <[c] (mải A)> = 		<[c c] (dủa A mâi B)>
+<[c 0] (dủa A B)> · <[c c] (mải A B)> =		<[c c c] (dủa A mâi B C)>
+:end
+
+:next // leo pai
+<[] (lẻo)> · <[] (pải)> = 			<[] (lủ to ru lẻo na to pải)>
+<[] (lẻo)> · <[c] (pải A)> = 			<[c] (lủ to ru lẻo na to pải A)>
+<[] (lẻo)> · <[c c] (pải A B)> = 		<[c c] (lủ to ru lẻo na to pải A B)>
+<[c] (lẻo A)> · <[] (pải)> = 			<[c] (lủ to ru lẻo A na to pải A)>
+<[c] (lẻo A)> · <[c] (pải A)> =			<[c] (lủ to ru lẻo A na to pải A)>
+<[c] (lẻo A)> · <[c c] (pải A B)> =		<[c c] (lủ to ru lẻo A na to pải A B)>
+<[c 1] (lẻo A B)> · <[] (pải)> =		-
+<[c 1] (lẻo A B)> · <[c] (pải A)> =		<[c] (lẻo A pâi ja dó)>
+<[c 1] (lẻo A B)> · <[c c] (pải A B)> =		<[c c] (lẻo A pâi ja dó B)>
+:end
+
+:next // poq kea				
+<[] (pỏq)> · <[] (kẻa)> = 			<[] (lủ to ru pỏq na to kẻa)>
+<[] (pỏq)> · <[c] (kẻa A)> = 			<[c] (lủ to ru pỏq na to kẻa A)>
+<[] (pỏq)> · <[c 1] (kẻa A B)> = 		<[c 1] (lủ to ru pỏq na to kẻa A B)>
+<[c] (pỏq A)> · <[] (kẻa)> = 			<[c] (lủ to ru pỏq A na to kẻa)>
+<[c] (pỏq A)> · <[c] (kẻa A)> = 		<[c] (lủ to ru pỏq A na to kẻa A)>
+<[c] (pỏq A)> · <[c 1] (kẻa A B)> = 		<[c 1] (lủ to ru pỏq A na to kẻa A B)>
+:end
+
+:next // soq gi
+<[] (sỏq)> · <[] (gỉ)> =			<[] (lủ to ru sỏq na to gỉ)>
+<[] (sỏq)> · <[0] (gỉ A)> =			<[0] (lủ to ru sỏq na to gỉ A)>
+<[c] (sỏq A)> · <[] (gỉ)> =			<[c] (lủ to ru sỏq A na to gỉ)>
+<[c] (sỏq A)> · <[0] (gỉ A)> =			<[?] (lủ to ru sỏq A na to gỉ A)>
+<[c 1] (sỏq A B)> · <[] (gỉ)> =			-
+<[c 1] (sỏq A B)> · <[0] (gỉ A)> =		<[c] (sỏq A gî ja dó)>	
+<[c 1 c] (sỏq A B C)> · <[] (gỉ)> =		-
+<[c 1 c] (sỏq A B C)> · <[0] (gỉ A)> =		<[c c] (sỏq A gî ja dó na B)>
+:end
+
+:next // soq jeo
+<[] (sỏq)> · <[] (jẻo)> =			<[] (lủ to ru sỏq na to jẻo)>
+<[] (sỏq)> · <[0] (jẻo A)> =			<[0] (lủ to ru sỏq na to jẻo A)>
+<[] (sỏq)> · <[c 1] (jẻo A B)> =		<[c 1] (lủ to ru sỏq na to jẻo A B)>
+<[c] (sỏq A)> · <[] (jẻo)> =			<[c] (lủ to ru sỏq A na to jẻo)>
+<[c] (sỏq A)> · <[0] (jẻo A)> =			<[?] (lủ to ru sỏq A na to jẻo B)>
+<[c] (sỏq A)> · <[c 1] (jẻo A B)> =		<[c 1] (lủ to ru sỏq A na to jẻo A B)>
+<[c 1] (sỏq A B)> · <[] (jẻo)> =		-
+<[c 1] (sỏq A B)> · <[0] (jẻo A)> =		<[c] (sỏq A jêo ja dó)>
+<[c 1] (sỏq A B)> · <[c 1] (jẻo A B)> =		<[c 1] (sỏq A jêo ja dó B)>
+<[c 1 c] (sỏq A B C)> · <[] (jẻo)> =		-
+<[c 1 c] (sỏq A B C)> · <[0] (jẻo A)> =		<[c c] (sỏq A jêo ja dó na B)>
+<[c 1 c] (sỏq A B C)> · <[c 1] (jẻo A B)> =	<[c 1 c] (sỏq A jêo ja dó B na C)>
+:end
+
+:next // tua jeaq jai
+<[] (tủa)> · <[] (jẻaq)> · <[] (jải)> = 			<[] (lủ to ru tủa na to lủ to ru jẻaq na to jải)>
+<[] (tủa)> · <[] (jẻaq)> · <[c] (jải A)> = 			<[c] (lủ to ru tủa na to lủ to ru jẻaq na to jải A)>
+<[] (tủa)> · <[c] (jẻaq A)> · <[] (jải)> = 			<[c] (lủ to ru tủa na to lủ to ru jẻaq A na to jải)>
+<[] (tủa)> · <[c] (jẻaq A)> · <[c] (jải A)> = 			<[c] (lủ to ru tủa na to lủ to ru jẻaq A na to jải A)>
+<[] (tủa)> · <[c 1] (jẻaq A B)> · <[] (jải)> = 			-
+<[] (tủa)> · <[c 1] (jẻaq A B)> · <[c] (jải A)> =	 	<[c] (lủ to ru tủa na to jẻaq A jâi ja dó)>
+<[c] (tủa A)> · <[] (jẻaq)> · <[] (jải)> = 			<[c] (lủ to ru tủa A na to lủ to ru jẻaq na to jải)>
+<[c] (tủa A)> · <[] (jẻaq)> · <[c] (jải A)> = 			<[c] (lủ to ru tủa A na to lủ to ru jẻaq na to jải A)>
+<[c] (tủa A)> · <[c] (jẻaq A)> · <[] (jải)> = 			<[c] (lủ to ru tủa A na to lủ to ru jẻaq A na to jải)>
+<[c] (tủa A)> · <[c] (jẻaq A)> · <[c] (jải A)> = 		<[c] (lủ to ru tủa A na to lủ to ru jẻaq A na to jải A)>
+<[c] (tủa A)> · <[c 1] (jẻaq A B)> · <[] (jải)> = 		-
+<[c] (tủa A)> · <[c 1] (jẻaq A B)> · <[c] (jải A)> = 		<[c] (lủ to ru tủa A na to jẻaq A jâi ja dó)>
+<[c 0] (tủa A B)> · <[] (jẻaq)> · <[] (jải)> = 			<[c] (tủa A lû to ru jẻaq na to jải)>
+<[c 0] (tủa A B)> · <[] (jẻaq)> · <[c] (jải A)> = 		<[c c] (tủa A lû to ru jẻaq na to jải B)>
+<[c 0] (tủa A B)> · <[c] (jẻaq A)> · <[] (jải)> = 		<[c c] (tủa A lû to ru jẻaq B na to jải)>
+<[c 0] (tủa A B)> · <[c] (jẻaq A)> · <[c] (jải A)> = 		<[c c] (tủa A lû to ru jẻaq B na to jải B)>
+<[c 0] (tủa A B)> · <[c 1] (jẻaq A B)> · <[] (jải)> = 		-
+<[c 0] (tủa A B)> · <[c 1] (jẻaq A B)> · <[c] (jải A)> = 	<[c c] (tủa A jêaq B jâi ja dó)>
+:end
+
+:next // cheo jeo
+<[] (chẻo)> · <[] (jẻo)> = 			<[] (lủ to ru chẻo na to jẻo)>
+<[] (chẻo)> · <[0] (jẻo A)> = 			<[0] (lủ to ru chẻo na to jẻo A)>
+<[] (chẻo)> · <[c 1] (jẻo A B)> = 		<[c 1] (lủ to ru chẻo na to jẻo A B)>
+<[c] (chẻo A)> · <[] (jẻo)> = 			<[c] (lủ to ru chẻo A na to jẻo)>
+<[c] (chẻo A)> · <[0] (jẻo A)> = 		<[?] (lủ to ru chẻo A na to jẻo A)>
+<[c] (chẻo A)> · <[c 1] (jẻo A B)> = 		<[c 1] (lủ to ru chẻo A na to jẻo A B)>
+<[c 2] (chẻo A B)> · <[] (jẻo)> = 		-
+<[c 2] (chẻo A B)> · <[0] (jẻo A)> = 		-
+<[c 2] (chẻo A B)> · <[c 1] (jẻo A B)> = 	<[c] (chẻo A jẻo ja dó ja dó)>
+:end
+
+:next // mia ti
+<[] (mỉa)> · <[] (tỉ)> = 			<[] (lủ to ru mỉa na to tỉ)>
+<[] (mỉa)> · <[c] (tỉ A)> = 			<[c] (lủ to ru mỉa na to tỉ A)>
+<[] (mỉa)> · <[c c] (tỉ A B)> = 		<[c c] (lủ to ru mỉa na to tỉ A B)>
+<[c] (mỉa A)> · <[] (tỉ)> = 			<[c] (lủ to ru mỉa A na to tỉ)>
+<[c] (mỉa A)> · <[c] (tỉ A)> = 			<[c] (lủ to ru mỉa A na to tỉ A)>
+<[c] (mỉa A)> · <[c c] (tỉ A B)> = 		<[c c] (lủ to ru mỉa A na to tỉ A B)>
+<[c 2] (mỉa A B)> · <[] (tỉ)> = 		-
+<[c 2] (mỉa A B)> · <[c] (tỉ A)> = 		-
+<[c 2] (mỉa A B)> · <[c c] (tỉ A B)> = 		<[c] (mỉa A tî ja dó ja dó)>
+:end
+
+:next // cua meo
+<[] (của)> · <[] (mẻo)> = 			<[] (lủ to ru của na to mẻo)>
+<[] (của)> · <[c] (mẻo A)> = 			<[c] (lủ to ru của na to mẻo A)>
+<[c] (của A)> · <[] (mẻo)> = 			<[c] (lủ to ru của A na to mẻo)>
+<[c] (của A)> · <[c] (mẻo A)> = 		<[c] (lủ to ru của A na to mẻo A)>
+<[c 1] (của A B)> · <[] (mẻo)> = 		-
+<[c 1] (của A B)> · <[c] (mẻo A)> = 		<[c] (của A mêo ja dó)>	
+<[c 1 1] (của A B C)> · <[] (mẻo)> = 		-
+<[c 1 1] (của A B C)> · <[c] (mẻo A)> = 	<[c 1] (của A mêo ja dó na B)>
+:end
+
+:next // dui bu
+<[] (dủi)> · <[] (bủ)> = 			<[] (lủ to ru dủi na to bủ)>
+<[] (dủi)> · <[0] (bủ A)> = 			<[0] (lủ to ru dủi na to bủ A)>
+<[] (dủi)> · <[c 1] (bủ A B)> = 		<[c 1] (lủ to ru dủi na to bủ A B)> 
+<[c] (dủi A)> · <[] (bủ)> = 			<[c] (lủ to ru dủi A na to bủ)>
+<[c] (dủi A)> · <[0] (bủ A)> = 			<[?] (lủ to ru dủi A na to bủ A)>
+<[c] (dủi A)> · <[c 1] (bủ A B)> = 		<[c 1] (lủ to ru dủi A na to bủ A B)>
+<[c 1] (dủi A B)> · <[] (bủ)> = 		-
+<[c 1] (dủi A B)> · <[0] (bủ A)> = 		<[c] (dủi A bû ja dó)>
+<[c 1] (dủi A B)> · <[c 1] (bủ A B)> = 		<[c 1] (dủi A bû ja dó B)>
+<[c 1 1] (dủi A B C)> · <[] (bủ)> = 		-
+<[c 1 1] (dủi A B C)> · <[0] (bủ A)> = 		<[c 1] (dủi A bû ja dó na B)>
+<[c 1 1] (dủi A B C)> · <[c 1] (bủ A B)> = 	<[c 1 1] (dủi A bû ja dó B na C)>
+:end
+
+
+:next // pai ru mai
+<[] (pải)> ru <[] (mải)> =			<[] (lủ to ru pải na to mải)>
+<[] (pải)> ru <[c] (mải A)> =			<[c] (lủ to ru pải na to mải A)>
+<[] (pải)> ru <[c c] (mải A B)> =		<[c c] (lủ to ru pải na to mải A B)>
+<[c] (pải A)> ru <[] (mải)> =			<[c] (lủ to ru pải A na to mải)>
+<[c] (pải A)> ru <[c] (mải A)> =		<[c] (lủ to ru pải A na to mải A)>
+<[c] (pải A)> ru <[c c] (mải A B)> =		<[c c] (lủ to ru pải A na to mải A B)>
+<[c c] (pải A B)> ru <[] (mải)> =		<[c c] (lủ to ru pải A B na to mải)>
+<[c c] (pải A B)> ru <[c] (mải A)> =		<[c c] (lủ to ru pải A B na to mải A)>
+<[c c] (pải A B)> ru <[c c] (mải A B)> =	<[c c] (lủ to ru pải A B na to mải A B)>
+:end
+
+:next // poq ra maomao dua
+(<[] (pỏq)> ra <[] (mảomāo)>) · <[] (dủa)> = 			<[] (lủ to ru lủ to ra pỏq na to mảomāo na na to dủa)>
+(<[] (pỏq)> ra <[] (mảomāo)>) · <[c] (dủa A)> =			<[c] (lủ to ru lủ to ra pỏq na to mảomāo na na to dủa A)>
+(<[] (pỏq)> ra <[] (mảomāo)>) · <[c 0] (dủa A B)> =		<[c 0] (lủ to ru lủ to ra pỏq na to mảomāo na na to dủa A B)>
+(<[] (pỏq)> ra <[c] (mảomāo A)>) · <[] (dủa)> =			<[c] (lủ to ru lủ to ra pỏq na to mảomāo A na na to dủa)>
+(<[] (pỏq)> ra <[c] (mảomāo A)>) · <[c] (dủa A)> =		<[c] (lủ to ru lủ to ra pỏq na to mảomāo A na na to dủa A)>
+(<[] (pỏq)> ra <[c] (mảomāo A)>) · <[c 0] (dủa A B)> =		<[c 0] (lủ to ru lủ to ra pỏq na to mảomāo A na na to dủa A B)>
+(<[c] (pỏq A)> ra <[] (mảomāo)>) · <[] (dủa)> =			<[c] (lủ to ru lủ to ra pỏq A na to mảomāo na na to dủa)>
+(<[c] (pỏq A)> ra <[] (mảomāo)>) · <[c] (dủa A)> =		<[c] (lủ to ru lủ to ra pỏq A na to mảomāo na na to dủa A)>
+(<[c] (pỏq A)> ra <[] (mảomāo)>) · <[c 0] (dủa A B)> =		<[c 0] (lủ to ru lủ to ra pỏq A na to mảomāo na na to dủa A B)>
+(<[c] (pỏq A)> ra <[c] (mảomāo A)>) · <[] (dủa)> =		<[c] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa)>
+(<[c] (pỏq A)> ra <[c] (mảomāo A)>) · <[c] (dủa A)> =		<[c] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa A)>
+(<[c] (pỏq A)> ra <[c] (mảomāo A)>) · <[c 0] (dủa A B)> =	<[c 0] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa A B)>
+:end
+
+:next // jeo re hui ro gi
+<[] (jẻo)> re <[] (hủi)> ro <[] (gỉ)> = 			<[] (lủ to re jẻo na to to ro hủi na to gỉ)>
+<[] (jẻo)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo na to to ro hủi na to gỉ A)>
+<[] (jẻo)> re <[0] (hủi A)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo na to to ro hủi A na to gỉ A)>
+<[] (jẻo)> re <[0] (hủi A)> ro <[0] (gỉ A)> =	 		<[0] (lủ to re jẻo na to to ro hủi A na to gỉ A)>
+<[0] (jẻo A)> re <[] (hủi)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo A na to to ro hủi na to gỉ)>
+<[0] (jẻo A)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo A na to to ro hủi na to gỉ A)>
+<[0] (jẻo A)> re <[0] (hủi A)> ro <[] (gỉ)> =	 		<[0] (lủ to re jẻo A na to to ro hủi A na to gỉ)>
+<[0] (jẻo A)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[0] (lủ to re jẻo A na to to ro hủi A na to gỉ A)>
+<[c 1] (jẻo A B)> re <[] (hủi)> ro <[] (gỉ)> =	 		<[c 1] (lủ to re jẻo A B na to to ro hủi na to gỉ)>
+<[c 1] (jẻo A B)> re <[] (hủi)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi na to gỉ A)>
+<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[] (gỉ)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi A na to gỉ)>
+<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi A na to gỉ A)>
+:end
+
+:next // dua gi ru hui
+<[] (dủa)> · (<[] (gỉ)> ru <[] (hủi)>) = 		<[] (lủ to ru dủa na to lủ to ru gỉ na to hủi)>
+<[] (dủa)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ na to hủi A)>
+<[] (dủa)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ A na to hủi)>
+<[] (dủa)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ A na to hủi A)>
+<[c] (dủa A)> · (<[] (gỉ)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ na to hủi)>
+<[c] (dủa A)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ na to hủi A)>
+<[c] (dủa A)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi)>
+<[c] (dủa A)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi A)>
+<[c 0] (dủa A B)> · (<[] (gỉ)> ru <[] (hủi)>) = 	<[c] (dủa A lû to ru gỉ na to hủi)>
+<[c 0] (dủa A B)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 	<[c c] (dủa A lû to ru gỉ na to hủi B)>
+<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 	<[c c] (dủa A lû to ru gỉ B na to hủi)>
+<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c c] (dủa A lû to ru gỉ B na to hủi B)>
+:end
+
+:next // dua pai ri mai
+<[] (dủa)> · (<[] (pải)> ri <[] (mải)>) = 			<[] (lủ to ru dủa na to lủ to ri pải na to mải)>
+<[] (dủa)> · (<[] (pải)> ri <[c] (mải A)>) = 			<[c] (lủ to ru dủa na to lủ to ri pải na to mải A)>
+<[] (dủa)> · (<[] (pải)> ri <[c c] (mải A B)>) = 		<[c c] (lủ to ru dủa na to lủ to ri pải na to mải A B)>
+<[] (dủa)> · (<[c] (pải A)> ri <[] (mải)>) = 			<[c] (lủ to ru dủa na to lủ to ri pải A na to mải)>
+<[] (dủa)> · (<[c] (pải A)> ri <[c] (mải A)>) = 		<[c] (lủ to ru dủa na to lủ to ri pải A na to mải A)>
+<[] (dủa)> · (<[c] (pải A)> ri <[c c] (mải A B)>) = 		<[c c] (lủ to ru dủa na to lủ to ri pải A na to mải A B)>
+<[] (dủa)> · (<[c c] (pải A B)> ri <[] (mải)>) = 		<[c c] (lủ to ru dủa na to lủ to ri pải A B na to mải)>
+<[] (dủa)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 		<[c c] (lủ to ru dủa na to lủ to ri pải A B na to mải A)>
+<[] (dủa)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c] (lủ to ru dủa na to lủ to ri pải A B na to mải A B)>
+<[c] (dủa A)> · (<[] (pải)> ri <[] (mải)>) = 			<[c] (lủ to ru dủa A na to lủ to ri pải na to mải)>
+<[c] (dủa A)> · (<[] (pải)> ri <[c] (mải A)>) = 		<[c] (lủ to ru dủa A na to lủ to ri pải na to mải A)>
+<[c] (dủa A)> · (<[] (pải)> ri <[c c] (mải A B)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải na to mải A B)>
+<[c] (dủa A)> · (<[c] (pải A)> ri <[] (mải)>) = 		<[c] (lủ to ru dủa A na to lủ to ri pải A na to mải)>
+<[c] (dủa A)> · (<[c] (pải A)> ri <[c] (mải A)>) = 		<[c] (lủ to ru dủa A na to lủ to ri pải A na to mải A)>
+<[c] (dủa A)> · (<[c] (pải A)> ri <[c c] (mải A B)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải A na to mải A B)>
+<[c] (dủa A)> · (<[c c] (pải A B)> ri <[] (mải)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải)>
+<[c] (dủa A)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải A)>
+<[c] (dủa A)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải A B)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[] (mải)>) = 		<[c] (dủa A lủ to ri pải na to mải)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[c] (mải A)>) = 		<[c c] (dủa A lủ to ri pải na to mải B)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải na to mải B C)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[] (mải)>) = 		<[c c] (dủa A lủ to ri pải B na to mải)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c] (mải A)>) = 		<[c c] (dủa A lủ to ri pải B na to mải B)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải B na to mải B C)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[] (mải)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải B)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải B C)>
+:end
+
+
+// ?-types
+
+:next // fa ru soq
+<[] (fả)> ru <[] (sỏq)> = 				<[] (lủ to ru fả na to sỏq)>
+<[] (fả)> ru <[c] (sỏq A)> = 				<[c] (lủ to ru fả na to sỏq A)>
+<[] (fả)> ru <[c 1] (sỏq A B)> = 			<[c 1] (lủ to ru fả na to sỏq A B)>
+<[] (fả)> ru <[c 1 c] (sỏq A B C)> = 			<[c 1 c] (lủ to ru fả na to sỏq A B C)>
+<[c] (fả A)> ru <[] (sỏq)> = 				<[c] (lủ to ru fả A na to sỏq)>
+<[c] (fả A)> ru <[c] (sỏq A)> =				<[c] (lủ to ru fả A na to sỏq A)>
+<[c] (fả A)> ru <[c 1] (sỏq A B)> = 			<[c 1] (lủ to ru fả A na to sỏq A B)>
+<[c] (fả A)> ru <[c 1 c] (sỏq A B C)> =			<[c 1 c] (lủ to ru fả A na to sỏq A B C)>
+<[c c] (fả A B)> ru <[] (sỏq)> = 			<[c c] (lủ to ru fả A B na to sỏq)>
+<[c c] (fả A B)> ru <[c] (sỏq A)> = 			<[c c] (lủ to ru fả A B na to sỏq A)>
+<[c c] (fả A B)> ru <[c 1] (sỏq A B)> =			<[c ?] (lủ to ru fả A B na to sỏq A B)>
+<[c c] (fả A B)> ru <[c 1 c] (sỏq A B C)> = 		<[c ? c] (lủ to ru fả A B na to sỏq A B C)>
+<[c c c] (fả A B C)> ru <[] (sỏq)> = 			<[c c c] (lủ to ru fả A B C na to sỏq)>
+<[c c c] (fả A B C)> ru <[c] (sỏq A)> =			<[c c c] (lủ to ru fả A B C na to sỏq A)>
+<[c c c] (fả A B C)> ru <[c 1] (sỏq A B)> = 		<[c ? c] (lủ to ru fả A B C na to sỏq A B)>
+<[c c c] (fả A B C)> ru <[c 1 c] (sỏq A B C)> =		<[c ? c] (lủ to ro fả A B C na to sỏq A B C)>
+:end
+
+:next // bu ra jeo
+<[] (bủ)> ra <[] (jẻo)> = 			<[] (lủ to ra bủ na to jẻo)>
+<[] (bủ)> ra <[0] (jẻo A)> = 			<[0] (lủ to ra bủ na to jẻo A)>
+<[] (bủ)> ra <[c 1] (jẻo A B)> = 		<[c 1] (lủ to ra bủ na to jẻo A B)>
+<[0] (bủ A)> ra <[] (jẻo)> = 			<[0] (lủ to ra bủ A na to jẻo)>
+<[0] (bủ A)> ra <[0] (jẻo A)> = 		<[0] (lủ to ra bủ A na to jẻo A)>
+<[0] (bủ A)> ra <[c 1] (jẻo A B)> = 		<[? 1] (lủ to ra bủ A na to jẻo A B)>
+<[c 1] (bủ A B)> ra <[] (jẻo)> = 		<[c 1] (lủ to ra bủ A B na to jẻo)>
+<[c 1] (bủ A B)> ra <[0] (jẻo A)> = 		<[? 1] (lủ to ra bủ A B na to jẻo A)>
+<[c 1] (bủ A B)> ra <[c 1] (jẻo A B)> = 	<[c 1] (lủ to ra bủ A B na to jẻo A B)>
+:end
+
+:next // bu ra jeo de
+(<[] (bủ)> ra <[] (jẻo)>) · <[] (dẻ)> = 			<[] (lủ to ru lủ to ra bủ na to jẻo na na to dẻ)>
+(<[] (bủ)> ra <[] (jẻo)>) · <[c] (dẻ A)> = 			<[c] (lủ to ru lủ to ra bủ na to jẻo na na to dẻ A)>
+(<[] (bủ)> ra <[0] (jẻo A)>) · <[] (dẻ)> = 			<[] (lủ to ra bủ na to jẻo dê)>
+(<[] (bủ)> ra <[0] (jẻo A)>) · <[c] (dẻ A)> = 			<[c] (lủ to ra bủ na to jẻo dê A)>
+(<[] (bủ)> ra <[c 1] (jẻo A B)>) · <[] (dẻ)> = 			-
+(<[] (bủ)> ra <[c 1] (jẻo A B)>) · <[c] (dẻ A)> = 		<[c] (lủ to ra bủ na to jẻo A dê ja dó)>
+(<[0] (bủ A)> ra <[] (jẻo)>) · <[] (dẻ)> = 			<[] (lủ to ra bủ dê na na to jẻo)>
+(<[0] (bủ A)> ra <[] (jẻo)>) · <[c] (dẻ A)> = 			<[c] (lủ to ra bủ dê A na na to jẻo)>
+(<[0] (bủ A)> ra <[0] (jẻo A)>) · <[] (dẻ)> = 			<[] (lủ to ra bủ dê na na to jẻo dê)>
+(<[0] (bủ A)> ra <[0] (jẻo A)>) · <[c] (dẻ A)> = 		<[c] (lủ to ra bủ dê A na na to jẻo dê A)>
+(<[0] (bủ A)> ra <[c 1] (jẻo A B)>) · <[] (dẻ)> = 		-
+(<[0] (bủ A)> ra <[c 1] (jẻo A B)>) · <[c] (dẻ A)> = 		<[?] (lủ to ra bủ A na to jẻo A dê ja dó)>
+(<[c 1] (bủ A B)> ra <[] (jẻo)>) · <[] (dẻ)> = 			-
+(<[c 1] (bủ A B)> ra <[] (jẻo)>) · <[c] (dẻ A)> = 		<[c] (lủ to ra bủ A dê ja dó na na to jẻo)>
+(<[c 1] (bủ A B)> ra <[0] (jẻo A)>) · <[] (dẻ)> = 		-
+(<[c 1] (bủ A B)> ra <[0] (jẻo A)>) · <[c] (dẻ A)> = 		<[?] (lủ to ra bủ A dê ja dó na na to jẻo A)>
+(<[c 1] (bủ A B)> ra <[c 1] (jẻo A B)>) · <[] (dẻ)> = 		-
+(<[c 1] (bủ A B)> ra <[c 1] (jẻo A B)>) · <[c] (dẻ A)> = 	<[c] (lủ to ra bủ A dê ja dó na na to jẻo A dê ja dó)>
+:end
+
+
+// Mu
+
+:next // mu dua
+(mu <[] (dủa)>) = 		-
+(mu <[c] (dủa A)>) = 		-
+(mu <[c 0] (dủa A B)>) = 	<[0 c] (dủa B A)>
+:end
+
+:next // gi mu dua
+<[] (gỉ)> · (mu <[] (dủa)>) = 			-
+<[] (gỉ)> · (mu <[c] (dủa A)>) = 		-
+<[] (gỉ)> · (mu <[c 0] (dủa A B)>) = 		<[0 c] (to ru gỉ na to dủa B A)>
+<[0] (gỉ A)> · (mu <[] (dủa)>) = 		-
+<[0] (gỉ A)> · (mu <[c] (dủa A)>) = 		-
+<[0] (gỉ A)> · (mu <[c 0] (dủa A B)>) = 	<[0 c] (gỉ dûa B A)>
+:end
+
+:next // gi ri mu dua
+<[] (gỉ)> ri (mu <[] (dủa)>) = 			-
+<[] (gỉ)> ri (mu <[c] (dủa A)>) = 		-
+<[] (gỉ)> ri (mu <[c 0] (dủa A B)>) = 		<[0 c] (to ri gỉ na to dủa B A)>
+<[0] (gỉ A)> ri (mu <[] (dủa)>) = 		-
+<[0] (gỉ A)> ri (mu <[c] (dủa A)>) = 		-
+<[0] (gỉ A)> ri (mu <[c 0] (dủa A B)>) = 	<[0 c] (to ri gỉ A na to dủa B A)>
+:end
+
+:next // mu mai ri mu pai
+(mu <[] (mải)>) ri (mu <[] (pải)>) = 			-
+(mu <[] (mải)>) ri (mu <[c] (pải A)>) = 		-
+(mu <[] (mải)>) ri (mu <[c c] (pải A B)>) = 		-
+(mu <[c] (mải A)>) ri (mu <[] (pải)>) = 		-
+(mu <[c] (mải A)>) ri (mu <[c] (pải A)>) = 		-
+(mu <[c] (mải A)>) ri (mu <[c c] (pải A B)>) = 		-
+(mu <[c c] (mải A B)>) ri (mu <[] (pải)>) = 		-
+(mu <[c c] (mải A B)>) ri (mu <[c] (pải A)>) = 		-	
+(mu <[c c] (mải A B)>) ri (mu <[c c] (pải A B)>) = 	<[c c] (to ri mải B A na to pải B A)>	
+:end
+
+
+// To ru
+
+:next // to ri mai to pai
+<[] (pải)> ri <[] (mải)> =			<[] (lủ to ri pải na to mải)>
+<[] (pải)> ri <[c] (mải A)> =			<[c] (lủ to ri pải na to mải A)>
+<[] (pải)> ri <[c c] (mải A B)> =		<[c c] (lủ to ri pải na to mải A B)>
+<[c] (pải A)> ri <[] (mải)> =			<[c] (lủ to ri pải A na to mải)>
+<[c] (pải A)> ri <[c] (mải A)> =		<[c] (lủ to ri pải A na to mải A)>
+<[c] (pải A)> ri <[c c] (mải A B)> =		<[c c] (lủ to ri pải A na to mải A B)>
+<[c c] (pải A B)> ri <[] (mải)> =		<[c c] (lủ to ri pải A B na to mải)>
+<[c c] (pải A B)> ri <[c] (mải A)> =		<[c c] (lủ to ri pải A B na to mải A)>
+<[c c] (pải A B)> ri <[c c] (mải A B)> =	<[c c] (lủ to ri pải A B na to mải A B)>
+:end
+
+:next // kuai to re chuq to nuo
+<[] (kủai)> · (<[] (chủq)> re <[] (nủo)>) = 			<[] (lủ to ru kủai na to lủ to re chủq na to nủo)>
+<[] (kủai)> · (<[] (chủq)> re <[c] (nủo A)>) = 			<[c] (lủ to ru kủai na to lủ to re chủq na to nủo A)>
+<[] (kủai)> · (<[c] (chủq A)> re <[] (nủo)>) = 			<[c] (lủ to ru kủai na to lủ to re chủq A na to nủo)>
+<[] (kủai)> · (<[c] (chủq A)> re <[c] (nủo A)>) = 		<[c] (lủ to ru kủai na to lủ to re chủq A na to nủo A)>
+<[] (kủai)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 		<[c c] (lủ to ru kủai na to lủ to re chủq A B na to nủo)>
+<[] (kủai)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 		<[c c] (lủ to ru kủai na to lủ to re chủq A B na to nủo A)>
+<[c] (kủai A)> · (<[] (chủq)> re <[] (nủo)>) = 			<[c] (lủ to ru kủai A na to lủ to re chủq na to nủo)>
+<[c] (kủai A)> · (<[] (chủq)> re <[c] (nủo A)>) = 		<[c] (lủ to ru kủai A na to lủ to re chủq na to nủo A)>
+<[c] (kủai A)> · (<[c] (chủq A)> re <[] (nủo)>) = 		<[c] (lủ to ru kủai A na to lủ to re chủq A na to nủo)>
+<[c] (kủai A)> · (<[c] (chủq A)> re <[c] (nủo A)>) = 		<[c] (lủ to ru kủai A na to lủ to re chủq A na to nủo A)>
+<[c] (kủai A)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 		<[c c] (lủ to ru kủai A na to lủ to re chủq A B na to nủo)>
+<[c] (kủai A)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (lủ to ru kủai A na to lủ to re chủq A B na to nủo A)>
+<[c 1] (kủai A B)> · (<[] (chủq)> re <[] (nủo)>) = 		-
+<[c 1] (kủai A B)> · (<[] (chủq)> re <[c] (nủo A)>) = 		<[c] (kủai A lî ja dó[1] bi to re chủq na to nủo dó[1])>
+<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[] (nủo)>) = 		<[c] (kủai A lî ja dó[1] bi to re chủq dó[1] na to nủo)>
+<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[c] (nủo A)>) = 	<[c] (kủai A lî ja dó[1] bi to re chủq dó[1] na to nủo dó[1])>
+<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 	<[c c] (kủai A lî ja dó[1] bi to re chủq dó[1] B na to nủo)>
+<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (kủai A lî ja dó[1] bi to re chủq dó[1] B na to nủo A)>
+:end
+
+:next // to ra gi de to hui fie
+((<[] (gỉ)> · <[] (dẻ)>) ra (<[] (hủi)> · <[] (fỉe)>)) = 		<[] (lủ to ra lủ to ru gỉ na to dẻ na na to lủ to ru hủi na to fỉe)>
+((<[] (gỉ)> · <[] (dẻ)>) ra (<[] (hủi)> · <[c] (fỉe A)>)) = 		<[c] (lủ to ra lủ to ru gỉ na to dẻ na na to lủ to ru hủi na to fỉe A)>
+((<[] (gỉ)> · <[] (dẻ)>) ra (<[0] (hủi A)> · <[] (fỉe)>)) = 		<[] (lủ to ra lủ to ru gỉ na to dẻ na na to hủi fîe)>
+((<[] (gỉ)> · <[] (dẻ)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 		<[c] (lủ to ra lủ to ru gỉ na to dẻ na na to hủi fîe A)>
+((<[] (gỉ)> · <[c] (dẻ A)>) ra (<[] (hủi)> · <[] (fỉe)>)) = 		<[c] (lủ to ra lủ to ru gỉ na to dẻ A na na to lủ to ru hủi na to fỉe)>
+((<[] (gỉ)> · <[c] (dẻ A)>) ra (<[] (hủi)> · <[c] (fỉe A)>)) = 		<[c] (lủ to ra lủ to ru gỉ na to dẻ A na na to lủ to ru hủi na to fỉe A)>
+((<[] (gỉ)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[] (fỉe)>)) = 		<[c] (lủ to ra lủ to ru gỉ na to dẻ A na na to hủi fîe)>
+((<[] (gỉ)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra lủ to ru gỉ na to dẻ A na na to hủi fîe A)>
+((<[0] (gỉ A)> · <[] (dẻ)>) ra (<[] (hủi)> · <[] (fỉe)>)) = 		<[] (lủ to ra gỉ dê na na to lủ to ru hủi na to fỉe)>
+((<[0] (gỉ A)> · <[] (dẻ)>) ra (<[] (hủi)> · <[c] (fỉe A)>)) = 		<[c] (lủ to ra gỉ dê na na to lủ to ru hủi na to fỉe A)>
+((<[0] (gỉ A)> · <[] (dẻ)>) ra (<[0] (hủi A)> · <[] (fỉe)>)) = 		<[] (lủ to ra gỉ dê na na to hủi fîe)>
+((<[0] (gỉ A)> · <[] (dẻ)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra gỉ dê na na to hủi fîe A)>
+((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[] (hủi)> · <[] (fỉe)>)) = 		<[c] (lủ to ra gỉ dê A na na to lủ to ru hủi na to fỉe)>
+((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[] (hủi)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra gỉ dê A na na to lủ to ru hủi na to fỉe A)>
+((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[] (fỉe)>)) = 	<[c] (lủ to ra gỉ dê A na na to hủi fîe)>
+((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra gỉ dê A na na to hủi fîe A)>
+:end
+
+
