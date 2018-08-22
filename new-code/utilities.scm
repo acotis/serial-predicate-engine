@@ -18,3 +18,11 @@
       0
       (+ (if (fun (car ls)) 1 0)
          (count fun (cdr ls)))))
+
+
+;; Find index of first elem e of ls which satisfies fun
+
+(define (find-first fun ls)
+  (if (fun (car ls))
+      0
+      (+ 1 (find-first fun (cdr ls)))))

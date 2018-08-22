@@ -1,7 +1,9 @@
 #!/usr/bin/guile
 !#
 
+(load "../new-code/utilities.scm")
 (use-modules (ice-9 rdelim))
+(use-modules (srfi srfi-1))
 
 
 ;; Generic line-processing functions:
@@ -51,32 +53,69 @@
                                     (":end" . end)
                                     (":skip" . skip))))
          (cmd (if cmd-assoc (cdr cmd-assoc) '())))
-    
+
     (cond ((equal? pline "") '())
           ((equal? cmd 'test) (list 'test rest))
-          (cmd cmd)
-          (#t '()))))
+          ((not (null? cmd)) cmd)
+          (#t pline)))) ;;pline))))
 
 
-;; Read whole test-input files
+;; Read whole files
 
+;; Parse all the lines in a file, remove empty parses
+(define (read-whole-file filename)
+  (call-with-input-file filename
+    (lambda (f)
+
+      (filter
+       (lambda (s) (not (null? s)))
+
+       (do ((line (read-line f) (read-line f))
+            (collect '()
+                     (append collect (list (parse-line line)))))
+           
+           ((eof-object? line)
+            collect))))))
+
+
+;; Return a list of test-case-input strings
 (define (read-test-input-file filename)
-  (let* ((f (open-input-file filename))
-         (lines
-          
-          (do ((line (read-line f) (read-line f))
-               (collect '()))
-               
-              ((eof-object? line)
-               collect)
+  (map cadr (read-whole-file filename)))
 
-            (set! collect
-                  (append collect
-                          (list (parse-line line)))))))
-    
-    (close-input-port f)
-    
-    (filter (lambda (s) (not (null? s))) lines)))
+
+;; Grab the next 'skip or ('test ... 'end) off of a list
+(define (next-case lines)
+  (if (eq? 'skip (car lines))
+      (list 'skip (cdr lines))
+      
+      (let* ((i (find-first (lambda (k) (eq? k 'end)) lines))
+             (next (take lines i)))
+
+        (format #t "lines = ~a~%" lines)
+        (format #t "next = ~a~%" next)
+        
+        (list (cdr next)
+              (drop lines (+ i 1))))))
+
+
+;; Return a list of lists of test-case-output strings
+(define (read-test-output-file filename)
+  (let ((lines (read-whole-file filename))
+        (collect '()))
+
+    (do ()
+        ((null? lines)
+         collect)
+
+      (let ((split (next-case lines)))
+        (set! collect (append collect (list (car split))))
+        (set! lines (cadr split))))))
+      
 
 
 (format #t "~a~%" (read-test-input-file "full-tests-input.txt"))
+
+(format #t "~%~%~a~%" (read-whole-file "full-tests-nofilter.txt"))
+
+(format #t "~%~%~a~%"
+        (read-test-output-file "full-tests-nofilter.txt"))
