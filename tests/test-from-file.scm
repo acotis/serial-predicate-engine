@@ -91,9 +91,6 @@
       (let* ((i (find-first (lambda (k) (eq? k 'end)) lines))
              (next (take lines i)))
 
-        (format #t "lines = ~a~%" lines)
-        (format #t "next = ~a~%" next)
-        
         (list (cdr next)
               (drop lines (+ i 1))))))
 
@@ -115,7 +112,12 @@
 
 (format #t "~a~%" (read-test-input-file "full-tests-input.txt"))
 
-(format #t "~%~%~a~%" (read-whole-file "full-tests-nofilter.txt"))
+(let ((expecteds
+       (read-test-output-file "full-tests-nofilter.txt")))
 
-(format #t "~%~%~a~%"
-        (read-test-output-file "full-tests-nofilter.txt"))
+  (map (lambda (e)
+         (map (lambda (n)
+                (format #t "~a~%" n))
+              (if (equal? e 'skip) '(skip) e))
+         (format #t "~%"))
+       expecteds))

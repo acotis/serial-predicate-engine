@@ -1,4 +1,4 @@
-
+﻿
 
 :next // dua mai
 <[] (dủa)> · <[] (mải)> = 			<[] (lủ to ru dủa na to mải)>
@@ -367,4 +367,6 @@
 ((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra gỉ dê A na na to hủi fîe A)>
 :end
 
+:skip
 
+:skip
