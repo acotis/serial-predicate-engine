@@ -2,6 +2,7 @@
 !#
 
 (load "../new-code/utilities.scm")
+(load "test-macro.scm")
 (use-modules (ice-9 rdelim))
 (use-modules (srfi srfi-1))
 
@@ -55,7 +56,8 @@
     (cons (substring string 0 first-space)
           (string-trim (substring string first-space)))))
 
-;; ex ":test la la la" -> '(test "la la la")
+;; ex ":test la la la"    -> '(test "la la la")
+;; ex ":next // la la la" -> 'next
 (define (parse-line line)
   (let* ((pline (string-trim-both (remove-comments line)))
          (pair (next-word pline))
@@ -70,7 +72,7 @@
     (cond ((equal? pline "") '())
           ((equal? cmd 'test) (list 'test rest))
           ((not (null? cmd)) cmd)
-          (#t (begin (clean-tabs pline))))))
+          (#t "tc")))) ;;(clean-tabs pline)))))
 
 
 ;; Read whole files
@@ -121,16 +123,58 @@
         (set! lines (cadr split))))))
       
 
+;; Create test cases from an input and output file
 
-(format #t "~a~%" (read-test-input-file "full-tests-input.txt"))
+(define (create-cases-from-files infile outfile)
+  (let ((in (read-test-input-file infile))
+        (out (read-test-output-file outfile)))
+    (filter (lambda (tc)
+              (not (eq? (cadr tc) 'skip)))
+            (map list in out))))
 
-(let ((expecteds
-       (read-test-output-file "full-tests-nofilter.txt")))
-       ;;(read-test-output-file "dummy.txt")))
+
+;; (format #t "~a~%" (read-test-input-file "full-tests-input.txt"))
+
+;; (let ((expecteds
+;;        (read-test-output-file "full-tests-nofilter.txt")))
+;;        ;;(read-test-output-file "dummy.txt")))
        
-  (map (lambda (e)
-         (map (lambda (n)
-                (format #t "~a~%" n))
-              (if (equal? e 'skip) '(skip) e))
-         (format #t "~%"))
-       expecteds))
+;;   (map (lambda (e)
+;;          (map (lambda (n)
+;;                 (format #t "~a~%" n))
+;;               (if (equal? e 'skip) '(skip) e))
+;;          (format #t "~%"))
+;;        expecteds))
+
+
+
+;; (let ((cases (create-cases-from-files
+;;               "full-tests-input.txt"
+;;               "full-tests-nofilter.txt")))
+
+;;   (map (lambda (tc) (format #t "~a~%~%" tc)) cases))
+   
+;; (quit)
+
+
+
+;; Test an input file against an output file, given the name
+;; of the function to test
+
+(define-macro (test-from-files infile outfile function-name
+                               display-anyway fail-fun pass-fun)
+  
+  `(run-tests ,(map (lambda (tc)
+                      (let ((result (list (list function-name
+                                                (car tc))
+                                          (cons 'quote
+                                                (cdr tc)))))
+                        (format #t "tc = *~a*~%" tc)
+                        (format #t "result = *~a*~%" result)
+                        result))
+                        
+                    (create-cases-from-files infile outfile))
+              
+              ,display-anyway
+              ,fail-fun
+              ,pass-fun))
