@@ -30,6 +30,19 @@
            (equal? "//" (substring s 0 2))))
     string)))
 
+;; Remove the tab characters from an expected-output line
+(define (clean-tabs line)
+  (let ((i (string-find-first-tail
+            (lambda (s)
+              (equal? #\= (string-ref s 0)))
+            line)))
+    
+    (string-append (string-trim-both
+                    (substring line 0 i))
+                   " = "
+                   (string-trim-both
+                    (substring line (+ i 1))))))
+
 ;; Read up to the first space, return the first word cons'd
 ;; to the left-trim of everything after it
 (define (next-word string)
@@ -57,7 +70,7 @@
     (cond ((equal? pline "") '())
           ((equal? cmd 'test) (list 'test rest))
           ((not (null? cmd)) cmd)
-          (#t pline)))) ;;pline))))
+          (#t (begin (clean-tabs pline))))))
 
 
 ;; Read whole files
@@ -76,7 +89,6 @@
            
            ((eof-object? line)
             collect))))))
-
 
 ;; Return a list of test-case-input strings
 (define (read-test-input-file filename)
@@ -114,7 +126,8 @@
 
 (let ((expecteds
        (read-test-output-file "full-tests-nofilter.txt")))
-
+       ;;(read-test-output-file "dummy.txt")))
+       
   (map (lambda (e)
          (map (lambda (n)
                 (format #t "~a~%" n))
