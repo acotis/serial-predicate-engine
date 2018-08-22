@@ -179,18 +179,15 @@
 (define-macro (test-from-files infile outfile function-name
                                display-anyway fail-fun pass-fun)
   
-  `(run-tests ,(fold-right
-                append
-                (map (lambda (tc)
-                       (let ((res
-                              (generate-tests (list function-name
-                                                    (car tc))
-                                              (cadr tc))))
-                         (format #t "tc = ~a~%" tc)
-                         (format #t "res = ~a~%" res)
-                         res))
-                     
-                     (create-cases-from-files infile outfile)))
+  `(run-tests ,(reverse
+                (fold-right
+                 append
+                 (map (lambda (tc)
+                        (generate-tests (list function-name
+                                              (car tc))
+                                        (cadr tc)))
+                      
+                      (create-cases-from-files infile outfile))))
                 
               ,display-anyway
               ,fail-fun
