@@ -6,7 +6,7 @@
 
 
 (define (full-parse str)
-  str)
+  (make-list 100 str))
 
 
 (test-from-files

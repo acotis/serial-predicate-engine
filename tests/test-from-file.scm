@@ -72,7 +72,7 @@
     (cond ((equal? pline "") '())
           ((equal? cmd 'test) (list 'test rest))
           ((not (null? cmd)) cmd)
-          (#t "tc")))) ;;(clean-tabs pline)))))
+          (#t (clean-tabs pline)))))
 
 
 ;; Read whole files
@@ -158,23 +158,40 @@
 
 
 
+;; Take an expression and the list of desired results, and
+;; return a list of test cases
+
+(define (generate-tests-helper expr results next-num)
+  (if (null? results)
+      '()
+      (cons `((list-ref ,expr ,next-num) ,(car results))
+            (generate-tests-helper expr
+                                   (cdr results)
+                                   (+ 1 next-num)))))
+
+(define (generate-tests expr results)
+  (generate-tests-helper expr results 0))
+
+
 ;; Test an input file against an output file, given the name
 ;; of the function to test
 
 (define-macro (test-from-files infile outfile function-name
                                display-anyway fail-fun pass-fun)
   
-  `(run-tests ,(map (lambda (tc)
-                      (let ((result (list (list function-name
-                                                (car tc))
-                                          (cons 'quote
-                                                (cdr tc)))))
-                        (format #t "tc = *~a*~%" tc)
-                        (format #t "result = *~a*~%" result)
-                        result))
-                        
-                    (create-cases-from-files infile outfile))
-              
+  `(run-tests ,(fold-right
+                append
+                (map (lambda (tc)
+                       (let ((res
+                              (generate-tests (list function-name
+                                                    (car tc))
+                                              (cadr tc))))
+                         (format #t "tc = ~a~%" tc)
+                         (format #t "res = ~a~%" res)
+                         res))
+                     
+                     (create-cases-from-files infile outfile)))
+                
               ,display-anyway
               ,fail-fun
               ,pass-fun))
