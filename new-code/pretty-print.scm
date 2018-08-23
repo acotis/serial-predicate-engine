@@ -85,6 +85,13 @@
 ;; Pretty-print a whole predicate
 ;; Example: <[c 0] (dủa A B)>
 
+(define (remove-trailing-na str)
+  (let ((len (string-length str)))
+    (if (equal? "na" (substring str (- len 2)))
+        (remove-trailing-na
+         (string-trim-both (substring str 0 (- len 2))))
+        str)))
+
 (define (pred->string pred)
   (string-append "<["
                  (if (not (null? (typelist pred)))
@@ -96,5 +103,6 @@
                                 (typelist pred)))
                      "")
                  "] ("
-                 (cf->string (gcf pred) 4)
+                 (remove-trailing-na
+                  (cf->string (gcf pred) 4))
                  ")>"))

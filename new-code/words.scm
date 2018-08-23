@@ -29,6 +29,11 @@
           (cons name args))
         typelist))
 
+(define (is-simple-predicate pred)
+  (and (procedure? (car pred))
+       (every (lambda (k) (or (eq? k 'c) (number? k)))
+              (cdr pred))))
+
 
 ;; Take various measurements of a predicate
 ;;   Typelist:     (typelist leo) = '(c 1)
@@ -36,6 +41,9 @@
 
 (define (typelist pred)
   (cdr pred))
+
+(define (predicate pred)
+  (car pred))
 
 (define (gcf pred)
   ((car pred)
