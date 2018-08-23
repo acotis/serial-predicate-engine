@@ -2,7 +2,7 @@
 !#
 
 ;; File:    parse.scm
-;; Purpose: Translate a string representing a serial predicate
+;; Purpose: Translate a string representing a composite form
 ;;          into a parsed-composite structure (see doc file
 ;;          "new-structure.odt" for more info).
 
