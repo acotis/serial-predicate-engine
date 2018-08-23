@@ -10,7 +10,7 @@
 ;; list of the possible expansions, in pretty-print form.
 
 
-;; Step one: Split a composite form into a list of serial forms.
+;; Split a composite form into a list of serial forms.
 
 (define (get-serials cf)
   (cond ((string? cf) ;; Single word
@@ -39,28 +39,23 @@
               (get-serials (cdr cf))))))
 
 
-;; Step two: Expand each serial form.
-
-
+;; JADO-IFY
 ;; Drop some number of jado into a predicate
 
 ;; Find maximum jado ID number used in a predicate so far
-
 (define (max-jado-tag cf)
   (cond ((not (pair? cf)) 0) ;; atoms and ()
         ((eq? (car cf) 'jado) (cadr cf))
         (#t (fold max (map max-jado-tag cf)))))
 
-;; Determine whether the first K arguments of a predicate all
-;; fall into top-level slots
-
+;; Determine whether first k args of a pred are all top-level
 (define (top-level-slots pred k)
   (let* ((canaries (map (lambda (n) (gensym)) (iota k)))
          (plugged ((predicate pred)
                    (append canaries (make-list 100 'foo)))))
     (every (lambda (n) (member n plugged))
            canaries)))
-         
+
 
 (define (jado-ify pred k)
   (cond ((= k 0) pred) ;; No jado dropped
@@ -88,6 +83,21 @@
                    `(li ,jado ,((predicate pred)
                                 (append v-do args))))
                  (drop (typelist pred) k))))))
+
+
+;; MU-IFY
+
+(define (swap-first-two ls)
+  (cons (cadr ls) (cons (car ls) (cddr ls))))
+
+(define (mu-ify pred)
+  (if (< (length (typelist pred)) 2)
+      (make-simple-predicate "mu-ify-failed" '(0))
+
+      (cons (lambda (args)
+              ((predicate pred)
+               (swap-first-two args)))
+            (swap-first-two (typelist pred)))))
 
 
 ;; Expand an XY serial-form.  Assumes a valid XY-form.
@@ -135,7 +145,7 @@
          cf)
         
         ((eq? 'mu (car cf)) ;; MU-form (not yet implemented)
-         (make-simple-predicate "mu-not-yet-implemented" '(0)))
+         (mu-ify (expand (cadr cf))))
 
         ((is-RU? (car cf)) ;; RU-form (not yet implemented)
          (make-simple-predicate "RU-not-yet-implemented" '(0)))

@@ -5,11 +5,6 @@ Next up: Throw all old code into a folder, pull out only what is
 
 ----------------------------------------------------------------
 
-Commit: Fix (jado-ify) to drop plain jado if they would
-        all fall in the top level of the predicate.  Otherwise,
-        a li prenex should be used (for all of them) and they
-        should be numbered.  Make sure more tests pass.
-
 Commit: Implement mu-ify.  Make sure more tests pass.
 
 Commit: Implement ru-ify, including implicit RU.  Make sure more

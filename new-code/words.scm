@@ -26,7 +26,7 @@
 
 (define (make-simple-predicate name typelist)
   (cons (lambda (args)
-          (cons name args))
+          (cons name (take args (length typelist))))
         typelist))
 
 (define (is-simple-predicate pred)
@@ -47,9 +47,7 @@
 
 (define (gcf pred)
   ((car pred)
-   (take '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
-         (length (cdr pred)))))
-
+   '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)))
 
 
 ;; Make a word given its name (looks up its signature in the
