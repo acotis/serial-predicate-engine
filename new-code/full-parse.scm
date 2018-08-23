@@ -113,7 +113,7 @@
 (define (ru-ify apred bpred ru)
   (cons (lambda (args)
           `("lu" to ,ru ,((predicate apred) args)
-               to ,((predicate bpred) args)))
+            to ,((predicate bpred) args)))
         (zip-typelists (typelist apred) (typelist bpred))))
 
 
@@ -173,10 +173,8 @@
          (let ((head (expand (car cf)))
                (tail (expand (cadr cf))))
            (if (any number? (typelist head))
-               (expand-XY head tail)  ;; XY case
-               (make-simple-predicate ;; Implicit-ru case
-                "Implied-RU-not-yet-implemented" '(0)))))))
-
+               (expand-XY head tail)       ;; XY case
+               (ru-ify head tail 'ru)))))) ;; Implicit-ru case
 
 ;; Unmemoized full-parse function
 
