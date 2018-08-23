@@ -5,17 +5,21 @@ Next up: Throw all old code into a folder, pull out only what is
 
 ----------------------------------------------------------------
 
-Commit: Write code that copies tests out of full-tests.odt and
-        runs them on a dummy (compose) function.
-
-Commit: Write the (compose) function for real.  Remember that
-        jado-ify should only drop in plain jado if they would
+Commit: Fix (jado-ify) to drop plain jado if they would
         all fall in the top level of the predicate.  Otherwise,
         a li prenex should be used (for all of them) and they
-        should be numbered.  Results should be pretty-printed.
+        should be numbered.  Make sure more tests pass.
 
-Commit: Write a bash script that automatically runs all the
-        test files?
+Commit: Implement mu-ify.  Make sure more tests pass.
+
+Commit: Implement ru-ify, including implicit RU.  Make sure more
+        tests pass.
+
+Next up: Debug the code until all tests pass.  Note: It might be
+         useful for the composite-structure to have an explicit
+         keyword for predicate composition.  Then, I would not
+         have to kludge together the (is-simple-predicate)
+         function, which can fail.  Ergo, less bugs.
 
 Commit: Add error-reporting to the (parse) function by having it
         return (fail [string]) if it fails to parse [string].

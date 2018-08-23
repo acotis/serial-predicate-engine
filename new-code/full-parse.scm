@@ -44,27 +44,51 @@
 
 ;; Drop some number of jado into a predicate
 
+;; Find maximum jado ID number used in a predicate so far
+
 (define (max-jado-tag cf)
   (cond ((not (pair? cf)) 0) ;; atoms and ()
         ((eq? (car cf) 'jado) (cadr cf))
         (#t (fold max (map max-jado-tag cf)))))
 
-(define (jado-ify pred k)
-  (if (> k (length (typelist pred)))
-      (make-simple-predicate "jado-ify-failed" '(0))
+;; Determine whether the first K arguments of a predicate all
+;; fall into top-level slots
 
-      (if (= k 0)
-          pred
-          
-          (let* ((start (1+ (max-jado-tag (gcf pred))))
-                 (tags (map (lambda (x) (+ x start)) (iota k)))
-                 (jado (map (lambda (x) `(jado ,x)) tags))
-                 (v-do (map (lambda (x) `( do  ,x)) tags)))
-            
-            (cons (lambda (args)
-                    `(li ,jado ,((car pred) (append v-do args))))
-                  (drop (cdr pred) k))))))
-  
+(define (top-level-slots pred k)
+  (let* ((canaries (map (lambda (n) (gensym)) (iota k)))
+         (plugged ((predicate pred)
+                   (append canaries (make-list 100 'foo)))))
+    (every (lambda (n) (member n plugged))
+           canaries)))
+         
+
+(define (jado-ify pred k)
+  (cond ((= k 0) pred) ;; No jado dropped
+
+        ;; More jado than open slots; fail
+        ((> k (length (typelist pred)))
+         (make-simple-predicate "jado-ify-failed" '(0)))
+
+        ;; jado will all fill top-level slots, so drop
+        ;; without a prenex
+        ((top-level-slots pred k)
+         (cons (lambda (args)
+                 ((predicate pred)
+                  (append (make-list k '(jado)) args)))
+               (drop (typelist pred) k)))
+
+        ;; Some jado will fill non-top slot, prenex needed
+        (#t
+         (let* ((start (1+ (max-jado-tag (gcf pred))))
+                (tags (map (lambda (x) (+ x start)) (iota k)))
+                (jado (map (lambda (x) `(jado ,x)) tags))
+                (v-do (map (lambda (x) `( do  ,x)) tags)))
+           
+           (cons (lambda (args)
+                   `(li ,jado ,((predicate pred)
+                                (append v-do args))))
+                 (drop (typelist pred) k))))))
+
 
 ;; Expand an XY serial-form.  Assumes a valid XY-form.
 ;;   (dua c 0) (mai c c) = (dua c (mai c c))
@@ -107,8 +131,6 @@
 ;; Full function
 
 (define (expand cf)
-  ;;(format #t "(expand *~a*)~%" cf)
-  
   (cond ((is-simple-predicate cf) ;; Just one word
          cf)
         
@@ -122,12 +144,30 @@
          (let ((head (expand (car cf)))
                (tail (expand (cadr cf))))
            (if (any number? (typelist head))
-               (expand-XY head tail)
-               (make-simple-predicate
+               (expand-XY head tail)  ;; XY case
+               (make-simple-predicate ;; Implicit-ru case
                 "Implied-RU-not-yet-implemented" '(0)))))))
-               
-(define (full-parse str)
+
+
+;; Unmemoized full-parse function
+
+(define (full-parse-unmemoized str)
   (format #t "Performing full parse on *~a*~%" str)
   (map pred->string
        (map expand
             (get-serials (parse str)))))
+
+;; Memoization of full-parse function
+
+(define full-parse-lookup-table '())
+
+(define (full-parse str)
+  (let ((lookup (assoc str full-parse-lookup-table)))
+    (if lookup
+        (cdr lookup)
+        
+        (let ((result (full-parse-unmemoized str)))
+          (set! full-parse-lookup-table
+                (cons (cons str result)
+                      full-parse-lookup-table))
+          result))))

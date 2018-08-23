@@ -47,9 +47,11 @@
   (string-append "ja " (printable-do n)))
 
 (define (printable-do-jado exp)
-  (if (eq? (car exp) 'jado)
-      (printable-jado (cadr exp))
-      (printable-do (cadr exp))))
+  (if (= 2 (length exp)) ;; (jado n) / (do n) case
+      (if (eq? (car exp) 'jado)
+          (printable-jado (cadr exp))
+          (printable-do (cadr exp)))
+      (string-append "ja " (add-tone "do" 2)))) ;; (jado) case
 
 
 ;; Convert a whole canonic form plus a tone to a printable form
