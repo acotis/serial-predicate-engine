@@ -98,8 +98,3 @@
                  "] ("
                  (cf->string (gcf pred) 4)
                  ")>"))
-
-
-(map (lambda (p)
-       (format #t "*~a*~%" (pred->string p)))
-     (make-word "jeo"))

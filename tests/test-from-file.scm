@@ -37,12 +37,13 @@
             (lambda (s)
               (equal? #\= (string-ref s 0)))
             line)))
-    
-    (string-append (string-trim-both
-                    (substring line 0 i))
-                   " = "
-                   (string-trim-both
-                    (substring line (+ i 1))))))
+
+    (string-trim-both (substring line (+ i 1)))))
+    ;; (string-append (string-trim-both
+    ;;                 (substring line 0 i))
+    ;;                " = "
+    ;;                (string-trim-both
+    ;;                 (substring line (+ i 1))))))
 
 ;; Read up to the first space, return the first word cons'd
 ;; to the left-trim of everything after it
