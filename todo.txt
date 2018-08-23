@@ -5,8 +5,6 @@ Next up: Throw all old code into a folder, pull out only what is
 
 ----------------------------------------------------------------
 
-Commit: Implement mu-ify.  Make sure more tests pass.
-
 Commit: Implement ru-ify, including implicit RU.  Make sure more
         tests pass.
 

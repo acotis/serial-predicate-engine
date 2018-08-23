@@ -75,13 +75,14 @@
                        (list "bi")
                        (list (cf->string (caddr cf) 4)))))
 
-        ;; (pred args...)
+        ;; (pred args...) or (lu to RU ... to)
         (#t
-         (fold append-with-spaces
-               (append (list (add-tone (car cf) tone))
-                       (map (lambda (a) (cf->string a 5))
-                            (cdr cf))
-                       (list "na"))))))
+         (let ((stone (if (equal? (car cf) "lu") 4 5)))
+           (fold append-with-spaces
+                 (append (list (add-tone (car cf) tone))
+                         (map (lambda (a) (cf->string a stone))
+                              (cdr cf))
+                         (list "na")))))))
 
 
 ;; Pretty-print a whole predicate

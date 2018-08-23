@@ -100,6 +100,23 @@
             (swap-first-two (typelist pred)))))
 
 
+;; RU-IFY
+
+(define (zip-typelists atypes btypes)
+  (cond ((null? atypes) btypes)
+        ((null? btypes) atypes)
+        (#t (cons (if (eq? (car atypes) (car btypes))
+                      (car atypes)
+                      '?)
+                  (zip-typelists (cdr atypes) (cdr btypes))))))
+
+(define (ru-ify apred bpred ru)
+  (cons (lambda (args)
+          `("lu" to ,ru ,((predicate apred) args)
+               to ,((predicate bpred) args)))
+        (zip-typelists (typelist apred) (typelist bpred))))
+
+
 ;; Expand an XY serial-form.  Assumes a valid XY-form.
 ;;   (dua c 0) (mai c c) = (dua c (mai c c))
 ;;   (leo c 1) (mai c c) = (leo c (mai jado c))
@@ -148,8 +165,10 @@
          (mu-ify (expand (cadr cf))))
 
         ((is-RU? (car cf)) ;; RU-form (not yet implemented)
-         (make-simple-predicate "RU-not-yet-implemented" '(0)))
-
+         (ru-ify (expand (cadr cf))
+                 (expand (caddr cf))
+                 (car cf)))
+         
         (#t ;; XY combination
          (let ((head (expand (car cf)))
                (tail (expand (cadr cf))))
