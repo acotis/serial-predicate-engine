@@ -65,7 +65,7 @@
 
         ;; POQ frame
         ((() (c))
-         ("poq" "kea" "jai" "nuo" "de" "fie" "tea" "meo"
+         ("poq" "jai" "nuo" "de" "fie" "tea" "meo"
           "maomao" "riofa" "tishagiq"))
 
         ;; PAI frame
@@ -86,7 +86,7 @@
 
         ;; KUAI frame
         ((() (c) (c 1))
-         ("kuai" "leo" "jeaq"))
+         ("kuai" "leo" "jeaq" "kea"))
 
         ;; CUA frame
         ((() (c) (c 1) (c 1 1))
