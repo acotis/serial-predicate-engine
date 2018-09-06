@@ -123,9 +123,9 @@
 ;;   (cheo c 2) (mai c c) = (cheo c (mai jado jado))
 
 (define (expand-XY head tail)
-  (format #t "Performing ~a XY ~a~%"
-          (pred->string head)
-          (pred->string tail))
+  ;;(format #t "Performing ~a XY ~a~%"
+  ;;        (pred->string head)
+  ;;        (pred->string tail))
   
   (let* ((hpred (predicate head))
          (htypes (typelist head))

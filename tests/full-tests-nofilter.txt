@@ -16,7 +16,7 @@
 <[] (lẻo)> · <[] (pải)> = 			<[] (lủ to ru lẻo na to pải)>
 <[] (lẻo)> · <[c] (pải A)> = 			<[c] (lủ to ru lẻo na to pải A)>
 <[] (lẻo)> · <[c c] (pải A B)> = 		<[c c] (lủ to ru lẻo na to pải A B)>
-<[c] (lẻo A)> · <[] (pải)> = 			<[c] (lủ to ru lẻo A na to pải A)>
+<[c] (lẻo A)> · <[] (pải)> = 			<[c] (lủ to ru lẻo A na to pải)>
 <[c] (lẻo A)> · <[c] (pải A)> =			<[c] (lủ to ru lẻo A na to pải A)>
 <[c] (lẻo A)> · <[c c] (pải A B)> =		<[c c] (lủ to ru lẻo A na to pải A B)>
 <[c 1] (lẻo A B)> · <[] (pải)> =		-

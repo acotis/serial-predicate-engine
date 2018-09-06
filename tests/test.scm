@@ -22,6 +22,6 @@
  "full-tests-input.txt"
  "full-tests-nofilter.txt"
  full-parse
- #t
+ #f
  (fail-function "full parse")
  (pass-function "full parse"))
