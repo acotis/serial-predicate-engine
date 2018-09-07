@@ -175,17 +175,17 @@
 
 :next // dua gi ru hui
 <[] (dủa)> · (<[] (gỉ)> ru <[] (hủi)>) = 		<[] (lủ to ru dủa na to lủ to ru gỉ na to hủi)>
-<[] (dủa)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ na to hủi A)>
-<[] (dủa)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ A na to hủi)>
-<[] (dủa)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa na to lủ to ru gỉ A na to hủi A)>
+<[] (dủa)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[0] (lủ to ru dủa na to lủ to ru gỉ na to hủi A)>
+<[] (dủa)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[0] (lủ to ru dủa na to lủ to ru gỉ A na to hủi)>
+<[] (dủa)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 		<[0] (lủ to ru dủa na to lủ to ru gỉ A na to hủi A)>
 <[c] (dủa A)> · (<[] (gỉ)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ na to hủi)>
-<[c] (dủa A)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ na to hủi A)>
-<[c] (dủa A)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[c] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi)>
-<[c] (dủa A)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi A)>
+<[c] (dủa A)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 		<[?] (lủ to ru dủa A na to lủ to ru gỉ na to hủi A)>
+<[c] (dủa A)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 		<[?] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi)>
+<[c] (dủa A)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[?] (lủ to ru dủa A na to lủ to ru gỉ A na to hủi A)>
 <[c 0] (dủa A B)> · (<[] (gỉ)> ru <[] (hủi)>) = 	<[c] (dủa A lû to ru gỉ na to hủi)>
-<[c 0] (dủa A B)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 	<[c c] (dủa A lû to ru gỉ na to hủi B)>
-<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 	<[c c] (dủa A lû to ru gỉ B na to hủi)>
-<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c c] (dủa A lû to ru gỉ B na to hủi B)>
+<[c 0] (dủa A B)> · (<[] (gỉ)> ru <[c] (hủi A)>) = 	<[c 0] (dủa A lû to ru gỉ na to hủi B)>
+<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[] (hủi)>) = 	<[c 0] (dủa A lû to ru gỉ B na to hủi)>
+<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c 0] (dủa A lû to ru gỉ B na to hủi B)>
 :end
 
 :next // dua pai ri mai
