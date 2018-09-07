@@ -341,11 +341,11 @@
 <[c] (kủai A)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 		<[c c] (lủ to ru kủai A na to lủ to re chủq A B na to nủo)>
 <[c] (kủai A)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (lủ to ru kủai A na to lủ to re chủq A B na to nủo A)>
 <[c 1] (kủai A B)> · (<[] (chủq)> re <[] (nủo)>) = 		-
-<[c 1] (kủai A B)> · (<[] (chủq)> re <[c] (nủo A)>) = 		<[c] (kủai A lî ja dó[1] bi to re chủq na to nủo dó[1])>
-<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[] (nủo)>) = 		<[c] (kủai A lî ja dó[1] bi to re chủq dó[1] na to nủo)>
-<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[c] (nủo A)>) = 	<[c] (kủai A lî ja dó[1] bi to re chủq dó[1] na to nủo dó[1])>
-<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 	<[c c] (kủai A lî ja dó[1] bi to re chủq dó[1] B na to nủo)>
-<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (kủai A lî ja dó[1] bi to re chủq dó[1] B na to nủo A)>
+<[c 1] (kủai A B)> · (<[] (chủq)> re <[c] (nủo A)>) = 		<[c] (kủai A lî ja dó[1] bi lủ to re chủq na to nủo dó[1])>
+<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[] (nủo)>) = 		<[c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] na to nủo)>
+<[c 1] (kủai A B)> · (<[c] (chủq A)> re <[c] (nủo A)>) = 	<[c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] na to nủo dó[1])>
+<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[] (nủo)>) = 	<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo)>
+<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
 :end
 
 :next // to ra gi de to hui fie
