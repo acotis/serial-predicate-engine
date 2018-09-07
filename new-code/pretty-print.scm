@@ -13,6 +13,10 @@
     ( "o" . ("ō" "ó" "ǒ" "ỏ" "ô" "ò" "õ" "o") )
     ( "u" . ("ū" "ú" "ǔ" "ủ" "û" "ù" "ũ" "u") )))
 
+(define (is-vowel? l)
+  (any (lambda (k) (member l (cdr k)))
+       marked-vowels))
+
 ;; Add a diacritic mark to a single vowel, passed as a string
 
 (define (add-diacritic vowel tone)
@@ -22,16 +26,29 @@
 ;; Add a tone marking to the appropriate letter of a single word,
 ;; passed as a string
 
+;; Add diacritics to every vowel-after-a-consonant
+(define (add-diacritics letters tone)
+  (if (< (length letters) 2)
+      letters
+      
+      (let* ((one (car letters))
+             (two (cadr letters))
+             (rest (cddr letters))
+             (adding (and (is-vowel? two)
+                          (not (is-vowel? one)))))
+                          
+        (cons one
+              (add-diacritics
+               (cons (if adding (add-diacritic two tone) two)
+                     rest)
+               (if adding 1 tone))))))
+
 (define (add-tone word tone)
   (fold string-append
-        (replace-first (map (lambda (n)
-                              (substring word n (+ n 1)))
-                            (iota (string-length word)))
-                       (lambda (l)
-                         (or (equal? l "a") (equal? l "e")
-                             (equal? l "i") (equal? l "o")
-                             (equal? l "u")))
-                       (lambda (v) (add-diacritic v tone)))))
+        (add-diacritics (map (lambda (n)
+                               (substring word n (+ n 1)))
+                             (iota (string-length word)))
+                        tone)))
 
 
 ;; Return a printable form for a (do #n) or (jado #n)
