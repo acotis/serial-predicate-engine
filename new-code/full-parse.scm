@@ -94,7 +94,7 @@
 
 (define (mu-ify pred)
   (if (< (length (typelist pred)) 2)
-      (make-simple-predicate "mu-ify-failed" '(0))
+      (make-fail-predicate "Could not mu-ify the predicate.")
 
       (cons (lambda (args)
               ((predicate pred)
