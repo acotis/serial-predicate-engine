@@ -18,6 +18,9 @@ Commit: Add error-reporting to the (parse) function by having it
         error should be reported and program execution should
         halt.  Add tests and documentation for same.
 
+Commit: Remove home-rolled (fold) and (fold-right) functions,
+        replaces all usages with (reduce) and (reduce-right).
+
 ----------------------------------------------------------------
 
 Feature: Establish a database of word signatures.  Add a mode

@@ -62,8 +62,10 @@
 
         ;; More jado than open slots; fail
         ((> k (length (typelist pred)))
-         (make-simple-predicate "jado-ify-failed" '(0)))
-
+         (make-fail-predicate
+          (format #f
+            "Jado-ify failed: could not drop ~a jado into the predicate." k)))
+         
         ;; jado will all fill top-level slots, so drop
         ;; without a prenex
         ((top-level-slots pred k)

@@ -29,6 +29,11 @@
           (cons name (take args (length typelist))))
         typelist))
 
+(define (make-fail-predicate error)
+  (cons (lambda (args)
+          (list 'fail error))
+        (make-list 0 100)))
+
 (define (is-simple-predicate pred)
   (and (procedure? (car pred))
        (every (lambda (k) (or (eq? k 'c) (number? k)))

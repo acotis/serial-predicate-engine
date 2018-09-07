@@ -95,17 +95,27 @@
          (string-trim-both (substring str 0 (- len 2))))
         str)))
 
+(define (contains-fail? cf)
+  (if (equal? 'fail cf)
+      #t
+      (if (pair? cf)
+          (fold (lambda (a b) (or a b))
+                (map contains-fail? cf))
+          #f)))
+
 (define (pred->string pred)
-  (string-append "<["
-                 (if (not (null? (typelist pred)))
-                     (fold append-with-spaces
-                           (map (lambda (type)
-                                  (if (number? type)
-                                      (number->string type)
-                                      (symbol->string type)))
-                                (typelist pred)))
-                     "")
-                 "] ("
-                 (remove-trailing-na
-                  (cf->string (gcf pred) 4))
-                 ")>"))
+  (if (contains-fail? (gcf pred))
+      "-"
+      (string-append "<["
+                     (if (not (null? (typelist pred)))
+                         (fold append-with-spaces
+                               (map (lambda (type)
+                                      (if (number? type)
+                                          (number->string type)
+                                          (symbol->string type)))
+                                    (typelist pred)))
+                         "")
+                     "] ("
+                     (remove-trailing-na
+                      (cf->string (gcf pred) 4))
+                     ")>")))
