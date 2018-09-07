@@ -237,7 +237,7 @@
 <[c c c] (fả A B C)> ru <[] (sỏq)> = 			<[c c c] (lủ to ru fả A B C na to sỏq)>
 <[c c c] (fả A B C)> ru <[c] (sỏq A)> =			<[c c c] (lủ to ru fả A B C na to sỏq A)>
 <[c c c] (fả A B C)> ru <[c 1] (sỏq A B)> = 		<[c ? c] (lủ to ru fả A B C na to sỏq A B)>
-<[c c c] (fả A B C)> ru <[c 1 c] (sỏq A B C)> =		<[c ? c] (lủ to ro fả A B C na to sỏq A B C)>
+<[c c c] (fả A B C)> ru <[c 1 c] (sỏq A B C)> =		<[c ? c] (lủ to ru fả A B C na to sỏq A B C)>
 :end
 
 :next // bu ra jeo
