@@ -207,15 +207,15 @@
 <[c] (dủa A)> · (<[c c] (pải A B)> ri <[] (mải)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải)>
 <[c] (dủa A)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 		<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải A)>
 <[c] (dủa A)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c] (lủ to ru dủa A na to lủ to ri pải A B na to mải A B)>
-<[c 0] (dủa A B)> · (<[] (pải)> ri <[] (mải)>) = 		<[c] (dủa A lủ to ri pải na to mải)>
-<[c 0] (dủa A B)> · (<[] (pải)> ri <[c] (mải A)>) = 		<[c c] (dủa A lủ to ri pải na to mải B)>
-<[c 0] (dủa A B)> · (<[] (pải)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải na to mải B C)>
-<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[] (mải)>) = 		<[c c] (dủa A lủ to ri pải B na to mải)>
-<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c] (mải A)>) = 		<[c c] (dủa A lủ to ri pải B na to mải B)>
-<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải B na to mải B C)>
-<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[] (mải)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải)>
-<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải B)>
-<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lủ to ri pải B C na to mải B C)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[] (mải)>) = 		<[c] (dủa A lû to ri pải na to mải)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[c] (mải A)>) = 		<[c c] (dủa A lû to ri pải na to mải B)>
+<[c 0] (dủa A B)> · (<[] (pải)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lû to ri pải na to mải B C)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[] (mải)>) = 		<[c c] (dủa A lû to ri pải B na to mải)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c] (mải A)>) = 		<[c c] (dủa A lû to ri pải B na to mải B)>
+<[c 0] (dủa A B)> · (<[c] (pải A)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lû to ri pải B na to mải B C)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[] (mải)>) = 	<[c c c] (dủa A lû to ri pải B C na to mải)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c] (mải A)>) = 	<[c c c] (dủa A lû to ri pải B C na to mải B)>
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lû to ri pải B C na to mải B C)>
 :end
 
 
