@@ -159,18 +159,18 @@
 :end
 
 :next // jeo re hui ro gi
-<[] (jẻo)> re <[] (hủi)> ro <[] (gỉ)> = 			<[] (lủ to re jẻo na to to ro hủi na to gỉ)>
-<[] (jẻo)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo na to to ro hủi na to gỉ A)>
-<[] (jẻo)> re <[0] (hủi A)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo na to to ro hủi A na to gỉ A)>
-<[] (jẻo)> re <[0] (hủi A)> ro <[0] (gỉ A)> =	 		<[0] (lủ to re jẻo na to to ro hủi A na to gỉ A)>
-<[0] (jẻo A)> re <[] (hủi)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo A na to to ro hủi na to gỉ)>
-<[0] (jẻo A)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo A na to to ro hủi na to gỉ A)>
-<[0] (jẻo A)> re <[0] (hủi A)> ro <[] (gỉ)> =	 		<[0] (lủ to re jẻo A na to to ro hủi A na to gỉ)>
-<[0] (jẻo A)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[0] (lủ to re jẻo A na to to ro hủi A na to gỉ A)>
-<[c 1] (jẻo A B)> re <[] (hủi)> ro <[] (gỉ)> =	 		<[c 1] (lủ to re jẻo A B na to to ro hủi na to gỉ)>
-<[c 1] (jẻo A B)> re <[] (hủi)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi na to gỉ A)>
-<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[] (gỉ)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi A na to gỉ)>
-<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to to ro hủi A na to gỉ A)>
+<[] (jẻo)> re <[] (hủi)> ro <[] (gỉ)> = 			<[] (lủ to re jẻo na to lủ to ro hủi na to gỉ)>
+<[] (jẻo)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo na to lủ to ro hủi na to gỉ A)>
+<[] (jẻo)> re <[0] (hủi A)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo na to lủ to ro hủi A na to gỉ)>
+<[] (jẻo)> re <[0] (hủi A)> ro <[0] (gỉ A)> =	 		<[0] (lủ to re jẻo na to lủ to ro hủi A na to gỉ A)>
+<[0] (jẻo A)> re <[] (hủi)> ro <[] (gỉ)> = 			<[0] (lủ to re jẻo A na to lủ to ro hủi na to gỉ)>
+<[0] (jẻo A)> re <[] (hủi)> ro <[0] (gỉ A)> = 			<[0] (lủ to re jẻo A na to lủ to ro hủi na to gỉ A)>
+<[0] (jẻo A)> re <[0] (hủi A)> ro <[] (gỉ)> =	 		<[0] (lủ to re jẻo A na to lủ to ro hủi A na to gỉ)>
+<[0] (jẻo A)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[0] (lủ to re jẻo A na to lủ to ro hủi A na to gỉ A)>
+<[c 1] (jẻo A B)> re <[] (hủi)> ro <[] (gỉ)> =	 		<[c 1] (lủ to re jẻo A B na to lủ to ro hủi na to gỉ)>
+<[c 1] (jẻo A B)> re <[] (hủi)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to lủ to ro hủi na to gỉ A)>
+<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[] (gỉ)> = 		<[? 1] (lủ to re jẻo A B na to lủ to ro hủi A na to gỉ)>
+<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to lủ to ro hủi A na to gỉ A)>
 :end
 
 :next // dua gi ru hui
