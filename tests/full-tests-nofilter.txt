@@ -49,7 +49,7 @@
 <[] (sỏq)> · <[0] (jẻo A)> =			<[0] (lủ to ru sỏq na to jẻo A)>
 <[] (sỏq)> · <[c 1] (jẻo A B)> =		<[c 1] (lủ to ru sỏq na to jẻo A B)>
 <[c] (sỏq A)> · <[] (jẻo)> =			<[c] (lủ to ru sỏq A na to jẻo)>
-<[c] (sỏq A)> · <[0] (jẻo A)> =			<[?] (lủ to ru sỏq A na to jẻo B)>
+<[c] (sỏq A)> · <[0] (jẻo A)> =			<[?] (lủ to ru sỏq A na to jẻo A)>
 <[c] (sỏq A)> · <[c 1] (jẻo A B)> =		<[c 1] (lủ to ru sỏq A na to jẻo A B)>
 <[c 1] (sỏq A B)> · <[] (jẻo)> =		-
 <[c 1] (sỏq A B)> · <[0] (jẻo A)> =		<[c] (sỏq A jêo ja dó)>
@@ -89,7 +89,7 @@
 <[c] (chẻo A)> · <[c 1] (jẻo A B)> = 		<[c 1] (lủ to ru chẻo A na to jẻo A B)>
 <[c 2] (chẻo A B)> · <[] (jẻo)> = 		-
 <[c 2] (chẻo A B)> · <[0] (jẻo A)> = 		-
-<[c 2] (chẻo A B)> · <[c 1] (jẻo A B)> = 	<[c] (chẻo A jẻo ja dó ja dó)>
+<[c 2] (chẻo A B)> · <[c 1] (jẻo A B)> = 	<[c] (chẻo A jêo ja dó ja dó)>
 :end
 
 :next // mia ti

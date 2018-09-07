@@ -181,7 +181,6 @@
 ;; Unmemoized full-parse function
 
 (define (full-parse-unmemoized str)
-  (format #t "Performing full parse on *~a*~%" str)
   (map pred->string
        (map expand
             (get-serials (parse str)))))
