@@ -1,25 +1,7 @@
 
-
-Next up: Throw all old code into a folder, pull out only what is
-         necessary to pass the test cases I'm writing.
-
 ----------------------------------------------------------------
 
-Next up: Debug the code until all tests pass.  Note: It might be
-         useful for the composite-structure to have an explicit
-         keyword for predicate composition.  Then, I would not
-         have to kludge together the (is-simple-predicate)
-         function, which can fail.  Ergo, less bugs.
-
-Commit: Add error-reporting to the (parse) function by having it
-        return (fail [string]) if it fails to parse [string].
-        The final parse should be scanned to see if it contains
-        such a failure at any nesting level, and if it does, the
-        error should be reported and program execution should
-        halt.  Add tests and documentation for same.
-
-Commit: Remove home-rolled (fold) and (fold-right) functions,
-        replaces all usages with (reduce) and (reduce-right).
+Feature: Add an interactive parse REPL loop.
 
 ----------------------------------------------------------------
 
@@ -27,3 +9,13 @@ Feature: Establish a database of word signatures.  Add a mode
          where you can interact with that database.  When a
          composition is queried containing words it doesn't
          know, switch into that mode automatically to add them.
+
+Feature: Make failed compositions show up as actual errors?
+         (Might not be necessary.)
+
+----------------------------------------------------------------
+
+ Cleanup commits
+
+Commit: Remove home-rolled (fold) and (fold-right) functions,
+        replaces all usages with (reduce) and (reduce-right).
