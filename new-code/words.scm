@@ -97,7 +97,7 @@
 
         ;; KUAI frame
         ((() (c) (c 1))
-         ("kuai" "leo" "jeaq" "kea"))
+         ("kuai" "leo" "jeaq" "kea" "buaq"))
 
         ;; CUA frame
         ((() (c) (c 1) (c 1 1))

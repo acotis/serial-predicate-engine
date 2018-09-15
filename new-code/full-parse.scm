@@ -13,6 +13,8 @@
 ;; Split a composite form into a list of serial forms.
 
 (define (get-serials cf)
+  (format #t "(get-serials ~a)~%" cf)
+  
   (cond ((string? cf) ;; Single word
          (make-word cf))
         
@@ -181,9 +183,15 @@
 ;; Unmemoized full-parse function
 
 (define (full-parse-unmemoized str)
-  (map pred->string
-       (map expand
-            (get-serials (parse str)))))
+  (let* ((pr (parse str))
+        (serials (get-serials pr)))
+    
+    (format #t "parse returned: ~a~%" pr)
+    (format #t "get-serials returned: ~a~%" serials)
+    
+    (map pred->string
+         (map expand
+              serials))))
 
 ;; Memoization of full-parse function
 

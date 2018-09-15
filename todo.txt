@@ -3,6 +3,12 @@
 
 Feature: Add an interactive parse REPL loop.
 
+Commit: Make it report unknown words, rather than returning
+        () for them.
+
+Commit: Make the program return to the REPL loop even if it fails
+        to parse something.
+
 ----------------------------------------------------------------
 
 Feature: Establish a database of word signatures.  Add a mode
