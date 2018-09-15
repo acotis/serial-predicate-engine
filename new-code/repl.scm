@@ -8,7 +8,7 @@
 
 ;; Eval print
 
-(define (rep input)
+(define (ep input)
   (let ((parse (full-parse input)))
     (map (lambda (line n)
            (format #t "~a. ~a~%" n line))
@@ -28,7 +28,7 @@
         (begin
           (catch #t
                  (lambda ()
-                   (rep input))  ;; <- Real stuff happens here
+                   (ep input))  ;; <- Real stuff happens here
                    
                  (lambda (key . param)
                    (format #t "~%~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%" key param)))

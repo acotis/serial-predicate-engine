@@ -1,9 +1,18 @@
 #!/usr/bin/guile
 !#
 
+;; File:    pretty-print.scm
+;; Purpose: Turn a list of predicates into a list of pretty
+;;          output strings.
+
+;; Input:  ( <lu to ru (lu to ru (gi) to (pai)) to (hui)>
+;;           <lu to ru (gi (pai)) to (hui)>  … )
+;; Output: ( "lủ to ru lủ to ru gỉ na to pải na na to hủi"
+;;           "lủ to ru gỉ pâi na na to hủi" … ) 
+
+
 (use-modules (srfi srfi-1))
-(load "utilities.scm")
-(load "words.scm")
+(load "../utilities.scm")
 
 
 (define marked-vowels
@@ -136,3 +145,9 @@
                      (remove-trailing-na
                       (cf->string (gcf pred) 4))
                      ")>")))
+
+
+;; Perform "pretty-print" stage on interpretation output.
+
+(define (stage-pretty-print interpret-output)
+  (map pred->string interpret-output))

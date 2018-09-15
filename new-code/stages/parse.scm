@@ -2,34 +2,14 @@
 !#
 
 ;; File:    parse.scm
-;; Purpose: Translate a string representing a composite form
-;;          into a parsed-composite structure (see doc file
-;;          "new-structure.odt" for more info).
+;; Purpose: Turn a list of cmavo & roots into a tree-structure
+;;          representing a composite.
 
-(load "utilities.scm")
+;; Input:  (to ru "gi" "pai" to "hui")
+;; Output: (ru ("gi" "pai") "hui")
+
+(load "../utilities.scm")
 (use-modules (srfi srfi-1))
-
-
-;; Members of RU
-
-(define RU '(ru ra ro ri re roi))
-(define cmavo (append RU '(to mu)))
-
-(define (is-RU? e)
-  (member e RU))
-
-
-;; Preprocessing
-
-(define (split-on-spaces string)
-  (remove (lambda (s) (equal? s ""))
-          (string-split string #\Space)))
-
-(define (replace-cmavo-strings com)
-  (map (lambda (s)
-         (let ((sym (string->symbol s)))
-           (if (member sym cmavo) sym s)))
-       com))
 
 
 ;; RU
@@ -99,40 +79,38 @@
 
 (define (parse-composite com)
   (cond (
-         ;; Ignore all cases containing TO for now
-          (member 'to com)
-          (let* ((fork (fork-toru com))
-                 (before (car fork))
-                 (toru (cadr fork)))
+         ;; Parse outermost TO RU ... TO ... construction
+         (member 'to com)
+         (let* ((fork (fork-toru com))
+                (before (car fork))
+                (toru (cadr fork)))
+           
+           (parse-composite
+            (append before
+                    (list
+                     (list (cadr toru)
+                           (parse-composite (caddr toru))
+                           (parse-composite (cadddr toru))))))))
+        
+        ;; Fold innermost MU particles
+        ((member 'mu com)
+         (parse-composite (fold-inner-mu com)))
+        
+        ;; Fold last RU pairing
+        ((any is-RU? com)
+         (parse-composite (fold-last-ru com)))
+        
+        ;; If only one parse-form, return unchanged
+        ((= 1 (length com))
+         (car com))
+        
+        ;; If multiple parse-forms, serialize
+        (#t
+         (list (car com)
+               (parse-composite (cdr com))))))
 
-            (parse-composite
-             (append before
-                     (list
-                      (list (cadr toru)
-                            (parse-composite (caddr toru))
-                            (parse-composite (cadddr toru))))))))
 
-         ;; Ignore all cases containing MU for now
-         ((member 'mu com)
-          (parse-composite (fold-inner-mu com)))
-         
-         ;; If there are any RU, fold the last one and re-parse
-         ((any is-RU? com)
-          (parse-composite (fold-last-ru com)))
+;; Perform the "parse" stage on the output of the "read" stage.
 
-         ;; Contains only one parse-form
-         ((= 1 (length com))
-          (car com))
-
-         ;; Contains multiple parse-forms
-         (#t
-          (list (car com)
-                (parse-composite (cdr com))))))
-
-
-;; Full parse function
-
-(define (parse string)
-  (parse-composite
-   (replace-cmavo-strings
-    (split-on-spaces string))))
+(define (stage-parse read-output)
+  (parse-composite read-output))

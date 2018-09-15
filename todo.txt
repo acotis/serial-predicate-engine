@@ -3,6 +3,8 @@
 
 Feature: Add an interactive parse REPL loop.
 
+Commit: Refactor the codebase to match up with stages.odt.
+
 Commit: Make it report unknown words, rather than returning
         () for them.
 

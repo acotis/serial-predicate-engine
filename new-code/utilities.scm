@@ -44,3 +44,15 @@
   (if (test (car ls))
       (cons (transform (car ls)) (cdr ls))
       (cons (car ls) (replace-first (cdr ls) test transform))))
+
+
+;; Members of RU
+
+(define RU '(ru ra ro ri re roi))
+(define cmavo (append RU '(to mu)))
+
+(define (is-RU? e)
+  (member e RU))
+
+(define (is-cmavo? e)
+  (member e cmavo))
