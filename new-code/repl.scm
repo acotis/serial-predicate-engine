@@ -10,6 +10,7 @@
 
 (define (ep input)
   (let ((parse (full-parse input)))
+    (format #t "~%")
     (map (lambda (line n)
            (format #t "~a. ~a~%" n line))
          parse
@@ -31,7 +32,7 @@
                    (ep input))  ;; <- Real stuff happens here
                    
                  (lambda (key . param)
-                   (format #t "~%~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%" key param)))
+                   (format #t "~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%" key param)))
 
           (repl)))))
 

@@ -9,10 +9,13 @@
 ;; Output: ( (ru (<gi> <pai>) <hui>) (ru (<gi A> <pai>) <hui>) …)
 
 
+(load "../words.scm")
+
+
 ;; Split a composite form into a list of serial forms.
 
 (define (get-serials cf)
-  (format #t "(get-serials ~a)~%" cf)
+  ;;(format #t "(get-serials ~a)~%" cf)
   
   (cond ((string? cf) ;; Single word
          (make-word cf))

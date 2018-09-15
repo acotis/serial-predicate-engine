@@ -10,9 +10,9 @@
 
 ;; Parse tests
 
-(load "../new-code/parse.scm")
-(load "parse-tests.scm")
-(run-parse-tests #f)
+;; (load "../new-code/full-parse.scm")
+;; (load "parse-tests.scm")
+;; (run-parse-tests #f)
 
 
 ;; Full tests
