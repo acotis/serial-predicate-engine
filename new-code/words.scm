@@ -24,11 +24,11 @@
 (define (is-word? word)
   (not (equal? '() (get-signature word))))
 
-(define (all-words? read-output)
-  (every (lambda (x)
-           (or (is-cmavo? x)
-               (is-word? x)))
-         read-output))
+(define (get-unknown-words read-output)
+  (filter (lambda (x)
+            (not (or (is-cmavo? x)
+                     (is-word? x))))
+          read-output))
 
 
 ;; Make a simple predicate given its name and typelist

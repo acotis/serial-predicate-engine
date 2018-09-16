@@ -7,6 +7,8 @@
 (load "stages/interpret.scm")
 (load "stages/render.scm")
 (load "stages/pretty-print.scm")
+
+(load "utilities.scm")
 (load "words.scm")
 
 (use-modules (srfi srfi-1))
@@ -39,9 +41,18 @@
   (safe-interpret (stage-parse read-pass)))
 
 (define (safe-read input)
-  (let ((read-output (stage-read input)))
-    (if (not (all-words? read-output))
-        '("" "Sorry, I don't know all of those words." "")
+  (let* ((read-output (stage-read input))
+         (unknown (get-unknown-words read-output)))
+    
+    (if (not (equal? '() unknown))
+        `(""
+          ,(fold string-append
+                (cons "Sorry, I don't know these words: "
+                      (map (lambda (word)
+                             (format #f "\"~a\" " word))
+                           unknown)))
+          "")
+            
         (safe-parse read-output))))
 
 
