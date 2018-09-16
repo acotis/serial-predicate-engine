@@ -165,7 +165,8 @@
 (define (generate-tests-helper expr results next-num)
   (if (null? results)
       '()
-      (cons `((list-ref ,expr ,next-num) ,(car results))
+      (cons `((list-ref ,expr ,(+ 1 next-num))
+              ,(format #f "~a. ~a" (+ 1 next-num) (car results)))
             (generate-tests-helper expr
                                    (cdr results)
                                    (+ 1 next-num)))))
