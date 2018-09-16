@@ -6,6 +6,9 @@
 ;; word.  For example, "dua" should yield a list of the three
 ;; predicates dua-0, dua-1, and dua-2.
 
+(use-modules (srfi srfi-1))
+(load "utilities.scm")
+
 
 ;; Signature getting and setting
 
@@ -17,6 +20,15 @@
 (define (get-signature word)
   (or (hash-ref signatures word)
       '()))
+
+(define (is-word? word)
+  (not (equal? '() (get-signature word))))
+
+(define (all-words? read-output)
+  (every (lambda (x)
+           (or (is-cmavo? x)
+               (is-word? x)))
+         read-output))
 
 
 ;; Make a simple predicate given its name and typelist

@@ -6,21 +6,10 @@
 (use-modules (ice-9 readline))
 
 
-;; Eval print
-
-(define (ep input)
-  (let ((parse (full-parse input)))
-    (format #t "~%")
-    (map (lambda (line n)
-           (format #t "~a. ~a~%" n line))
-         parse
-         (cdr (iota (+ 1 (length parse)))))))
-
-
 ;; Read eval print loop
 
 (define (repl)
-  (format #t "~%> ") ;; Prompt
+  (format #t "> ") ;; Prompt
   (force-output)
 
   ;; Processing
@@ -29,7 +18,9 @@
         (begin
           (catch #t
                  (lambda ()
-                   (ep input))  ;; <- Real stuff happens here
+                   (map (lambda (line)
+                          (format #t "~a~%" line))
+                        (full-parse input)))
                    
                  (lambda (key . param)
                    (format #t "~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%" key param)))
@@ -41,4 +32,5 @@
 (format #t "Enter only the words, not the tones.~%")
 (format #t "Example: to ri pai ru jai to mu mai~%")
 (format #t "Enter q to quit.~%")
+(format #t "~%")
 (repl)
