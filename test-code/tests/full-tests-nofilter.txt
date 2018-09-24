@@ -1,4 +1,4 @@
-
+// This file is basically obsolete, since full-form-only serialization has been confirmed by solpahi.
 
 :next // dua mai
 <[] (dủa)> · <[] (mải)> = 			<[] (lủ to ru dủa na to mải)>

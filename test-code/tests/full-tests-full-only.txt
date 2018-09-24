@@ -1,0 +1,115 @@
+
+
+:next // dua mai
+<[c 0] (dủa A B)> · <[c c] (mải A B)> =		<[c c c] (dủa A mâi B C)>
+:end
+
+:next // leo pai
+<[c 1] (lẻo A B)> · <[c c] (pải A B)> =		<[c c] (lẻo A pâi ja dó B)>
+:end
+
+:next // poq kea				
+<[c] (pỏq A)> · <[c 1] (kẻa A B)> = 		<[c 1] (lủ to ru pỏq A na to kẻa A B)>
+:end
+
+:next // soq gi
+<[c 1 c] (sỏq A B C)> · <[0] (gỉ A)> =		<[c c] (sỏq A gî ja dó na B)>
+:end
+
+:next // soq jeo
+<[c 1 c] (sỏq A B C)> · <[c 1] (jẻo A B)> =	<[c 1 c] (sỏq A jêo ja dó B na C)>
+:end
+
+:next // tua jeaq jai
+<[c 0] (tủa A B)> · <[c 1] (jẻaq A B)> · <[c] (jải A)> = 	<[c c] (tủa A jêaq B jâi ja dó)>
+:end
+
+:next // cheo jeo
+<[c 2] (chẻo A B)> · <[c 1] (jẻo A B)> = 	<[c] (chẻo A jêo ja dó ja dó)>
+:end
+
+:next // mia ti
+<[c 2] (mỉa A B)> · <[c c] (tỉ A B)> = 		<[c] (mỉa A tî ja dó ja dó)>
+:end
+
+:next // cua meo
+<[c 1 1] (của A B C)> · <[c] (mẻo A)> = 	<[c 1] (của A mêo ja dó na B)>
+:end
+
+:next // dui bu
+<[c 1 1] (dủi A B C)> · <[c 1] (bủ A B)> = 	<[c 1 1] (dủi A bû ja dó B na C)>
+:end
+
+
+:next // pai ru mai
+<[c c] (pải A B)> ru <[c c] (mải A B)> =	<[c c] (lủ to ru pải A B na to mải A B)>
+:end
+
+:next // poq ra maomao dua
+(<[c] (pỏq A)> ra <[c] (mảomāo A)>) · <[c 0] (dủa A B)> =	<[c 0] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa A B)>
+:end
+
+:next // jeo re hui ro gi
+<[c 1] (jẻo A B)> re <[0] (hủi A)> ro <[0] (gỉ A)> = 		<[? 1] (lủ to re jẻo A B na to lủ to ro hủi A na to gỉ A)>
+:end
+
+:next // dua gi ru hui
+<[c 0] (dủa A B)> · (<[c] (gỉ A)> ru <[c] (hủi A)>) = 	<[c 0] (dủa A lû to ru gỉ B na to hủi B)>
+:end
+
+:next // dua pai ri mai
+<[c 0] (dủa A B)> · (<[c c] (pải A B)> ri <[c c] (mải A B)>) = 	<[c c c] (dủa A lû to ri pải B C na to mải B C)>
+:end
+
+
+// ?-types
+
+:next // fa ru soq
+<[c c c] (fả A B C)> ru <[c 1 c] (sỏq A B C)> =		<[c ? c] (lủ to ru fả A B C na to sỏq A B C)>
+:end
+
+:next // bu ra jeo
+<[c 1] (bủ A B)> ra <[c 1] (jẻo A B)> = 	<[c 1] (lủ to ra bủ A B na to jẻo A B)>
+:end
+
+:next // bu ra jeo de
+(<[c 1] (bủ A B)> ra <[c 1] (jẻo A B)>) · <[c] (dẻ A)> = 	<[c] (lủ to ra bủ A dê ja dó na na to jẻo A dê ja dó)>
+:end
+
+
+// Mu
+
+:next // mu dua
+(mu <[c 0] (dủa A B)>) = 	<[0 c] (dủa B A)>
+:end
+
+:next // gi mu dua
+<[0] (gỉ A)> · (mu <[c 0] (dủa A B)>) = 	<[0 c] (gỉ dûa B A)>
+:end
+
+:next // gi ri mu dua
+<[0] (gỉ A)> ri (mu <[c 0] (dủa A B)>) = 	<[0 c] (lủ to ri gỉ A na to dủa B A)>
+:end
+
+:next // mu mai ri mu pai	
+(mu <[c c] (mải A B)>) ri (mu <[c c] (pải A B)>) = 	<[c c] (lủ to ri mải B A na to pải B A)>	
+:end
+
+
+// To ru
+
+:next // to ri mai to pai
+<[c c] (mải A B)> ri <[c c] (pải A B)> =	<[c c] (lủ to ri mải A B na to pải A B)>
+:end
+
+:next // kuai to re chuq to nuo
+<[c 1] (kủai A B)> · (<[c c] (chủq A B)> re <[c] (nủo A)>) = 	<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
+:end
+
+:next // to ra gi de to hui fie
+((<[0] (gỉ A)> · <[c] (dẻ A)>) ra (<[0] (hủi A)> · <[c] (fỉe A)>)) = 	<[c] (lủ to ra gỉ dê A na na to hủi fîe A)>
+:end
+
+:skip
+
+:skip

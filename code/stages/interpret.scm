@@ -12,7 +12,8 @@
 (load "../words.scm")
 
 
-;; Split a composite form into a list of serial forms.
+;; Split a composite form into a list of serial forms, using all
+;; combinations of arities.
 
 (define (get-serials cf)
   ;;(format #t "(get-serials ~a)~%" cf)
@@ -43,7 +44,13 @@
               (get-serials (cdr cf))))))
 
 
+;; Filter out all but the last (all-full-arities) interpretation
+
+(define (filter-serials serials)
+  (list (last serials)))
+
+
 ;; Perform the "interpret" stage on a parsed composite form.
 
 (define (stage-interpret parse-output)
-  (get-serials parse-output))
+  (filter-serials (get-serials parse-output)))

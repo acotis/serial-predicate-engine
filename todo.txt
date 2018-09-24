@@ -1,10 +1,8 @@
 
 ----------------------------------------------------------------
 
-Feature: Add an interactive parse REPL loop.
-
-Commit: Make it report unknown words, rather than returning
-        () for them.
+Commit: Make it only print out the serialization of the full
+        forms of each predicate.
 
 ----------------------------------------------------------------
 

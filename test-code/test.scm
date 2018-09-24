@@ -17,11 +17,11 @@
 
 ;; Full tests
 
-(load "../new-code/full-parse.scm")
+(load "../code/full-parse.scm")
 (test-from-files
- "full-tests-input.txt"
- "full-tests-nofilter.txt"
+ "./tests/full-tests-input.txt"
+ "./tests/full-tests-full-only.txt"
  full-parse
  #f
- (fail-function "full parse")
- (pass-function "full parse"))
+ (fail-function "full parse (full-form only)")
+ (pass-function "full parse (full-form only)"))

@@ -1,7 +1,7 @@
 #!/usr/bin/guile
 !#
 
-(load "../new-code/utilities.scm")
+(load "../code/utilities.scm")
 (load "test-macro.scm")
 (use-modules (ice-9 rdelim))
 (use-modules (srfi srfi-1))
