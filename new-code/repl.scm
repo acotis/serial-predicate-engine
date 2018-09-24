@@ -23,7 +23,7 @@
                         (full-parse input)))
                    
                  (lambda (key . param)
-                   (format #t "~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%" key param)))
+                   (format #t "~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%~%" key param)))
 
           (repl)))))
 

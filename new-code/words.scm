@@ -85,7 +85,7 @@
         ;; JEO frame
      '( ((() (0) (c 1))
          ("jeo" "bu" "ceo"))
-
+        
         ;; POQ frame
         ((() (c))
          ("poq" "jai" "nuo" "de" "fie" "tea" "meo"
@@ -107,6 +107,10 @@
         ((() (c) (c 0))
          ("dua" "tua"))
 
+        ;; JIE frame
+        ((() (0) (0 c))
+         ("jie"))
+        
         ;; KUAI frame
         ((() (c) (c 1))
          ("kuai" "leo" "jeaq" "kea" "buaq"))
