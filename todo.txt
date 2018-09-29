@@ -1,8 +1,9 @@
 
 ----------------------------------------------------------------
 
-Commit: Make it only print out the serialization of the full
-        forms of each predicate.
+Commit: Make it spit out the actual different typelists for the
+        different arities of the resulting predicates (may
+        require minor or moderate restructuring of the code).
 
 ----------------------------------------------------------------
 
