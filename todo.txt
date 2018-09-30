@@ -24,3 +24,7 @@ Commit: Remove home-rolled (fold) and (fold-right) functions,
 
 Commit: Make the PARSE stage use the XY operator to signal
         composition, rather than having no signal.
+
+Commit: Remove the "prenex" from the expected test output.
+        In fact, go ahead and re-write test-from-file.scm while
+        you're at it.  It sucks.

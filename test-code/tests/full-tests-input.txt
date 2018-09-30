@@ -20,7 +20,7 @@
 :test dua mai		// Type (0) slot
 :test leo pai		// Type (1) slot
 :test poq kea		// (Combines with a "ru")
-:test soq gi		// Filled slot is not at the end
+:test soq jia		// Filled slot is not at the end
 :test soq jeo		// Filling word has multiple valid arities
 :test tua jeaq jai	// Three-part composite
 :test cheo jeo		// Filling word has multiple valid arities, and only one works
@@ -32,8 +32,8 @@
 
 :test pai ru mai	// Simple ru
 :test poq ra maomao dua	// Ru over something else
-:test jeo re hui ro gi	// Two ru's
-:test dua gi ru hui   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
+:test jeo re pu ro jia	// Two ru's
+:test dua jia ru pu   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
 :test dua pai ri mai	// Parses WAY differently under the two models
 
 // Ru ?-types
@@ -45,15 +45,20 @@
 // Mu
 
 :test mu dua		// Btw, how does "mu" act on predicates with <2 slots?
-:test gi mu dua
-:test gi ri mu dua
+:test jia mu dua
+:test jia ri mu dua
 :test mu mai ri mu pai
 
 // To ru
 
 :test to ri mai to pai
 :test kuai to re chuq to nuo
-:test to ra gi de to hui fie
+:test to ra jia de to pu fie
+
+// Bug fix
+
+:test mia leo pai	// Fix for a bug where untagged jado broke the (max-jado-tag) function
+:test mia pai		// Control
 
 // Seen in the wild
 

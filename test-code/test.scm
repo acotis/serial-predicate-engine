@@ -6,6 +6,10 @@
 
 (load "test-macro.scm")
 (load "test-from-file.scm")
+(load "../code/words.scm")
+(load "../code/full-parse.scm")
+
+(load-words)
 
 
 ;; Parse tests
@@ -17,11 +21,10 @@
 
 ;; Full tests
 
-(load "../code/full-parse.scm")
 (test-from-files
  "./tests/full-tests-input.txt"
  "./tests/full-tests-full-only.txt"
  full-parse
- #f
+ #t
  (fail-function "full parse (full-form only)")
  (pass-function "full parse (full-form only)"))

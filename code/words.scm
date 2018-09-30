@@ -112,6 +112,8 @@
                       (word (substring line 0 comma))
                       (frame (substring line (+ comma 1)))
                       (assoc (assoc frame frames)))
+
+                 ;; (format #t "~a ~a~%" word assoc)
                  
                  (if assoc
                      (add-word word (cdr assoc)))))))))
