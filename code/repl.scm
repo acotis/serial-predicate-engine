@@ -3,6 +3,7 @@
 
 
 (load "full-parse.scm")
+(load "words.scm")
 (use-modules (ice-9 readline))
 
 
@@ -27,6 +28,12 @@
 
           (repl)))))
 
+
+;; Load the words
+
+(load-words)
+
+;; Print the introduction and begin the loop
 
 (format #t "Enter any Toaq serial predicate to parse it.~%")
 (format #t "Enter only the words, not the tones.~%")

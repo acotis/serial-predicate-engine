@@ -6,20 +6,23 @@
 ;; word.  For example, "dua" should yield a list of the three
 ;; predicates dua-0, dua-1, and dua-2.
 
-(use-modules (srfi srfi-1))
 (load "utilities.scm")
-
+(use-modules (srfi srfi-1))
+(use-modules (ice-9 rdelim))
 
 ;; Signature getting and setting
 
 (define signatures (make-hash-table))
   
-(define (add-word word typelist)
-  (hash-set! signatures word typelist))
+(define (add-word word signature)
+  (hash-set! signatures word signature))
 
 (define (get-signature word)
   (or (hash-ref signatures word)
       '()))
+
+
+;; Word-checking (used at the end of the READ stage)
 
 (define (is-word? word)
   (not (equal? '() (get-signature word))))
@@ -75,55 +78,39 @@
        (get-signature word)))
 
 
-;; Add words to the dictionary by frame
+;; Load words from the dictionary file
 
-(map (lambda (pair)
-       (map (lambda (word)
-              (add-word word (car pair)))
-            (cadr pair)))
-
-        ;; JEO frame
-     '( ((() (0) (c 1))
-         ("jeo" "bu" "ceo"))
-        
-        ;; POQ frame
-        ((() (c))
-         ("poq" "jai" "nuo" "de" "fie" "tea" "meo"
-          "maomao" "riofa" "tishagiq"))
-
-        ;; PAI frame
-        ((() (c) (c c))
-         ("pai" "mai" "ti" "chuq" "bai"))
-
-        ;; FA frame
-        ((() (c) (c c) (c c c))
-         ("fa"))
-        
-        ;; GI frame
-        ((() (0))
-         ("gi" "hui"))
-        
-        ;; DUA frame
-        ((() (c) (c 0))
-         ("dua" "tua"))
-
-        ;; JIE frame
-        ((() (0) (0 c))
-         ("jie"))
-        
-        ;; KUAI frame
-        ((() (c) (c 1))
-         ("kuai" "leo" "jeaq" "kea" "buaq"))
-
-        ;; CUA frame
-        ((() (c) (c 1) (c 1 1))
-         ("cua" "dui"))
-
-        ;; SOQ frame
-        ((() (c) (c 1) (c 1 c))
-         ("soq"))
-        
-        ;; CHEO frame
-        ((() (c) (c 2))
-         ("cheo" "mia"))
-        ))
+(define (load-words)
+  (let ((frames '(("POQ"    . ( () (c) ))
+                  ("PAI"    . ( () (c) (c c) ))
+                  ("FA"     . ( () (c) (c c) (c c c) ))
+                  ("DUA"    . ( () (c) (c 0) ))
+                  ("LEO"    . ( () (c) (c 1) ))
+                  ("MIA"    . ( () (c) (c 2) ))
+                  ("DUATUA" . ( () (c) (c c) (c c 0) ))
+                  ("KUOI"   . ( () (c) (c c) (c c 1) ))
+                  ("JEQ"    . ( () (c) (c c) (c c 2) ))
+                  ("JIA"    . ( () (0) ))
+                  ("JIPA"   . ( () (1) ))
+                  ("JIE"    . ( () (0) (0 c) ))
+                  ("FUI"    . ( () (1) (1 c) ))
+                  ("SOQ"    . ( () (c) (c 1) (c 1 c) ))
+                  ("MEAKUQ" . ( () (c) (c 0) (c 0 c) ))
+                  ("CA"     . ( () (0) (0 0) ))
+                  ("JEO"    . ( () (0) (c 1) ))
+                  ("CUA"    . ( () (c) (c 1) (c 1 1) ))
+                  ("KOE"  . ( () (c) (c c) (c c c) (c c c 1))))))
+    
+    (format #t "About to open the words file...~%")
+    
+    (call-with-input-file "../dict/out"
+      (lambda (file)
+        (while (not (eof-object? (peek-char file)))
+               (let* ((line (read-line file))
+                      (comma (string-index line #\,))
+                      (word (substring line 0 comma))
+                      (frame (substring line (+ comma 1)))
+                      (assoc (assoc frame frames)))
+                 
+                 (if assoc
+                     (add-word word (cdr assoc)))))))))
