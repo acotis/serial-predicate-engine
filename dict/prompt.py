@@ -21,11 +21,11 @@ outfile_read.close()
 
 
 valid_frames = ["POQ", "PAI", "FA",
-                "DUA", "LEO", "CHEO",
-                "DUASUE", "KUOI", "TIAO",
-                "PU", "JIPA",
+                "DUA", "LEO", "MIA",
+                "DUATUA", "KUOI", "JEQ",
+                "JIA", "JIPA",
                 "JIE", "FUI",
-                "CA", "JEO", "CUA", "SOQ", "KOE",
+                "CA", "JEO", "CUA", "SOQ", "KOE", "MEAKUQ",
                 "?",  # Used when I don't know the type
                 "-",] # Used for non-predicates
 
