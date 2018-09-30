@@ -29,18 +29,24 @@
    (list "")))
   
 (define (safe-pp render-pass)
+  (format #t "(safe-pp ...)~%")
   (present (stage-pretty-print render-pass)))
 
 (define (safe-render interpret-pass)
+  (format #t "(safe-render ~a)~%" interpret-pass)
   (safe-pp (stage-render interpret-pass)))
 
 (define (safe-interpret parse-pass)
+  (format #t "(safe-interpret ...)~%")
   (safe-render (stage-interpret parse-pass)))
 
 (define (safe-parse read-pass)
+  (format #t "(safe-parse ...)~%")
   (safe-interpret (stage-parse read-pass)))
 
 (define (safe-read input)
+  (format #t "(safe-read ...)~%")
+
   (let* ((read-output (stage-read input))
          (unknown (get-unknown-words read-output)))
     

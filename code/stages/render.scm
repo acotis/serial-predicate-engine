@@ -14,8 +14,11 @@
 
 ;; Find maximum jado ID number used in a predicate so far
 (define (max-jado-tag cf)
+  (format #t "   (max-jado-tag ~a)~%" cf)
   (cond ((not (pair? cf)) 0) ;; atoms and ()
-        ((eq? (car cf) 'jado) (cadr cf))
+        ((and (eq? (car cf) 'jado)
+              (<= 2 (length cf)))
+         (cadr cf))
         (#t (fold max (map max-jado-tag cf)))))
 
 ;; Determine whether first k args of a pred are all top-level
@@ -23,11 +26,16 @@
   (let* ((canaries (map (lambda (n) (gensym)) (iota k)))
          (plugged ((predicate pred)
                    (append canaries (make-list 100 'foo)))))
-    (every (lambda (n) (member n plugged))
-           canaries)))
+    (let ((res (every (lambda (n) (member n plugged))
+                      canaries)))
+      (format #t "   (top-level-slots ...) returning ~a...~%"
+              res)
+      res)))
 
 
 (define (jado-ify pred k)
+  (format #t "~%   Calling jadoify(~a) on ~a~%" k pred)
+  
   (cond ((= k 0) pred) ;; No jado dropped
 
         ;; More jado than open slots; fail
@@ -39,17 +47,21 @@
         ;; jado will all fill top-level slots, so drop
         ;; without a prenex
         ((top-level-slots pred k)
-         (cons (lambda (args)
-                 ((predicate pred)
-                  (append (make-list k '(jado)) args)))
-               (drop (typelist pred) k)))
-
+         (begin
+           (format #t "Making a bare jado-drop predicate...~%")
+           (cons (lambda (args)
+                   ((predicate pred)
+                    (append (make-list k '(jado)) args)))
+                 (drop (typelist pred) k))))
+         
         ;; Some jado will fill non-top slot, prenex needed
         (#t
          (let* ((start (1+ (max-jado-tag (gcf pred))))
                 (tags (map (lambda (x) (+ x start)) (iota k)))
                 (jado (map (lambda (x) `(jado ,x)) tags))
                 (v-do (map (lambda (x) `( do  ,x)) tags)))
+
+           (format #t "   Making a li-ified predicate...~%")
            
            (cons (lambda (args)
                    `(li ,jado ,((predicate pred)
@@ -95,9 +107,9 @@
 ;;   (cheo c 2) (mai c c) = (cheo c (mai jado jado))
 
 (define (expand-XY head tail)
-  ;;(format #t "Performing ~a XY ~a~%"
-  ;;        (pred->string head)
-  ;;        (pred->string tail))
+  (format #t "Performing XY:~%   ~a~%   ~a~%"
+          (pred->string head)
+          (pred->string tail))
   
   (let* ((hpred (predicate head))
          (htypes (typelist head))
@@ -109,8 +121,13 @@
                                     (list (car htypes))))))
          
          (arity (list-ref htypes slot))
+
+         (dummy1 (format #t "   found slot!~%"))
+         
          (new-tail (jado-ify tail arity))
 
+         (dummy (format #t "~%   jado-ify succeeded!~%"))
+         
          (tpred (predicate new-tail))
          (ttypes (typelist new-tail))
          (tcount (length ttypes))
@@ -118,6 +135,8 @@
          (etypes (append (take htypes slot)
                          ttypes
                          (drop htypes (+ slot 1)))))
+
+    (format #t "   XY variables set up!~%")
     
     (cons (lambda (args)
             (hpred (append
@@ -130,24 +149,31 @@
 ;; Full function
 
 (define (expand cf)
-  (cond ((is-simple-predicate cf) ;; Just one word
-         cf)
-        
-        ((eq? 'mu (car cf)) ;; MU-form
-         (mu-ify (expand (cadr cf))))
+  (format #t "(expand ~a)~%" cf)
 
-        ((is-RU? (car cf)) ;; RU-form
-         (ru-ify (expand (cadr cf))
-                 (expand (caddr cf))
-                 (car cf)))
-         
-        (#t ;; XY combination
-         (let ((head (expand (car cf)))
-               (tail (expand (cadr cf))))
-           (if (any number? (typelist head))
-               (expand-XY head tail)       ;; XY case
-               (ru-ify head tail 'ru)))))) ;; Implicit-ru case
+  (let ((ret
+         (cond ((is-simple-predicate cf) ;; Just one word
+                cf)
+               
+               ((eq? 'mu (car cf)) ;; MU-form
+                (mu-ify (expand (cadr cf))))
+               
+               ((is-RU? (car cf)) ;; RU-form
+                (ru-ify (expand (cadr cf))
+                        (expand (caddr cf))
+                        (car cf)))
+               
+               (#t ;; XY combination
+                (let ((head (expand (car cf)))
+                      (tail (expand (cadr cf))))
 
+                  (format #t "XYing:~%   ~a~%   ~a~%" head tail)
+                  
+                  (if (any number? (typelist head))
+                      (expand-XY head tail)       ;; XY case
+                      (ru-ify head tail 'ru))))))) ;; Implicit-ru case
+    (format #t "(expand ~a) returning...~%" cf)
+    ret))
 
 ;; Perform the "render" stage on a list of serial forms
 
