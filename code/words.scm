@@ -85,26 +85,32 @@
   (let ((frames '(("POQ"    . ( () (c) ))
                   ("PAI"    . ( () (c) (c c) ))
                   ("FA"     . ( () (c) (c c) (c c c) ))
+                  
                   ("DUA"    . ( () (c) (c 0) ))
                   ("LEO"    . ( () (c) (c 1) ))
                   ("MIA"    . ( () (c) (c 2) ))
+                  
                   ("DUATUA" . ( () (c) (c c) (c c 0) ))
                   ("KUOI"   . ( () (c) (c c) (c c 1) ))
                   ("JEQ"    . ( () (c) (c c) (c c 2) ))
+                  
                   ("JIA"    . ( () (0) ))
                   ("JIPA"   . ( () (1) ))
+                  
                   ("JIE"    . ( () (0) (0 c) ))
                   ("FUI"    . ( () (1) (1 c) ))
+                  
                   ("SOQ"    . ( () (c) (c 1) (c 1 c) ))
                   ("MEAKUQ" . ( () (c) (c 0) (c 0 c) ))
+                  
                   ("CA"     . ( () (0) (0 0) ))
                   ("JEO"    . ( () (0) (c 1) ))
                   ("CUA"    . ( () (c) (c 1) (c 1 1) ))
                   ("KOE"  . ( () (c) (c c) (c c c) (c c c 1))))))
     
     (format #t "About to open the words file...~%")
-    
-    (call-with-input-file "../dict/out"
+
+    (call-with-input-file "../code/dict/frame-lookup.txt"
       (lambda (file)
         (while (not (eof-object? (peek-char file)))
                (let* ((line (read-line file))

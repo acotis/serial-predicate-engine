@@ -2,8 +2,7 @@
 !#
 
 
-(load "full-parse.scm")
-(load "words.scm")
+(load "../api/api.scm")
 (use-modules (ice-9 readline))
 
 
@@ -21,7 +20,7 @@
                  (lambda ()
                    (map (lambda (line)
                           (format #t "~a~%" line))
-                        (full-parse input)))
+                        (api-parse input)))
                    
                  (lambda (key . param)
                    (format #t "~%Sorry, that input caused an error:~%  1. ~a~%  2. ~a~%~%" key param)))
@@ -29,9 +28,9 @@
           (repl)))))
 
 
-;; Load the words
+;; Call the preload function
 
-(load-words)
+(api-preload)
 
 ;; Print the introduction and begin the loop
 

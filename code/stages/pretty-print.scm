@@ -11,8 +11,8 @@
 ;;           "lủ to ru gỉ pâi na na to hủi" … ) 
 
 
-(use-modules (srfi srfi-1))
 (load "../utilities.scm")
+(use-modules (srfi srfi-1))
 
 
 (define marked-vowels

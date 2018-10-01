@@ -15,6 +15,8 @@ Feature: Establish a database of word signatures.  Add a mode
 Feature: Make failed compositions show up as actual errors?
          (Might not be necessary.)
 
+Feature: Make this run as a webservice.
+
 ----------------------------------------------------------------
 
  Cleanup commits
@@ -25,6 +27,6 @@ Commit: Remove home-rolled (fold) and (fold-right) functions,
 Commit: Make the PARSE stage use the XY operator to signal
         composition, rather than having no signal.
 
-Commit: Remove the "prenex" from the expected test output.
+Commit: Remove the "prenex" from the expected test output file.
         In fact, go ahead and re-write test-from-file.scm while
         you're at it.  It sucks.
