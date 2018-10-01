@@ -138,9 +138,9 @@
                  (expand (caddr cf))
                  (car cf)))
         
-        (#t ;; XY combination
-         (let ((head (expand (car cf)))
-               (tail (expand (cadr cf))))
+        ((eq? 'xy (car cf)) ;; XY-form
+         (let ((head (expand (cadr cf)))
+               (tail (expand (caddr cf))))
            
            (if (any number? (typelist head))
                (expand-XY head tail)       ;; XY case
@@ -150,33 +150,3 @@
 
 (define (stage-render interpret-output)
   (map expand interpret-output))
-
-
-
-;; Unmemoized full-parse function
-
-;; (define (full-parse-unmemoized str)
-;;   (let* ((pr (parse str))
-;;         (serials (get-serials pr)))
-    
-;;     (format #t "parse returned: ~a~%" pr)
-;;     (format #t "get-serials returned: ~a~%" serials)
-    
-;;     (map pred->string
-;;          (map expand
-;;               serials))))
-
-;; ;; Memoization of full-parse function
-
-;; (define full-parse-lookup-table '())
-
-;; (define (full-parse str)
-;;   (let ((lookup (assoc str full-parse-lookup-table)))
-;;     (if lookup
-;;         (cdr lookup)
-        
-;;         (let ((result (full-parse-unmemoized str)))
-;;           (set! full-parse-lookup-table
-;;                 (cons (cons str result)
-;;                       full-parse-lookup-table))
-;;           result))))

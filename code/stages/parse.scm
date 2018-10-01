@@ -76,6 +76,7 @@
 
 ;; Parse a composite into a parse-form
 ;; i.e. ("jai") -> "jai"
+;;      ("dua" "mai") -> (xy "dua" "mai")
 ;;      (to ru "kuai" to "tua") -> (ru "kuai" "tua")
 
 (define (parse-composite com)
@@ -107,7 +108,8 @@
         
         ;; If multiple parse-forms, serialize
         (#t
-         (list (car com)
+         (list 'xy
+               (car com)
                (parse-composite (cdr com))))))
 
 

@@ -16,8 +16,7 @@
 ;; combinations of arities.
 
 (define (get-serials cf)
-  ;;(format #t "(get-serials ~a)~%" cf)
-  
+  ;;(format #t "  (get-serials ~a)~%" cf)
   (cond ((string? cf) ;; Single word
          (make-word cf))
         
@@ -27,21 +26,21 @@
               (get-serials (cadr cf))))
 
         ;; XY-form
-        ((= 2 (length cf))
-         (let ((head (get-serials (car cf)))
-               (tail (get-serials (cadr cf))))
+        ((eq? 'xy (car cf))
+         (let ((head (get-serials (cadr cf)))
+               (tail (get-serials (caddr cf))))
            (fold append
                  (map (lambda (h)
                         (map (lambda (t)
-                               (list h t))
+                               (list 'xy h t))
                              tail))
                       head))))
 
-        ;; RU-form
+        ;; RU-form (fakes XY form, then replaces with the RU)
         (#t
          (map (lambda (f)
-                (cons (car cf) f))
-              (get-serials (cdr cf))))))
+                (cons (car cf) (cdr f)))
+              (get-serials (cons 'xy (cdr cf)))))))
 
 
 ;; Filter out all but the last (all-full-arities) interpretation

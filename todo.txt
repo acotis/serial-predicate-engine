@@ -21,9 +21,6 @@ Feature: Make this run as a webservice.
 
  Cleanup commits
 
-Commit: Remove home-rolled (fold) and (fold-right) functions,
-        replaces all usages with (reduce) and (reduce-right).
-
 Commit: Make the PARSE stage use the XY operator to signal
         composition, rather than having no signal.
 
