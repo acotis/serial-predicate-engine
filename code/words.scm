@@ -102,8 +102,6 @@
                   ("CUA"    . ( () (c) (c 1) (c 1 1) ))
                   ("KOE"  . ( () (c) (c c) (c c c) (c c c 1))))))
     
-    (format #t "About to open the words file...~%")
-
     (call-with-input-file "../code/dict/frame-lookup.txt"
       (lambda (file)
         (while (not (eof-object? (peek-char file)))

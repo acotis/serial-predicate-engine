@@ -63,4 +63,4 @@
 // Seen in the wild
 
 :test dua leo ru buaq bai		// Used in "Sa Búai Hủohūa"
-:test bu tea ru ceo riofa tishagiq	// Used by Ilmen.  Should be skipped in nofilter b/c of how long it is.
+:test bu tea ru ceo riofa tishagiq	// Used by Ilmen

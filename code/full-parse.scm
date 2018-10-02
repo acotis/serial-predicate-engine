@@ -27,10 +27,7 @@
   
   (append
    (list "")
-   (map (lambda (line n)
-          (format #f "~a. ~a" n line))
-        pp-output
-        (cdr (iota (+ 1 (length pp-output)))))
+   pp-output
    (list "")))
 
 
@@ -55,6 +52,8 @@
 
 
 (define (safe-read input)
+  (if debug (format #t "(safe-read \"~a\")~%" input))
+  
   (let* ((read-output (stage-read input))
          (unknown (get-unknown-words read-output)))
     

@@ -13,78 +13,64 @@
 ;;   - Parse into a command and some args
 
 
-;; Return index of beginning of first substring of string
-;; to satisfy fun
-(define (string-find-first-tail fun string)
-  (if (or (equal? "" string) (fun string))
-      0
-      (+ 1 (string-find-first-tail fun (substring string 1)))))
+;; Return everything before the first instance of pattern
 
-;; Remove everything after and including the first "//"
-(define (remove-comments string)
-  (substring
-   string
-   0
-   (string-find-first-tail
-    (lambda (s)
-      (and (>= (string-length s) 2)
-           (equal? "//" (substring s 0 2))))
-    string)))
+(define (string-take-before string pattern)
+  (cond ((< (string-length string) (string-length pattern))
+         string)
+        
+        ((equal? pattern (substring string 0 (string-length
+                                              pattern)))
+         "")
+        
+        (#t
+         (string-append (substring string 0 1)
+                        (string-take-before (substring string 1)
+                                            pattern)))))
 
-;; Remove the tab characters from an expected-output line
-(define (clean-tabs line)
-  (let ((i (string-find-first-tail
-            (lambda (s)
-              (equal? #\= (string-ref s 0)))
-            line)))
+;; Split on a pattern
 
-    (string-trim-both (substring line (+ i 1)))))
-    ;; (string-append (string-trim-both
-    ;;                 (substring line 0 i))
-    ;;                " = "
-    ;;                (string-trim-both
-    ;;                 (substring line (+ i 1))))))
+(define (string-cut string pattern)
+  (let* ((before (string-take-before string pattern))
+         (after  (substring string (string-length before))))
+    (list (string-trim-both before)
+          (string-trim-both after))))
 
-;; Read up to the first space, return the first word cons'd
-;; to the left-trim of everything after it
-(define (next-word string)
-  (let ((first-space
-         (string-find-first-tail
-          (lambda (s)
-            (equal? #\Space (string-ref s 0)))
-          string)))
+;; Remove comments
 
-    (cons (substring string 0 first-space)
-          (string-trim (substring string first-space)))))
+(define (remove-comments line)
+  (string-trim-both (string-take-before line "//")))
 
-;; ex ":test la la la"    -> '(test "la la la")
-;; ex ":next // la la la" -> 'next
+
+;; If the line begins with a keyword, pull it out
+;;   + ":test la la la"    -> '(test "la la la")
+;;   + ":next // la la la" -> '(next "")
+;;   + "pai A B"           -> '(line "pai a b")
+;;   + ""                  -> '(line "")
+
 (define (parse-line line)
-  (let* ((pline (string-trim-both (remove-comments line)))
-         (pair (next-word pline))
+  (let* ((pline (remove-comments line))
+         (pair (string-cut pline " "))
          (cmdstr (car pair))
-         (rest (cdr pair))
+         (rest (cadr pair))
          (cmd-assoc (assoc cmdstr '((":test" . test)
                                     (":next" . next)
-                                    (":end" . end)
-                                    (":skip" . skip))))
-         (cmd (if cmd-assoc (cdr cmd-assoc) '())))
+                                    (":end"  . end)
+                                    (":skip" . skip)))))
 
-    (cond ((equal? pline "") '())
-          ((equal? cmd 'test) (list 'test rest))
-          ((not (null? cmd)) cmd)
-          (#t (clean-tabs pline)))))
+    (if cmd-assoc
+        (list (cdr cmd-assoc) rest)
+        (list 'line pline))))
 
-
-;; Read whole files
 
 ;; Parse all the lines in a file, remove empty parses
+
 (define (read-whole-file filename)
   (call-with-input-file filename
     (lambda (f)
 
       (filter
-       (lambda (s) (not (null? s)))
+       (lambda (s) (not (equal? s '(line ""))))
 
        (do ((line (read-line f) (read-line f))
             (collect '()
@@ -93,37 +79,39 @@
            ((eof-object? line)
             collect))))))
 
+
 ;; Return a list of test-case-input strings
+
 (define (read-test-input-file filename)
   (map cadr (read-whole-file filename)))
 
 
-;; Grab the next 'skip or ('test ... 'end) off of a list
+;; Grab the next '(skip "") or '((next "") ... (end ""))
+;; (Assumes a properly-formatted file)
+
 (define (next-case lines)
-  (if (eq? 'skip (car lines))
-      (list 'skip (cdr lines))
-      
-      (let* ((i (find-first (lambda (k) (eq? k 'end)) lines))
-             (next (take lines i)))
-
-        (list (cdr next)
-              (drop lines (+ i 1))))))
-
+  (cond ((eq? (car (car lines)) 'skip) 'skip)
+        ((eq? (car (car lines)) 'end) (list (car lines)))
+        (#t (append (list (car lines))
+                    (next-case (cdr lines))))))
 
 ;; Return a list of lists of test-case-output strings
+
 (define (read-test-output-file filename)
-  (let ((lines (read-whole-file filename))
-        (collect '()))
+  (unfold null?
+          (lambda (lines)
+            (let ((next (next-case lines)))
+              (if (eq? 'skip next)
+                  'skip
+                  (cdr (drop-right (next-case lines) 1)))))
 
-    (do ()
-        ((null? lines)
-         collect)
-
-      (let ((split (next-case lines)))
-        (set! collect (append collect (list (car split))))
-        (set! lines (cadr split))))))
+          (lambda (lines)
+            (let ((next (next-case lines)))
+              (drop lines
+                    (if (eq? 'skip next) 1 (length next)))))
       
-
+          (read-whole-file filename)))
+        
 ;; Create test cases from an input and output file
 
 (define (create-cases-from-files infile outfile)
@@ -134,63 +122,24 @@
             (map list in out))))
 
 
-;; (format #t "~a~%" (read-test-input-file "full-tests-input.txt"))
-
-;; (let ((expecteds
-;;        (read-test-output-file "full-tests-nofilter.txt")))
-;;        ;;(read-test-output-file "dummy.txt")))
-       
-;;   (map (lambda (e)
-;;          (map (lambda (n)
-;;                 (format #t "~a~%" n))
-;;               (if (equal? e 'skip) '(skip) e))
-;;          (format #t "~%"))
-;;        expecteds))
-
-
-
-;; (let ((cases (create-cases-from-files
-;;               "full-tests-input.txt"
-;;               "full-tests-nofilter.txt")))
-
-;;   (map (lambda (tc) (format #t "~a~%~%" tc)) cases))
-   
-;; (quit)
-
-
-
-;; Take an expression and the list of desired results, and
-;; return a list of test cases
-
-(define (generate-tests-helper expr results next-num)
-  (if (null? results)
-      '()
-      (cons `((list-ref ,expr ,(+ 1 next-num))
-              ,(format #f "~a. ~a" (+ 1 next-num) (car results)))
-            (generate-tests-helper expr
-                                   (cdr results)
-                                   (+ 1 next-num)))))
-
-(define (generate-tests expr results)
-  (generate-tests-helper expr results 0))
-
-
 ;; Test an input file against an output file, given the name
-;; of the function to test
+;; of the function to test.
 
 (define-macro (test-from-files infile outfile function-name
                                display-anyway fail-fun pass-fun)
-  
-  `(run-tests ,(reverse
-                (fold-right
-                 append
-                 (map (lambda (tc)
-                        (generate-tests (list function-name
-                                              (car tc))
-                                        (cadr tc)))
-                      
-                      (create-cases-from-files infile outfile))))
-                
-              ,display-anyway
-              ,fail-fun
-              ,pass-fun))
+  `(run-tests
+    
+    ,(fold append
+           (map (lambda (test-case)
+                  (map (lambda (n)
+                         `((list-ref (,function-name
+                                      ,(car test-case))
+                                     ,(+ n 1)) ;; Skip blank line
+                           ,(cadr (list-ref(cadr test-case) n))))
+                       
+                       (iota (length (cadr test-case)))))
+                (create-cases-from-files infile outfile)))
+    
+    ,display-anyway
+    ,fail-fun
+    ,pass-fun))

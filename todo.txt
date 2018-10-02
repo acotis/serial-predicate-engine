@@ -21,9 +21,6 @@ Feature: Make this run as a webservice.
 
  Cleanup commits
 
-Commit: Get rid of the (is-simple-predicate) function by changing
-        the (expand) function not to need it.
-
 Commit: Remove the "prenex" from the expected test output file.
         In fact, go ahead and re-write test-from-file.scm while
         you're at it.  It sucks.
