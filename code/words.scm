@@ -49,12 +49,6 @@
           (list 'fail error))
         (make-list 0 100)))
 
-(define (is-simple-predicate pred)
-  ;;(format #t "(is-simple-predicate ~a)~%" pred)
-  (and (procedure? (car pred))
-       (every (lambda (k) (or (eq? k 'c) (number? k)))
-              (cdr pred))))
-
 
 ;; Take various measurements of a predicate
 ;;   Typelist:     (typelist leo) = '(c 1)

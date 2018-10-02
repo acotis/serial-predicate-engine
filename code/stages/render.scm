@@ -127,10 +127,7 @@
 ;; Full function
 
 (define (expand cf)
-  (cond ((is-simple-predicate cf) ;; Just one word
-         cf)
-        
-        ((eq? 'mu (car cf)) ;; MU-form
+  (cond ((eq? 'mu (car cf)) ;; MU-form
          (mu-ify (expand (cadr cf))))
         
         ((is-RU? (car cf)) ;; RU-form
@@ -144,7 +141,9 @@
            
            (if (any number? (typelist head))
                (expand-XY head tail)       ;; XY case
-               (ru-ify head tail 'ru)))))) ;; Implicit-ru case
+               (ru-ify head tail 'ru))))   ;; Implicit-ru case
+
+        (#t cf))) ;; Just one word
 
 ;; Perform the "render" stage on a list of serial forms
 
