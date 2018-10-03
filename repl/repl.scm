@@ -4,13 +4,13 @@
 
 (load "../api/api.scm")
 (use-modules (ice-9 readline))
+(use-modules (ice-9 format))
 
 
 ;; Read eval print loop
 
 (define (repl)
   (format #t "> ") ;; Prompt
-  (force-output)
 
   ;; Processing
   (let ((input (readline)))

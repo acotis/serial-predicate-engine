@@ -1,26 +1,22 @@
 
 ----------------------------------------------------------------
 
-Commit: Make it spit out the actual different typelists for the
-        different arities of the resulting predicates (may
-        require minor or moderate restructuring of the code).
-
-----------------------------------------------------------------
-
-Feature: Establish a database of word signatures.  Add a mode
-         where you can interact with that database.  When a
-         composition is queried containing words it doesn't
-         know, switch into that mode automatically to add them.
-
-Feature: Make failed compositions show up as actual errors?
-         (Might not be necessary.)
+Feature: Add an "add-word" call to the API.
 
 Feature: Make this run as a webservice.
 
 ----------------------------------------------------------------
 
- Cleanup commits
+ Misc commits
 
-Commit: Remove the "prenex" from the expected test output file.
-        In fact, go ahead and re-write test-from-file.scm while
-        you're at it.  It sucks.
+Bug: Words that are more than one syllable long aren't
+     recognized.
+
+Bug: The "> " prompt can be deleted.
+
+Commit: Make it spit out the actual different typelists for the
+        different arities of the resulting predicates (may
+        require minor or moderate restructuring of the code).
+
+Commit: Make failed compositions show up as actual errors?
+        (Might not be necessary.)
