@@ -23,7 +23,10 @@
 ;; stage.
 
 (define (present pp-output)
-  (if debug (format #t "(present \"~a\")~%" pp-output))
+  (if debug
+      (begin
+        (format #t "(present ~a)~%" pp-output)
+        (format #t "  [char string] ~a~%" (string->list (car pp-output)))))
   
   (append
    (list "")
@@ -32,22 +35,22 @@
 
 
 (define (safe-pp render-pass)
-  (if debug (format #t "(safe-pp \"~a\")~%" render-pass))
+  (if debug (format #t "(safe-pp ~a)~%" render-pass))
   (present (stage-pretty-print render-pass)))
 
 
 (define (safe-render interpret-pass)
-  (if debug (format #t "(safe-render \"~a\")~%"interpret-pass))
+  (if debug (format #t "(safe-render ~a)~%"interpret-pass))
   (safe-pp (stage-render interpret-pass)))
 
 
 (define (safe-interpret parse-pass)
-  (if debug (format #t "(safe-interpret \"~a\")~%" parse-pass))
+  (if debug (format #t "(safe-interpret ~a)~%" parse-pass))
   (safe-render (stage-interpret parse-pass)))
 
 
 (define (safe-parse read-pass)
-  (if debug (format #t "(safe-parse \"~a\")~%" read-pass))
+  (if debug (format #t "(safe-parse ~a)~%" read-pass))
   (safe-interpret (stage-parse read-pass)))
 
 
