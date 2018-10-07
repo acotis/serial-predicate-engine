@@ -20,12 +20,18 @@
 (define (request-path-components request)
   (split-and-decode-uri-path (uri-path (request-uri request))))
 
-(define (hello-hacker-handler request request-body)
+(define (spe-handler request request-body)
   (let ((input (request-path-components request)))
     (values '((content-type . (text/plain)))
             (append-lines (api-parse (car input))))))
 
+(define (hello-handler request request-body)
+  (values '((content-type . (text/plain)))
+          "Hello world!"))
 
 (api-preload)
 
-(run-server hello-hacker-handler)
+;;(run-server spe-handler)
+(run-server spe-handler
+            'http
+            '(#:host "129.21.104.109"))

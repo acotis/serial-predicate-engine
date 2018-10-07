@@ -8,7 +8,7 @@
 (load "../code/words.scm")
 
 
-(define api-debug #f)
+(define api-debug #t)
 
 (define (api-preload)
   (if api-debug (format #t "API call: preload~%"))

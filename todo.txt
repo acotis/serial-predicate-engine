@@ -1,18 +1,19 @@
 
 ----------------------------------------------------------------
 
-Feature: Add an "add-word" call to the API.
-
 Feature: Make this run as a webservice.
+
+Commit: Change (api-parse) to a simple string->string, and
+        move the fun formatting to the REPL impl.
 
 ----------------------------------------------------------------
 
  Misc commits
 
-Bug: Words that are more than one syllable long aren't
-     recognized.
+Bug:    Words that are more than one syllable long aren't
+        recognized.
 
-Bug: The "> " prompt can be deleted.
+Bug:    In the REPL, the "> " prompt can be deleted.
 
 Commit: Make it spit out the actual different typelists for the
         different arities of the resulting predicates (may
@@ -20,3 +21,5 @@ Commit: Make it spit out the actual different typelists for the
 
 Commit: Make failed compositions show up as actual errors?
         (Might not be necessary.)
+
+Feature: Add an "add-word" call to the API.
