@@ -22,6 +22,7 @@
     ( "o" . ("ō" "ó" "ǒ" "ỏ" "ô" "ò" "õ" "o") )
     ( "u" . ("ū" "ú" "ǔ" "ủ" "û" "ù" "ũ" "u") )))
 
+
 (define (is-vowel? l)
   (any (lambda (k) (member l (cdr k)))
        marked-vowels))

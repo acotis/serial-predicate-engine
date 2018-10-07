@@ -4,7 +4,11 @@
 
 (load "../api/api.scm")
 (use-modules (ice-9 readline))
-(use-modules (ice-9 format))
+
+;; Necessary to print unicode characters properly
+;; Note: This procedure of setting the port encoding correctly
+;;       seems a bit delicate.  Be careful.
+(set-port-encoding! (current-output-port) "UTF-8")
 
 
 ;; Read eval print loop
