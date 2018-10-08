@@ -3,8 +3,7 @@
 
 Feature: Make this run as a webservice.
 
-Commit: Change (api-parse) to a simple string->string, and
-        move the fun formatting to the REPL impl.
+Feature: Make a nicer web page as well.
 
 ----------------------------------------------------------------
 
