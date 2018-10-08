@@ -40,7 +40,7 @@
   (let ((path (request-path-components request))
         (query (request-query request)))
     
-    (if (equal? '("parse") path)
+    (if (equal? '("query") path)
         (parse-route query)
         
         (values '((content-type . (text/plain)))
