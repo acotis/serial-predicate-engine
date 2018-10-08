@@ -22,4 +22,4 @@ Commit: Make it spit out the actual different typelists for the
 Commit: Make failed compositions show up as actual errors?
         (Might not be necessary.)
 
-Feature: Add an "add-word" call to the API.
+Feature: Add an "add-word" call to the API?

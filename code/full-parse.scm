@@ -22,21 +22,10 @@
 ;; encounter any errors) then passes that output to the next
 ;; stage.
 
-(define (present pp-output)
-  (if debug
-      (begin
-        (format #t "(present ~a)~%" pp-output)
-        (format #t "  [char string] ~a~%" (string->list (car pp-output)))))
-  
-  (append
-   (list "")
-   pp-output
-   (list "")))
-
 
 (define (safe-pp render-pass)
   (if debug (format #t "(safe-pp ~a)~%" render-pass))
-  (present (stage-pretty-print render-pass)))
+  (stage-pretty-print render-pass))
 
 
 (define (safe-render interpret-pass)

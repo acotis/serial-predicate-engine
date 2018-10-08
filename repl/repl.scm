@@ -23,7 +23,7 @@
           (catch #t
                  (lambda ()
                    (map (lambda (line)
-                          (format #t "~a~%" line))
+                          (format #t "~%~a~%~%" line))
                         (api-parse input)))
                    
                  (lambda (key . param)
