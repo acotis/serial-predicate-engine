@@ -5,12 +5,24 @@
       Serial predicate: <input type="text" name="input">
       <input type="submit" value="Parse!">
     </form>
-    
-    <h2>Recent Searches</h2>
+
+    {% if queries|length > 0 %}
+    </br>
+    <span style="font-weight:bold">Input: </span>
+    <span>{{ queries[0].split(":")[0] }}</span>
+    </br>
+    <span style="font-weight:bold">Parse: </span>
+    <span>{{ queries[0].split(":")[1] }}</span>
+    {% endif %}
+
+    {% if queries|length > 1 %}
+    <h2>Recent Parses</h2>
     <ul>
-      {% for query in queries: %}
+      {% for query in queries[1:]: %}
       <li>{{ query }}</li>
       {% endfor %}
     </ul>
+    {% endif %}
+    
   </body>
 </html>

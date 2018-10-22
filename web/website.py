@@ -42,7 +42,7 @@ def helloDefault():
 # the recent_parses cookies into a list and back
 
 def getQueries(recent):
-    if recent is None:
+    if recent is None or recent == "":
         return []
     return recent.split(";")
 
@@ -65,7 +65,8 @@ def parse():
 
     recent = request.cookies.get('recent_parses')
     queries = getQueries(recent)
-    queries.append(query)
+    if not (query is None or query == ""):
+        queries.append(query)
     recent = getRecent(queries)
 
     queries.reverse()
