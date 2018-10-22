@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <form action="/parse">
+      Serial predicate: <input type="text" name="input">
+      <input type="submit" value="Parse!">
+    </form>
+    
     <h2>Recent Searches</h2>
     <ul>
       {% for query in queries: %}
