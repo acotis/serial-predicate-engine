@@ -7,6 +7,13 @@ from flask import render_template
 from flask import request
 from flask import make_response
 
+
+import sys
+if sys.version_info.major < 3:
+    reload(sys)
+sys.setdefaultencoding('utf8')
+
+
 def getExpansion(pred):
     http = urllib3.PoolManager()
     base_url = "http://localhost:8080/query?"
@@ -62,6 +69,7 @@ def parse():
     recent = getRecent(queries)
 
     queries.reverse()
+    queries = map(lambda q : q + ": " + getExpansion(q), queries)
     resp = make_response(render_template('recent.html',
                                          queries=queries))
 
