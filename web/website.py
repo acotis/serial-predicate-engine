@@ -8,11 +8,16 @@ from flask import request
 from flask import make_response
 
 
+# Copied from a Stack Exchange answer to get unicode working
+
 import sys
 if sys.version_info.major < 3:
     reload(sys)
 sys.setdefaultencoding('utf8')
 
+
+# Function to retrive the expansion of a predicate from the
+# Scheme webservice
 
 def getExpansion(pred):
     http = urllib3.PoolManager()
@@ -23,8 +28,19 @@ def getExpansion(pred):
 # Copied from a manual
 app = Flask(__name__)
 
-@app.route("/")
-def helloDefault():
+
+# "Hello world" test page
+
+@app.route("/hello")
+def hello():
+    return "Hello world!"
+
+
+# Page to test cookies (should show an increasing number on each
+# reload)
+
+@app.route("/cookiesTest")
+def cookiesTest():
     value = request.cookies.get('key')
     if value is None:
         value = '0'
@@ -36,7 +52,7 @@ def helloDefault():
     return resp
 
 
-## PARSE PAGE HELPERS
+## PARSE PAGE AND HELPERS
 
 # A pair of functions for turning the (string) data stored in
 # the recent_parses cookies into a list and back
@@ -58,7 +74,9 @@ def getRecent(queries):
         ret += query
 
     return ret[1:]
-    
+
+# Parse page
+
 @app.route("/parse/")
 def parse():
     query = request.args.get('input')
