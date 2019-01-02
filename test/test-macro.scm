@@ -25,7 +25,9 @@
                   #t)
            
            (begin (format #t "Test:     ~a~%" 'call)
+                  (set-port-encoding! (current-output-port) "ISO-8859-1")
                   (format #t "Expected: ~a~%" expected)
+                  (set-port-encoding! (current-output-port) "UTF-8")
                   (format #t "Result:   ~a~%~%" result)
                   #f))))
 

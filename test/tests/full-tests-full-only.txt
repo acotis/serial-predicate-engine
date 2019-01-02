@@ -1,125 +1,99 @@
-
-
-:next // dua mai
+// dua mai
 <[c c c] (dủa A mâi B C)>
-:end
 
-:next // leo pai
+// leo pai
 <[c c] (lẻo A pâi ja dó B)>
-:end
 
-:next // poq kea				
+// poq kea				
 <[c 1] (lủ to ru pỏq A na to kẻa A B)>
-:end
 
-:next // soq jia
+// soq jia
 <[c c] (sỏq A jîa ja dó na B)>
-:end
 
-:next // soq jeo
+// soq jeo
 <[c 1 c] (sỏq A jêo ja dó B na C)>
-:end
 
-:next // tua jeaq jai
+
+// tua jeaq jai
 <[c c] (tủa A jêaq B jâi ja dó)>
-:end
 
-:next // cheo jeo
+// cheo jeo
 <[c] (chẻo A jêo ja dó ja dó)>
-:end
 
-:next // mia ti
+// mia ti
 <[c] (mỉa A tî ja dó ja dó)>
-:end
 
-:next // cua meo
+// cua meo
 <[c 1] (của A mêo ja dó na B)>
-:end
 
-:next // dui bu
+// dui bu
 <[c 1 1] (dủi A bû ja dó B na C)>
-:end
 
 
-:next // pai ru mai
+// RU
+
+// pai ru mai
 <[c c] (lủ to ru pải A B na to mải A B)>
-:end
 
-:next // poq ra maomao dua
+// poq ra maomao dua
 <[c 0] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa A B)>
-:end
 
-:next // jeo re pu ro jia
+// jeo re pu ro jia
 <[? 1] (lủ to re jẻo A B na to lủ to ro pủ A na to jỉa A)>
-:end
 
-:next // dua jia ru pu
+// dua jia ru pu
 <[c 0] (dủa A lû to ru jỉa B na to pủ B)>
-:end
 
-:next // dua pai ri mai
+// dua pai ri mai
 <[c c c] (dủa A lû to ri pải B C na to mải B C)>
-:end
 
 
 // ?-types
 
-:next // fa ru soq
+// fa ru soq
 <[c ? c] (lủ to ru fả A B C na to sỏq A B C)>
-:end
 
-:next // bu ra jeo
+// bu ra jeo
 <[c 1] (lủ to ra bủ A B na to jẻo A B)>
-:end
 
-:next // bu ra jeo de
+// bu ra jeo de
 <[c] (lủ to ra bủ A dê ja dó na na to jẻo A dê ja dó)>
-:end
 
 
 // Mu
 
-:next // mu dua
+// mu dua
 <[0 c] (dủa B A)>
-:end
 
-:next // jia mu dua
+// jia mu dua
 <[0 c] (jỉa dûa B A)>
-:end
 
-:next // jia ri mu dua
+// jia ri mu dua
 <[0 c] (lủ to ri jỉa A na to dủa B A)>
-:end
 
-:next // mu mai ri mu pai	
+// mu mai ri mu pai	
 <[c c] (lủ to ri mải B A na to pải B A)>	
-:end
 
 
 // To ru
 
-:next // to ri mai to pai
+// to ri mai to pai
 <[c c] (lủ to ri mải A B na to pải A B)>
-:end
 
-:next // kuai to re chuq to nuo
+// kuai to re chuq to nuo
 <[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
-:end
 
-:next // to ra jia de to pu fie
+// to ra jia de to pu fie
 <[c] (lủ to ra jỉa dê A na na to pủ fîe A)>
-:end
 
 
 // Bug fix
 
-:next // mia leo pai
+// mia leo pai
 <[c] (mỉa A lî ja dó[1] ja dó[2] bi lẻo dó[1] pâi ja dó dó[2])>
-:end
 
-:next // mia pai
+// mia pai
 <[c] (mỉa A pâi ja dó ja dó)>
-:end
 
 
 // Big ones

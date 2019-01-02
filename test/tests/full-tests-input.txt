@@ -17,50 +17,50 @@
 
 // Composition
 
-:test dua mai		// Type (0) slot
-:test leo pai		// Type (1) slot
-:test poq kea		// (Combines with a "ru")
-:test soq jia		// Filled slot is not at the end
-:test soq jeo		// Filling word has multiple valid arities
-:test tua jeaq jai	// Three-part composite
-:test cheo jeo		// Filling word has multiple valid arities, and only one works
-:test mia ti		// Type (2) slot
-:test cua meo		// Two different abstraction slots
-:test dui bu		// Two different abstraction slots, and filled by predicate with mutliple arities
+dua mai			// Type (0) slot
+leo pai			// Type (1) slot
+poq kea			// Implicit "ru"
+soq jia			// Filled slot is not at the end
+soq jeo			// Filling word has multiple valid arities
+tua jeaq jai		// Three-part composite
+cheo jeo		// Filling word has multiple valid arities, and only one works
+mia ti			// Type (2) slot
+cua meo			// Two different abstraction slots
+dui bu			// Two different abstraction slots, and filled by predicate with mutliple arities
 
 // Ru
 
-:test pai ru mai	// Simple ru
-:test poq ra maomao dua	// Ru over something else
-:test jeo re pu ro jia	// Two ru's
-:test dua jia ru pu   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
-:test dua pai ri mai	// Parses WAY differently under the two models
+pai ru mai		// Simple ru
+poq ra maomao dua	// Ru over something else
+jeo re pu ro jia	// Two ru's
+dua jia ru pu   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
+dua pai ri mai		// Parses WAY differently under the two models
 
 // Ru ?-types
 
-:test fa ru soq		// Produce a ?-type
-:test bu ra jeo		// Produces ?-types if arities of predicates differ
-:test bu ra jeo de	// How should ?-types be treated during composition?
+fa ru soq		// Produce a ?-type
+bu ra jeo		// Produces ?-types if arities of predicates differ
+bu ra jeo de		// How should ?-types be treated during composition?
 
 // Mu
 
-:test mu dua		// Btw, how does "mu" act on predicates with <2 slots?
-:test jia mu dua
-:test jia ri mu dua
-:test mu mai ri mu pai
+mu dua			// Btw, how does "mu" act on predicates with <2 slots?
+jia mu dua
+jia ri mu dua
+mu mai ri mu pai
 
 // To ru
 
-:test to ri mai to pai
-:test kuai to re chuq to nuo
-:test to ra jia de to pu fie
+to ri mai to pai
+kuai to re chuq to nuo
+to ra jia de to pu fie
 
 // Bug fix
 
-:test mia leo pai	// Fix for a bug where untagged jado broke the (max-jado-tag) function
-:test mia pai		// Control
+mia leo pai		// Fix for a bug where untagged jado broke the (max-jado-tag) function
+mia pai			// Control
 
 // Seen in the wild
 
-:test dua leo ru buaq bai		// Used in "Sa Búai Hủohūa"
-:test bu tea ru ceo riofa tishagiq	// Used by Ilmen
+dua leo ru buaq bai		// Used in "Sa Búai Hủohūa"
+bu tea ru ceo riofa tishagiq	// Used by Ilmen

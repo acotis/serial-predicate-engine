@@ -23,6 +23,7 @@
 (test-from-files
  "./tests/full-tests-input.txt"
  "./tests/full-tests-full-only.txt"
+ ;;"./tests/full-tests-full-only.txt"
  api-parse
  #t
  (fail-function "full parse (full-form only)")

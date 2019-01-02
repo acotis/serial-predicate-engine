@@ -8,8 +8,9 @@
 ;; Necessary to print unicode characters properly
 ;; Note: This procedure of setting the port encoding correctly
 ;;       seems a bit delicate.  Be careful.
+(format #t " <CURRENT ENCODING: ~a>~%" (port-encoding (current-output-port)))
 (set-port-encoding! (current-output-port) "UTF-8")
-
+(format #t " <CURRENT ENCODING: ~a>~%" (port-encoding (current-output-port)))
 
 ;; Read eval print loop
 
