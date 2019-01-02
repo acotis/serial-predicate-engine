@@ -31,7 +31,7 @@ dui bu			// Two different abstraction slots, and filled by predicate with mutlip
 // Ru
 
 pai ru mai		// Simple ru
-poq ra maomao dua	// Ru over something else
+poq ra niai dua		// Ru over something else
 jeo re pu ro jia	// Two ru's
 dua jia ru pu   	// Tests that the ru subjuncts under the dua (which it should only do in my proposed parse)
 dua pai ri mai		// Parses WAY differently under the two models

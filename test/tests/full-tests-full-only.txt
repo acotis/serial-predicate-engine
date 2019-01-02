@@ -35,8 +35,8 @@
 // pai ru mai
 <[c c] (lủ to ru pải A B na to mải A B)>
 
-// poq ra maomao dua
-<[c 0] (lủ to ru lủ to ra pỏq A na to mảomāo A na na to dủa A B)>
+// poq ra niai dua
+<[c 0] (lủ to ru lủ to ra pỏq A na to nỉai A na na to dủa A B)>
 
 // jeo re pu ro jia
 <[? 1] (lủ to re jẻo A B na to lủ to ro pủ A na to jỉa A)>
@@ -89,9 +89,10 @@
 
 // Seen in the wild
 
-:skip
+//dua leo ru buaq bai
+<[c c c] (dủa A lû to ru lẻo B bâi ja dó C na na to bủaq B bâi ja dó C)>
 
-:skip
+:skip // Doesn't know the words
 
 
 // Bug fix (jado-tag bug)
