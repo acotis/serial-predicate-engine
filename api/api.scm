@@ -17,7 +17,12 @@
 
 (define (api-preload)
   (if api-debug (format #t "API call: preload~%"))
-  (load-words))
+  (load-words)
+
+  ;; Necessary to print unicode characters properly
+  ;; Note: This procedure of setting the port encoding correctly
+  ;;       seems a bit delicate.  Be careful.
+  (set-port-encoding! (current-output-port) "UTF-8"))
 
 
 ;; Input: A string representing a serial predicate to be parsed
@@ -27,4 +32,4 @@
   (if api-debug (format #t "API call: parse \"~a\"~%" input))
   (let ((result (full-parse input)))
     (if api-debug (format #t "  [Result: ~a]~%" result))
-    result))
+    result))'

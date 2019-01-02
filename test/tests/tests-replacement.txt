@@ -1,61 +1,59 @@
-:next // dua mai
+// dua mai
 <[c c c] (dủa A mâi B C)>
-:end
 
-:next // leo pai
+// leo pai
 <[c c] (lẻo A pâi ja dó B)>
-:end
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
 
-:skip:
+:skip
