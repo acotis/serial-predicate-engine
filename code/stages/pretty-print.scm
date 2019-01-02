@@ -16,36 +16,36 @@
 
 
 (define marked-vowels
-  '(( "a" . ("ā" "á" "ǎ" "ả" "â" "à" "ã" "a") )
-    ( "e" . ("ē" "é" "ě" "ẻ" "ê" "è" "ẽ" "e") )
-    ( "i" . ("ī" "í" "ǐ" "ỉ" "î" "ì" "ĩ" "i") )
-    ( "o" . ("ō" "ó" "ǒ" "ỏ" "ô" "ò" "õ" "o") )
-    ( "u" . ("ū" "ú" "ǔ" "ủ" "û" "ù" "ũ" "u") )))
+  '(( #\a . "āáǎảâàãa" )
+    ( #\e . "ēéěẻêèẽe" )
+    ( #\i . "īíǐỉîìĩı" )
+    ( #\o . "ōóǒỏôòõo" )
+    ( #\u . "ūúǔủûùũu" )))
 
-
-(define (is-vowel? l)
-  (any (lambda (k) (member l (cdr k)))
-       marked-vowels))
+(define vowel?
+  (let ((vowels (map car marked-vowels)))
+    (lambda (v)
+      (member v vowels))))
 
 ;; Add a diacritic mark to a single vowel, passed as a string
 
 (define (add-diacritic vowel tone)
-  (list-ref (assoc vowel marked-vowels) tone))
+  (string-ref (cdr (assv vowel marked-vowels)) (1- tone)))
 
 
 ;; Add a tone marking to the appropriate letter of a single word,
 ;; passed as a string
 
 ;; Add diacritics to every vowel-after-a-consonant
-(define (add-diacritics letters tone)
+#;(define (add-diacritics letters tone)
   (if (< (length letters) 2)
       letters
       
       (let* ((one (car letters))
              (two (cadr letters))
              (rest (cddr letters))
-             (adding (and (is-vowel? two)
-                          (not (is-vowel? one)))))
+             (adding (and (vowel? two)
+                          (not (vowel? one)))))
                           
         (cons one
               (add-diacritics
@@ -53,22 +53,69 @@
                      rest)
                (if adding 1 tone))))))
 
-(define (add-tone word tone)
-  (fold string-append
-        (add-diacritics (map (lambda (n)
-                               (substring word n (+ n 1)))
-                             (iota (string-length word)))
-                        tone)))
+(define (add-diacritics* letters tone)
+  (let ((first-vowel (list-index vowel? letters)))
+    (if (not first-vowel) letters
+      (let* ((onset (take letters first-vowel))
+             (rime (drop letters first-vowel))
+             (first-consonant (list-index (lambda (l)
+                                                  (not (vowel? l)))
+                                          rime)))
+            (append onset
+                    (cons (add-diacritic (car rime) tone)
+                          (if first-consonant
+                              (append
+                                (take (cdr rime)
+                                      (1- first-consonant))
+                                (add-diacritics*
+                                  (drop rime first-consonant)
+                                  1))
+                              (cdr rime))))))))
 
+(define (add-diacritics los tone)
+  (if (list? los)
+    (add-diacritics* los tone)
+    (list->string (add-diacritics* (string->list los) tone))))
+
+(define (add-tone word tone)
+  (list->string
+    (add-diacritics (string->list word)
+                    tone)))
+
+;; Uakci's addition: convert number to its Toaq compound form. This is
+;; to facilitate friendly dó variables, e.g., dóshī, dógū, etc.
+
+;; Count from one to nine.
+(define (digit->toaq n)
+  (let ((numbers '(""   "shi" "gu"   "saq"  "jo"
+                   "fe" "ci"  "diai" "roai" "nei")))
+       (list-ref numbers n)))
+
+(define (number->toaq n)
+  (when (not (and (>= n 0) (< n 1e6) (integer? n)))
+        (error "sorry, out of range"))
+  (cond
+    ((zero? n) "")
+    ((>= n 1000)
+      (string-append (number->toaq (quotient n 1000))
+                     "biq"
+                     (number->toaq (remainder n 1000))))
+    (else 
+      (let* ((hundreds (quotient n 100))
+             (tens (quotient (remainder n 100) 10))
+             (ones (remainder n 10)))
+            (string-append
+              (digit->toaq hundreds)
+                (if (zero? hundreds) "" "fue")
+              (digit->toaq tens)
+                (if (zero? tens)     "" "hei")
+              (digit->toaq ones))))))
 
 ;; Return a printable form for a (do #n) or (jado #n)
 ;; expression, given n
 
 (define (printable-do n)
-  (string-append (add-tone "do" 2)
-                 "["
-                 (number->string n)
-                 "]"))
+  (add-tone (string-append "do" (number->toaq n)) 2))
 
 (define (printable-jado n)
   (string-append "ja " (printable-do n)))
@@ -83,9 +130,6 @@
 
 ;; Convert a whole canonic form plus a tone to a printable form
 
-(define (append-with-spaces a b)
-  (string-append a " " b))
-
 (define (cf->string cf tone)
   (cond ((symbol? cf) ;; c, 0, 1, 2, A, B, ...
          (symbol->string cf))
@@ -96,20 +140,22 @@
         
         ;; (li ((jado 1) (jado 2)) (...))
         ((eq? (car cf) 'li)
-         (fold append-with-spaces
-               (append (list (add-tone "li" tone))
-                       (map printable-do-jado (cadr cf))
-                       (list "bi")
-                       (list (cf->string (caddr cf) 4)))))
+         (string-join
+           (append (list (add-tone "li" tone))
+                   (map printable-do-jado (cadr cf))
+                   (list "bi")
+                   (list (cf->string (caddr cf) 4)))
+           " "))
 
         ;; (pred args...) or (lu to RU ... to)
         (#t
          (let ((stone (if (equal? (car cf) "lu") 4 5)))
-           (fold append-with-spaces
-                 (append (list (add-tone (car cf) tone))
-                         (map (lambda (a) (cf->string a stone))
-                              (cdr cf))
-                         (list "na")))))))
+              (string-join
+                (append (list (add-tone (car cf) tone))
+                        (map (lambda (a) (cf->string a stone))
+                             (cdr cf))
+                        (list "na"))
+                " ")))))
 
 
 ;; Pretty-print a whole predicate
@@ -133,19 +179,16 @@
 (define (pred->string pred)
   (if (contains-fail? (gcf pred))
       "-"
-      (string-append "<["
-                     (if (not (null? (typelist pred)))
-                         (fold append-with-spaces
-                               (map (lambda (type)
-                                      (if (number? type)
-                                          (number->string type)
-                                          (symbol->string type)))
-                                    (typelist pred)))
-                         "")
-                     "] ("
-                     (remove-trailing-na
-                      (cf->string (gcf pred) 4))
-                     ")>")))
+      (format #f "<[~a] (~a)>"
+              (string-join
+                (map (lambda (type)
+                       (if (number? type)
+                           (number->string type)
+                           (symbol->string type)))
+                     (typelist pred))
+                " ")
+              (remove-trailing-na
+                (cf->string (gcf pred) 4)))))
 
 
 ;; Perform "pretty-print" stage on interpretation output.
