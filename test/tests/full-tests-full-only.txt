@@ -87,7 +87,14 @@
 <[c] (lủ to ra jỉa dê A na na to pủ fîe A)>
 
 
-// Bug fix
+// Seen in the wild
+
+:skip
+
+:skip
+
+
+// Bug fix (jado-tag bug)
 
 // mia leo pai
 <[c] (mỉa A lî ja dó[1] ja dó[2] bi lẻo dó[1] pâi ja dó dó[2])>
@@ -96,8 +103,13 @@
 <[c] (mỉa A pâi ja dó ja dó)>
 
 
-// Big ones
+// Bug fix ("beo mu chua" bug)
 
-:skip
+// beo mu chua
+<[c] (bẻo A lî ja dó[1] ja dó[2] bi chủa dó[2] dó[1])>
 
-:skip
+// beo chua
+<[c] (bẻo A chûa ja dó ja dó)>
+
+// beo mu mu chua
+<[c] (bẻo A chûa ja dó ja dó)>

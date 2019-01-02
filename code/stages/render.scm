@@ -20,13 +20,23 @@
          (cadr cf))
         (#t (fold max (map max-jado-tag cf)))))
 
+;; Determine whether the elements of elem can be found in ls.
+;; Must be in order, but need not be consecutive.
+(define (found-inside ls elem)
+  (cond ((null? elem) #t)
+        ((null? ls) #f)
+        ((eq? (car ls) (car elem))
+         (found-inside (cdr ls) (cdr elem)))
+        (#t
+         (found-inside (cdr ls) elem))))
+
 ;; Determine whether first k args of a pred are all top-level
-(define (top-level-slots pred k)
-  (let* ((canaries (map (lambda (n) (gensym)) (iota k)))
-         (plugged ((predicate pred)
-                   (append canaries (make-list 100 'foo)))))
-    (every (lambda (n) (member n plugged))
-           canaries)))
+;; and are in order
+(define (k-well-behaved-slots pred k)
+  (let ((args (take '(A B C D E F G H I J K L M
+                        N O P Q R S T U V W X Y Z)
+                    k)))
+    (found-inside (gcf pred) args)))
 
 
 (define (jado-ify pred k)
@@ -40,7 +50,7 @@
          
         ;; jado will all fill top-level slots, so drop
         ;; without a prenex
-        ((top-level-slots pred k)
+        ((k-well-behaved-slots pred k)
          (cons (lambda (args)
                  ((predicate pred)
                   (append (make-list k '(jado)) args)))

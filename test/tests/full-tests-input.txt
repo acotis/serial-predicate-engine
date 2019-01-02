@@ -55,12 +55,18 @@ to ri mai to pai
 kuai to re chuq to nuo
 to ra jia de to pu fie
 
-// Bug fix
-
-mia leo pai		// Fix for a bug where untagged jado broke the (max-jado-tag) function
-mia pai			// Control
-
 // Seen in the wild
 
 dua leo ru buaq bai		// Used in "Sa Búai Hủohūa"
 bu tea ru ceo riofa tishagiq	// Used by Ilmen
+
+// Bug fix (jado-tag bug)
+
+mia leo pai		// Fix for a bug where untagged jado broke the (max-jado-tag) function
+mia pai			// Control
+
+// Bug fix ("beo mu chua" bug)
+
+beo mu chua		// Fix for a bug where this parses as "bẻo A chûa ja dó ja dó"
+beo chua		// Control 1
+beo mu mu chua		// Control 2
