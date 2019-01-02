@@ -30,6 +30,4 @@
 
 (define (api-parse input)
   (if api-debug (format #t "API call: parse \"~a\"~%" input))
-  (let ((result (full-parse input)))
-    (if api-debug (format #t "  [Result: ~a]~%" result))
-    result))'
+  (full-parse input))

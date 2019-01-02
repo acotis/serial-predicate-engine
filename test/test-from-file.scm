@@ -47,7 +47,9 @@
 (define (read-whole-file filename)
   (call-with-input-file filename
     (lambda (file)
-
+      ;; Necessary to read unicode correctly
+      (set-port-encoding! file "UTF-8") 
+      
       (filter
        (lambda (s) (not (equal? s "")))
 
@@ -78,8 +80,6 @@
   `(run-tests
     
     ,(map (lambda (test-case)
-            (format #t " <Test case = ~a>~%" test-case)
-            
             `((car (,parse-fun-name ,(car test-case)))
               ,(cadr test-case)))
          
