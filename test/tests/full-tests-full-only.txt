@@ -81,7 +81,7 @@
 <[c c] (lủ to ri mải A B na to pải A B)>
 
 // kuai to re chuq to nuo
-<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
+<[c c] (kủai A lî ja dóshī bi lủ to re chủq dóshī B na to nủo dóshī)>
 
 // to ra jia de to pu fie
 <[c] (lủ to ra jỉa dê A na na to pủ fîe A)>
@@ -98,7 +98,7 @@
 // Bug fix (jado-tag bug)
 
 // mia leo pai
-<[c] (mỉa A lî ja dó[1] ja dó[2] bi lẻo dó[1] pâi ja dó dó[2])>
+<[c] (mỉa A lî ja dóshī ja dógū bi lẻo dóshī pâi ja dó dógū)>
 
 // mia pai
 <[c] (mỉa A pâi ja dó ja dó)>
@@ -107,7 +107,7 @@
 // Bug fix ("beo mu chua" bug)
 
 // beo mu chua
-<[c] (bẻo A lî ja dó[1] ja dó[2] bi chủa dó[2] dó[1])>
+<[c] (bẻo A lî ja dóshī ja dógū bi chủa dógū dóshī)>
 
 // beo chua
 <[c] (bẻo A chûa ja dó ja dó)>
