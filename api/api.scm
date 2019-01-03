@@ -8,7 +8,7 @@
 (load "../code/words.scm")
 
 
-(define api-debug #t)
+(define api-debug #f)
 
 
 ;; Input: None

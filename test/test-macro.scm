@@ -5,8 +5,6 @@
 ;; Defines the (test) and (run-tests) macros for use in
 ;; other test files.
 
-(use-syntax (ice-9 syncase))
-
 
 ;; Run a single test.  On fail, print out the call, the expected
 ;; result, and the actual result.  On success do nothing, unless
