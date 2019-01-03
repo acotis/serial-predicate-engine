@@ -22,7 +22,8 @@
   ;; Necessary to print unicode characters properly
   ;; Note: This procedure of setting the port encoding correctly
   ;;       seems a bit delicate.  Be careful.
-  (set-port-encoding! (current-output-port) "UTF-8"))
+  (set-port-encoding! (current-output-port) "UTF-8")
+  (fluid-set! %default-port-encoding "utf-8"));;Taken from online
 
 
 ;; Input: A string representing a serial predicate to be parsed

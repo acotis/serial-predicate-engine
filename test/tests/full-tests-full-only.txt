@@ -1,96 +1,96 @@
 // dua mai
-<[c c c] (dủa A mâi B C)>
+<[c c c] (dủa A mâi B C)>
 
 // leo pai
-<[c c] (lẻo A pâi ja dó B)>
+<[c c] (lẻo A pâi ja dó B)>
 
 // poq kea				
-<[c 1] (lủ to ru pỏq A na to kẻa A B)>
+<[c 1] (lủ to ru pỏq A na to kẻa A B)>
 
 // soq jia
-<[c c] (sỏq A jîa ja dó na B)>
+<[c c] (sỏq A jîa ja dó na B)>
 
 // soq jeo
-<[c 1 c] (sỏq A jêo ja dó B na C)>
+<[c 1 c] (sỏq A jêo ja dó B na C)>
 
 
 // tua jeaq jai
-<[c c] (tủa A jêaq B jâi ja dó)>
+<[c c] (tủa A jêaq B jâi ja dó)>
 
 // cheo jeo
-<[c] (chẻo A jêo ja dó ja dó)>
+<[c] (chẻo A jêo ja dó ja dó)>
 
 // mia ti
-<[c] (mỉa A tî ja dó ja dó)>
+<[c] (mỉa A tî ja dó ja dó)>
 
 // cua meo
-<[c 1] (của A mêo ja dó na B)>
+<[c 1] (của A mêo ja dó na B)>
 
 // dui bu
-<[c 1 1] (dủi A bû ja dó B na C)>
+<[c 1 1] (dủi A bû ja dó B na C)>
 
 
 // RU
 
 // pai ru mai
-<[c c] (lủ to ru pải A B na to mải A B)>
+<[c c] (lủ to ru pải A B na to mải A B)>
 
 // poq ra niai dua
-<[c 0] (lủ to ru lủ to ra pỏq A na to nỉai A na na to dủa A B)>
+<[c 0] (lủ to ru lủ to ra pỏq A na to nỉai A na na to dủa A B)>
 
 // jeo re pu ro jia
-<[? 1] (lủ to re jẻo A B na to lủ to ro pủ A na to jỉa A)>
+<[? 1] (lủ to re jẻo A B na to lủ to ro pủ A na to jỉa A)>
 
 // dua jia ru pu
-<[c 0] (dủa A lû to ru jỉa B na to pủ B)>
+<[c 0] (dủa A lû to ru jỉa B na to pủ B)>
 
 // dua pai ri mai
-<[c c c] (dủa A lû to ri pải B C na to mải B C)>
+<[c c c] (dủa A lû to ri pải B C na to mải B C)>
 
 
 // ?-types
 
 // fa ru soq
-<[c ? c] (lủ to ru fả A B C na to sỏq A B C)>
+<[c ? c] (lủ to ru fả A B C na to sỏq A B C)>
 
 // bu ra jeo
-<[c 1] (lủ to ra bủ A B na to jẻo A B)>
+<[c 1] (lủ to ra bủ A B na to jẻo A B)>
 
 // bu ra jeo de
-<[c] (lủ to ra bủ A dê ja dó na na to jẻo A dê ja dó)>
+<[c] (lủ to ra bủ A dê ja dó na na to jẻo A dê ja dó)>
 
 
 // Mu
 
 // mu dua
-<[0 c] (dủa B A)>
+<[0 c] (dủa B A)>
 
 // jia mu dua
-<[0 c] (jỉa dûa B A)>
+<[0 c] (jỉa dûa B A)>
 
 // jia ri mu dua
-<[0 c] (lủ to ri jỉa A na to dủa B A)>
+<[0 c] (lủ to ri jỉa A na to dủa B A)>
 
 // mu mai ri mu pai	
-<[c c] (lủ to ri mải B A na to pải B A)>	
+<[c c] (lủ to ri mải B A na to pải B A)>	
 
 
 // To ru
 
 // to ri mai to pai
-<[c c] (lủ to ri mải A B na to pải A B)>
+<[c c] (lủ to ri mải A B na to pải A B)>
 
 // kuai to re chuq to nuo
-<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
+<[c c] (kủai A lî ja dó[1] bi lủ to re chủq dó[1] B na to nủo dó[1])>
 
 // to ra jia de to pu fie
-<[c] (lủ to ra jỉa dê A na na to pủ fîe A)>
+<[c] (lủ to ra jỉa dê A na na to pủ fîe A)>
 
 
 // Seen in the wild
 
 //dua leo ru buaq bai
-<[c c c] (dủa A lû to ru lẻo B bâi ja dó C na na to bủaq B bâi ja dó C)>
+<[c c c] (dủa A lû to ru lẻo B bâi ja dó C na na to bủaq B bâi ja dó C)>
 
 :skip // Doesn't know the words
 
@@ -98,19 +98,19 @@
 // Bug fix (jado-tag bug)
 
 // mia leo pai
-<[c] (mỉa A lî ja dó[1] ja dó[2] bi lẻo dó[1] pâi ja dó dó[2])>
+<[c] (mỉa A lî ja dó[1] ja dó[2] bi lẻo dó[1] pâi ja dó dó[2])>
 
 // mia pai
-<[c] (mỉa A pâi ja dó ja dó)>
+<[c] (mỉa A pâi ja dó ja dó)>
 
 
 // Bug fix ("beo mu chua" bug)
 
 // beo mu chua
-<[c] (bẻo A lî ja dó[1] ja dó[2] bi chủa dó[2] dó[1])>
+<[c] (bẻo A lî ja dó[1] ja dó[2] bi chủa dó[2] dó[1])>
 
 // beo chua
-<[c] (bẻo A chûa ja dó ja dó)>
+<[c] (bẻo A chûa ja dó ja dó)>
 
 // beo mu mu chua
-<[c] (bẻo A chûa ja dó ja dó)>
+<[c] (bẻo A chûa ja dó ja dó)>

@@ -12,6 +12,7 @@
 
 
 (load "../utilities.scm")
+(load "../words.scm")
 (use-modules (srfi srfi-1))
 
 
@@ -35,23 +36,6 @@
 
 ;; Add a tone marking to the appropriate letter of a single word,
 ;; passed as a string
-
-;; Add diacritics to every vowel-after-a-consonant
-#;(define (add-diacritics letters tone)
-  (if (< (length letters) 2)
-      letters
-      
-      (let* ((one (car letters))
-             (two (cadr letters))
-             (rest (cddr letters))
-             (adding (and (vowel? two)
-                          (not (vowel? one)))))
-                          
-        (cons one
-              (add-diacritics
-               (cons (if adding (add-diacritic two tone) two)
-                     rest)
-               (if adding 1 tone))))))
 
 (define (add-diacritics* letters tone)
   (let ((first-vowel (list-index vowel? letters)))
@@ -81,6 +65,7 @@
   (list->string
     (add-diacritics (string->list word)
                     tone)))
+
 
 ;; Uakci's addition: convert number to its Toaq compound form. This is
 ;; to facilitate friendly dó variables, e.g., dóshī, dógū, etc.
