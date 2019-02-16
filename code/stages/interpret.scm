@@ -23,12 +23,12 @@
         ;; MU-form
         ((eq? 'mu (car cf))
          (map (lambda (f) (list 'mu f))
-              (get-serials (cadr cf))))
+              (filter-serials (get-serials (cadr cf)))))
 
         ;; XY-form
         ((eq? 'xy (car cf))
-         (let ((head (get-serials (cadr cf)))
-               (tail (get-serials (caddr cf))))
+         (let ((head (filter-serials (get-serials (cadr cf))))
+               (tail (filter-serials (get-serials (caddr cf)))))
            (fold append
                  (map (lambda (h)
                         (map (lambda (t)
@@ -40,7 +40,7 @@
         (#t
          (map (lambda (f)
                 (cons (car cf) (cdr f)))
-              (get-serials (cons 'xy (cdr cf)))))))
+              (filter-serials (get-serials (cons 'xy (cdr cf))))))))
 
 
 ;; Filter out all but the last (all-full-arities) interpretation
@@ -52,4 +52,4 @@
 ;; Perform the "interpret" stage on a parsed composite form.
 
 (define (stage-interpret parse-output)
-  (filter-serials (get-serials parse-output)))
+  (get-serials parse-output))
